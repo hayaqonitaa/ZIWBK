@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\user_page\StandarPelayanan;
+use App\Http\Controllers\user_page\LayananPengaduan;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\dashboard\Crm;
 use App\Http\Controllers\language\LanguageController;
@@ -165,6 +166,7 @@ use App\Http\Controllers\maps\Leaflet;
 // Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('standar-pelayanan');
+Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');

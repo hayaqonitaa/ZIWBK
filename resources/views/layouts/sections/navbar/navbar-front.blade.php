@@ -32,6 +32,9 @@ $activeClass = in_array($currentRouteName, $activeRoutes) ? 'active' : '';
           <li class="nav-item">
               <a class="nav-link {{ request()->is('standar-pelayanan*') ? 'active' : '' }}" href="{{ url('standar-pelayanan') }}">Standar Pelayanan</a>
           </li>
+          <li class="nav-item">
+              <a class="nav-link {{ request()->is('layanan-pengaduan*') ? 'active' : '' }}" href="{{ url('layanan-pengaduan') }}">Layanan Pengaduan</a>
+          </li>
           <!-- <li class="nav-item">
             <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingTeam">Team</a>
           </li>
