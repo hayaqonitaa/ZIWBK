@@ -4,6 +4,7 @@ use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\user_page\StandarPelayanan;
 use App\Http\Controllers\user_page\LayananPengaduan;
+use App\Http\Controllers\admin_page\AdminController;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\dashboard\Crm;
 use App\Http\Controllers\language\LanguageController;
@@ -167,6 +168,11 @@ use App\Http\Controllers\maps\Leaflet;
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('standar-pelayanan');
 Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
+Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
+Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
+Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
+Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
+
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
