@@ -8,7 +8,7 @@
     },
     {
       "url": "/",
-      "name": "Pembagian Kuisioner",
+      "name": "Pembagian Kuesioner",
       "icon": "menu-icon tf-icons ti ti-square",
       "slug": ""
     },
@@ -78,7 +78,7 @@
       "slug": "",
       "submenu": [
         {
-          "url": "",
+          "url": "/mahasiswa",
           "name": "Data Mahasiswa",
           "slug": ""
         },
