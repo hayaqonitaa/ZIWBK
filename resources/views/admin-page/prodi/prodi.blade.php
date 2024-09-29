@@ -25,7 +25,14 @@ $configData = Helper::appClasses();
 
 <!-- Scrollable -->
 <div class="card">
-  <h5 class="card-header">Prodi</h5>
+<div class="d-flex justify-content-between align-items-center card-header">
+    <h5 class="mb-0">Prodi</h5>
+    <!-- button add -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProdi">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+
   <div class="card-datatable text-nowrap">
     <table class="dt-scrollableTable table">
       <thead>
@@ -38,5 +45,8 @@ $configData = Helper::appClasses();
   </div>
 </div>
 <!--/ Scrollable -->
+
+@include('admin-page/prodi/modal-prodi')
+@include('admin-page/prodi/modal-edit-prodi')
 
 @endsection
