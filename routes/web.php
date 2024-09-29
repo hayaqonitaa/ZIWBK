@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\user_page\StandarPelayanan;
 use App\Http\Controllers\user_page\LayananPengaduan;
 use App\Http\Controllers\admin_page\AdminController;
+use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\dashboard\Crm;
 use App\Http\Controllers\language\LanguageController;
@@ -172,6 +173,8 @@ Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->middleware('auth');
+Route::get('/mahasiswa/data', [MahasiswaController::class, 'getMahasiswa'])->middleware('auth'); // untuk mengambil data mahasiswa
 
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');

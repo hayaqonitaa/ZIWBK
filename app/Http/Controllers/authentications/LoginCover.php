@@ -24,7 +24,7 @@ class LoginCover extends Controller
 
         // Attempt to login using email or username
         if (Auth::attempt(['email' => $credentials['email-username'], 'password' => $credentials['password']]) || 
-            Auth::attempt(['username' => $credentials['email-username'], 'password' => $credentials['password']])) {
+            Auth::attempt(['name' => $credentials['email-username'], 'password' => $credentials['password']])) {
             // Authentication passed, redirect to homepage
             return redirect()->intended('/dashboard');
         }
