@@ -5,7 +5,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Login Cover - Pages')
+@section('title', 'Login')
 
 @section('vendor-style')
 @vite([
@@ -90,7 +90,7 @@ $configData = Helper::appClasses();
     </div>
   </div>
   <button class="btn btn-primary d-grid w-100">
-    Sign in
+    Masuk
   </button>
 </form>
 
