@@ -23,7 +23,7 @@ class ProdiController extends Controller
   public function getJurusan() // New method for jurusan data
   {
       $jurusan = Jurusan::all(); // Fetch all jurusan data
-      return response()->json(['data' => $jurusan]);
+      return response()->json([$jurusan]);
   }
 
   public function store(Request $request)
