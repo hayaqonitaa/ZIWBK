@@ -13,11 +13,12 @@
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="jurusan">Jurusan</label>
-            <select id="jurusan" name="jurusan" class="form-select" required>
+            <select id="jurusan" name="id_jurusan" class="form-select" required>
               <option value="">Pilih Jurusan</option>
-              <!-- Options akan diisi melalui JavaScript -->
+              <!-- Options will be populated via JavaScript -->
             </select>
           </div>
+
           <div class="col-12 text-center">
             <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>

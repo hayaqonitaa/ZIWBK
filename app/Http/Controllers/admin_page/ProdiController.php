@@ -46,4 +46,29 @@ class ProdiController extends Controller
           'data' => $prodi
       ]);
   }
+
+  public function update(Request $request) {
+    $request->validate([
+        'id' => 'required|exists:prodi,id',
+        'nama' => 'required|string|max:255',
+    ]);
+
+    $prodi = Prodi::find($request->id);
+    $prodi->nama = $request->nama;
+    $prodi->save();
+
+    return response()->json(['message' => 'Prodi updated successfully!']);
+}
+
+public function destroy($id)
+{
+    // Cari jurusan yang ingin dihapus
+    $prodi = Prodi::findOrFail($id);
+    $prodi->delete();
+
+    // Response JSON sukses
+    return response()->json([
+        'message' => 'Prodi berhasil dihapus!'
+    ]);
+}
 }

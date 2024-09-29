@@ -1,15 +1,15 @@
 'use strict';
 
 $(function () {
-  // Handle form submission for adding new jurusan
-  $('#addJurusanForm').on('submit', function (e) {
+  // Handle form submission for adding new prodi
+  $('#addMahasiswaForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
     var formData = $(this).serialize(); // Serialize form data
 
     // AJAX request to submit the form data
     $.ajax({
-      url: '/jurusan/store', // URL to your store method in the controller
+      url: '/mahasiswa/store', // URL to your store method in the controller
       type: 'POST',
       data: formData,
       success: function (response) {
@@ -23,7 +23,31 @@ $(function () {
       }
     });
   });
+
+  $('#addMahasiswa').on('show.bs.modal', function () {
+    $.ajax({
+      url: '/prodi/data',
+      type: 'GET',
+      success: function (data) {
+        console.log(data); // Cek apakah data muncul di console
+        var prodiSelect = $('#prodi');
+        prodiSelect.empty(); // Kosongkan pilihan yang ada di dropdown
   
+        prodiSelect.append('<option value="" disabled selected>Pilih prodi</option>'); // Pilihan default
+  
+        // Looping melalui data prodi dan menambahkannya ke dropdown
+        data.data.forEach(function (prodi) {
+          prodiSelect.append(`<option value="${prodi.id}">${prodi.nama}</option>`);
+        });
+      },
+      error: function (xhr) {
+        // Handle error jika AJAX gagal
+        alert('Terjadi kesalahan dalam memuat data prodi.');
+      }
+    });
+  });
+  
+
   // Function to show alert
   function showAlert(message) {
     var alertDiv = $(`
@@ -48,4 +72,4 @@ $(function () {
       alert('An unexpected error occurred.');
     }
   }
-}); 
+});

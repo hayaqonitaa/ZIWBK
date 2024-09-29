@@ -84,7 +84,7 @@ $(function () {
             if (result.isConfirmed) {
               // Perform AJAX DELETE request
               $.ajax({
-                url: `/jurusan/delete/${id}`, // URL to your delete method in the controller
+                url: `/prodi/delete/${id}`, // URL to your delete method in the controller
                 type: 'DELETE',
                 success: function (response) {
                   // Refresh the DataTable after deletion

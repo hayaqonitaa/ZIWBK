@@ -50,17 +50,6 @@ $(function () {
       }
     });
 
-    // Handle edit button click
-    $(document).on('click', '.edit-btn', function () {
-      var id = $(this).data('id');
-      var nama = $(this).data('nama');
-      
-      // Set values in the edit modal
-      $('#editJurusanId').val(id);
-      $('#editNama').val(nama);
-      $('#editJurusan').modal('show'); // Show the modal
-    });
-
     // Handle delete action
     $(document).on('click', '.delete-btn', function () {
       var id = $(this).data('id');
