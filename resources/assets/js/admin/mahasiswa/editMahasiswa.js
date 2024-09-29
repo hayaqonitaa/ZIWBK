@@ -1,16 +1,31 @@
 'use strict';
 
 $(function () {
-  // Handle form submission for adding new jurusan
-  $('#addJurusanForm').on('submit', function (e) {
+  // Handle edit button click
+  $(document).on('click', '.edit-btn', function () {
+    var NIM = $(this).data('nim');
+    var nama = $(this).data('nama');
+    var prodi = $(this).data('prodi');
+    var email = $(this).data('email');
+    
+    $('#editNIM').val(NIM);
+    $('#editNama').val(nama);
+    $('#editProdi').val(prodi);
+    $('#editEmail').val(email);
+  });
+
+  
+  // Handle form submission for editing Prodi
+  $('#editMahasiswaForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
     var formData = $(this).serialize(); // Serialize form data
+    var id = $('#editMahasiswaId').val(); // Get the ID
 
-    // AJAX request to submit the form data
+    // AJAX request to submit the edit form data
     $.ajax({
-      url: '/jurusan/store', // URL to your store method in the controller
-      type: 'POST',
+      url: `/mahasiswa/update/${id}`, // URL to your update method in the controller
+      type: 'PUT',
       data: formData,
       success: function (response) {
         showAlert(response.message);
@@ -48,4 +63,4 @@ $(function () {
       alert('An unexpected error occurred.');
     }
   }
-}); 
+});

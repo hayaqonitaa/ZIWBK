@@ -176,8 +176,12 @@ Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
+
 Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->middleware('auth');
 Route::get('/mahasiswa/data', [MahasiswaController::class, 'getMahasiswa'])->middleware('auth'); // untuk mengambil data mahasiswa
+Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
+Route::put('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
+Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 
 Route::get('/jurusan', [JurusanController::class, 'index'])->name('admin-page.jurusan.jurusan')->middleware('auth');
 Route::get('/jurusan/data', [JurusanController::class, 'getJurusan'])->middleware('auth'); 
@@ -189,6 +193,8 @@ Route::get('/prodi/jurusan/data', [ProdiController::class, 'getJurusan']);
 Route::get('/prodi', [ProdiController::class, 'index'])->name('admin-page.prodi.prodi')->middleware('auth');
 Route::get('/prodi/data', [ProdiController::class, 'getProdi'])->middleware('auth'); 
 Route::post('/prodi/store', [ProdiController::class, 'store']);
+Route::put('/prodi/update/{id}', [ProdiController::class, 'update'])->name('prodi.update');
+Route::delete('/prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
