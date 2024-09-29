@@ -8,6 +8,7 @@ use App\Http\Controllers\user_page\AgenPerubahan;
 use App\Http\Controllers\admin_page\AdminController;
 use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
+use App\Http\Controllers\admin_page\ProdiController;
 
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\dashboard\Crm;
@@ -184,7 +185,8 @@ Route::get('/jurusan/data', [JurusanController::class, 'getJurusan'])->middlewar
 Route::post('/jurusan/store', [JurusanController::class, 'store']);
 Route::put('/jurusan/update/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
 Route::delete('/jurusan/delete/{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
-
+Route::get('/prodi', [ProdiController::class, 'index'])->middleware('auth');
+Route::get('/prodi/data', [ProdiController::class, 'getProdi'])->middleware('auth');
 
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
