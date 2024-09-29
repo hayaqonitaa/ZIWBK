@@ -15,7 +15,7 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/admin/mahasiswa.js'])
+@vite(['resources/assets/js/admin/mahasiswa/mahasiswa.js'])
 @endsection
 
 @section('content')

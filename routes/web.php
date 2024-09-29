@@ -6,6 +6,8 @@ use App\Http\Controllers\user_page\StandarPelayanan;
 use App\Http\Controllers\user_page\LayananPengaduan;
 use App\Http\Controllers\admin_page\AdminController;
 use App\Http\Controllers\admin_page\MahasiswaController;
+use App\Http\Controllers\admin_page\JurusanController;
+
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\dashboard\Crm;
 use App\Http\Controllers\language\LanguageController;
@@ -175,6 +177,12 @@ Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
 Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->middleware('auth');
 Route::get('/mahasiswa/data', [MahasiswaController::class, 'getMahasiswa'])->middleware('auth'); // untuk mengambil data mahasiswa
+Route::get('/jurusan', [JurusanController::class, 'index'])->name('admin-page.jurusan.jurusan')->middleware('auth');
+Route::get('/jurusan/data', [JurusanController::class, 'getJurusan'])->middleware('auth'); 
+Route::post('/jurusan/store', [JurusanController::class, 'store']);
+Route::put('/jurusan/update/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
+Route::delete('/jurusan/delete/{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
+
 
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
