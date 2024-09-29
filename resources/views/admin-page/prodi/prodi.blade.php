@@ -15,6 +15,7 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
+@vite(['resources/assets/js/admin/prodi/prodi.js'])
 @vite(['resources/assets/js/admin/prodi/addProdi.js'])
 @endsection
 
