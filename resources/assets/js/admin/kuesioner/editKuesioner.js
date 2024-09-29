@@ -1,17 +1,37 @@
 'use strict';
 
 $(function () {
-  // Handle form submission for adding new jurusan
-  $('#addJurusanForm').on('submit', function (e) {
+  // Handle edit button click
+  $(document).on('click', '.edit-btn', function () {
+    var id = $(this).data('id');
+    var judul = $(this).data('judul');
+    var link_kuesioner = $(this).data('link_kuesioner');
+    
+    // Set values in the edit modal
+    $('#editKuesionerId').val(id);
+    $('#editJudul').val(judul);
+    $('#editLink').val(link_kuesioner);
+    $('#editKuesioner').modal('show'); // Show the modal
+  });
+
+  // Handle form submission for editing kuesioner
+  $('#editKuesionerForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
     var formData = $(this).serialize(); // Serialize form data
+    var id = $('#editKuesionerId').val(); // Get the ID
 
-    // AJAX request to submit the form data
+    // Append the method PUT to the form data for Laravel
+    formData += '&_method=PUT';
+
+    // AJAX request to submit the edit form data
     $.ajax({
-      url: '/jurusan/store', // URL to your store method in the controller
-      type: 'POST',
+      url: '/kuesioner/update/' + id, // Use the actual id in the URL
+      type: 'POST', // Use POST because we are appending method PUT manually
       data: formData,
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Add CSRF token
+      },
       success: function (response) {
         showAlert(response.message);
         setTimeout(function() {

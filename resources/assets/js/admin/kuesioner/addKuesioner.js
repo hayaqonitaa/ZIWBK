@@ -2,14 +2,14 @@
 
 $(function () {
   // Handle form submission for adding new jurusan
-  $('#addJurusanForm').on('submit', function (e) {
+  $('#addKuesionerForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
     var formData = $(this).serialize(); // Serialize form data
 
     // AJAX request to submit the form data
     $.ajax({
-      url: '/jurusan/store', // URL to your store method in the controller
+      url: '/kuesioner/store', // URL to your store method in the controller
       type: 'POST',
       data: formData,
       success: function (response) {
