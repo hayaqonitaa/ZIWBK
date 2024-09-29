@@ -13,10 +13,10 @@
             <input type="text" id="nama" name="nama" class="form-control" required/>
           </div>
           <div class="col-12 col-md-12">
-            <label class="form-label" for="jurusan">Jurusan</label>
-            <select id="jurusan" name="jurusan" class="form-select" required>
-              <option value="">Pilih Jurusan</option>
-              <!-- Options will be populated here via JavaScript -->
+            <label class="form-label" for="jurusan">Nama Jurusan</label>
+            <select id="jurusan" name="id_jurusan" class="form-select" required>
+              <option value="" disabled selected>Select Jurusan</option>
+              <!-- Options will be populated here -->
             </select>
           </div>
           <div class="col-12 text-center">
