@@ -299,3 +299,59 @@
     }
   }
 }
+
+//hover untuk standar pelayanan
+.card {
+  border: 2px solid #d29e9e; // Mengatur border menjadi biru
+  transition: all 0.3s ease; // Menambahkan transisi halus
+
+  &:hover {
+    transform: scale(1.05); // Membesarkan kartu sedikit
+    box-shadow: 0 4px 8px rgba(166, 21, 21, 0.2); // Menambahkan bayangan saat hover
+    border-color: #210407; // Mengubah warna border menjadi biru tua saat hover
+  }
+}
+
+.border-primary {
+  border-color: #ba25ab !important; // Menetapkan warna border biru dengan prioritas
+}
+
+//dashboard user / 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+#zonaIntegritas {
+    background-color: #ffffff;
+    padding: 60px 0;
+    font-family: 'Poppins', sans-serif; /* Mengatur font menjadi Poppins */
+}
+
+#zonaIntegritas h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #273272; /* Mengubah warna teks */
+}
+
+#zonaIntegritas p {
+    color: #6c757d;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif; /* Mengatur font menjadi Poppins */
+}
+
+#zonaIntegritas h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #273272; /* Mengubah warna teks */
+}
+
+#zonaIntegritas .row p {
+    font-size: 16px;
+    color: #6c757d;
+    font-family: 'Poppins', sans-serif; /* Mengatur font menjadi Poppins */
+}
+
+#zonaIntegritas hr {
+    width: 100px;
+    border: 2px solid #273272; /* Mengubah warna garis horizontal */
+    margin: 10px auto;
+}
+

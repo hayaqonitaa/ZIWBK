@@ -42,7 +42,7 @@ $configData = Helper::appClasses();
     <div class="container">
         <h1>Halo</h1>
         <h6 class="pb-1 mb-4 text-muted">Grid Card</h6>
-<div class="row row-cols-1 row-cols-md-3 g-1 mb-5">
+<div class="col-lg-4 col-sm-6 text-center features-icon-box">
   <div class="col">
     <div class="card h-5">
       <img class="card-img-top" src="{{asset('assets/img/elements/2.jpg')}}" alt="Card image cap" />

@@ -170,7 +170,6 @@ Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('stan
 Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
 Route::get('/agen-perubahan', [AgenPerubahan::class, 'index']);
 
-
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
 // locale
