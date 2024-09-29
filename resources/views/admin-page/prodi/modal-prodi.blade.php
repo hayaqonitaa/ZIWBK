@@ -1,4 +1,3 @@
-<!-- Modal untuk tambah jurusan -->
 <div class="modal fade" id="addProdi" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
     <div class="modal-content p-3 p-md-5">
@@ -16,7 +15,7 @@
             <label class="form-label" for="jurusan">Jurusan</label>
             <select id="jurusan" name="jurusan" class="form-select" required>
               <option value="">Pilih Jurusan</option>
-              <!-- Options will be populated here via JavaScript -->
+              <!-- Options akan diisi melalui JavaScript -->
             </select>
           </div>
           <div class="col-12 text-center">

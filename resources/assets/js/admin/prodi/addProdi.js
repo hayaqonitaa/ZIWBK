@@ -24,26 +24,29 @@ $(function () {
     });
   });
 
-  // Fetch jurusan data when the modal is opened
   $('#addProdi').on('show.bs.modal', function () {
     $.ajax({
-      url: '/jurusan/data', // URL to your getJurusan method in the controller
+      url: '/jurusan/data',
       type: 'GET',
       success: function (data) {
+        console.log(data); // Cek apakah data muncul di console
         var jurusanSelect = $('#jurusan');
-        jurusanSelect.empty(); // Clear existing options
-
-        jurusanSelect.append('<option value="" disabled selected>Select Jurusan</option>'); // Default option
-
-        data.forEach(function (jurusan) {
+        jurusanSelect.empty(); // Kosongkan pilihan yang ada di dropdown
+  
+        jurusanSelect.append('<option value="" disabled selected>Pilih Jurusan</option>'); // Pilihan default
+  
+        // Looping melalui data jurusan dan menambahkannya ke dropdown
+        data.data.forEach(function (jurusan) {
           jurusanSelect.append(`<option value="${jurusan.id}">${jurusan.nama}</option>`);
         });
       },
       error: function (xhr) {
-        handleError(xhr);
+        // Handle error jika AJAX gagal
+        alert('Terjadi kesalahan dalam memuat data jurusan.');
       }
     });
   });
+  
 
   // Function to show alert
   function showAlert(message) {

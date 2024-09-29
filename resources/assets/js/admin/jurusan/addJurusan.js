@@ -2,7 +2,7 @@
 
 $(function () {
   // Handle form submission for adding new jurusan
-  $('#addJurusanForm').on('submit', function (e) {
+  $('#Form').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
     var formData = $(this).serialize(); // Serialize form data
