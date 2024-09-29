@@ -13,6 +13,14 @@ $(function () {
         dataSrc: 'data' //  ini ke controller
       }, // 
       columns: [
+        { 
+          data: null, 
+          title: 'No', 
+          render: function (data, type, row, meta) {
+            return meta.row + 1; // Menampilkan nomor urut berdasarkan index
+          },
+          orderable: false // Kolom ini tidak bisa diurutkan
+        },
         { data: 'nim', title: 'NIM' },
         { data: 'nama', title: 'Nama' },
         { data: 'prodi.nama', title: 'Prodi' }, // Adjust to access prodi's name
