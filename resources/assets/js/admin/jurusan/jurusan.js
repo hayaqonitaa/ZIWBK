@@ -50,44 +50,6 @@ $(function () {
       }
     });
 
-    // Handle form submission for adding new jurusan
-    $('#addJurusanForm').on('submit', function (e) {
-      e.preventDefault(); // Prevent the default form submission
-
-      var formData = $(this).serialize(); // Serialize form data
-
-      // AJAX request to submit the form data
-      $.ajax({
-        url: '/jurusan/store', // URL to your store method in the controller
-        type: 'POST',
-        data: formData,
-        success: function (response) {
-          var alertDiv = $(`
-            <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
-              <i class="fas fa-check-circle me-2"></i>
-              <div>${response.message}</div>
-            </div>
-          `);
-          $('body').append(alertDiv); // Ensure alert is fixed and visible
-          setTimeout(function() {
-            alertDiv.fadeOut('slow', function() {
-              $(this).remove(); // Remove alert after fade out
-            });
-          }, 3000); // 3000 ms = 3 seconds
-          setTimeout(function() {
-            location.reload(); // Refresh the page after a short delay
-          }, 2000);
-        },
-        error: function (xhr) {
-          if (xhr.responseJSON && xhr.responseJSON.message) {
-            alert('Error: ' + xhr.responseJSON.message);
-          } else {
-            alert('An unexpected error occurred.');
-          }
-        }
-      });
-    });
-
     // Handle edit button click
     $(document).on('click', '.edit-btn', function () {
       var id = $(this).data('id');
@@ -97,45 +59,6 @@ $(function () {
       $('#editJurusanId').val(id);
       $('#editNama').val(nama);
       $('#editJurusan').modal('show'); // Show the modal
-    });
-
-    // Handle form submission for editing jurusan
-    $('#editJurusanForm').on('submit', function (e) {
-      e.preventDefault(); // Prevent the default form submission
-
-      var formData = $(this).serialize(); // Serialize form data
-      var id = $('#editJurusanId').val(); // Get the ID
-
-      // AJAX request to submit the edit form data
-      $.ajax({
-        url: `/jurusan/update/${id}`, // URL to your update method in the controller
-        type: 'PUT',
-        data: formData,
-        success: function (response) {
-          var alertDiv = $(`
-            <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
-              <i class="fas fa-check-circle me-2"></i>
-              <div>${response.message}</div>
-            </div>
-          `);
-          $('body').append(alertDiv); // Ensure alert is fixed and visible
-          setTimeout(function() {
-            alertDiv.fadeOut('slow', function() {
-              $(this).remove(); // Remove alert after fade out
-            });
-          }, 3000); // 3000 ms = 3 seconds
-          setTimeout(function() {
-            location.reload(); // Refresh the page after a short delay
-          }, 2000);
-        },
-        error: function (xhr) {
-          if (xhr.responseJSON && xhr.responseJSON.message) {
-            alert('Error: ' + xhr.responseJSON.message);
-          } else {
-            alert('An unexpected error occurred.');
-          }
-        }
-      });
     });
 
     // Handle delete action
