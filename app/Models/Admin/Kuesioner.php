@@ -16,7 +16,4 @@ class Kuesioner extends Model
     protected $keyType = 'string'; //karena uuid string
 
     protected $fillable = ['id', 'judul', 'link_kuesioner']; //untuk memberi tahu ada kolom apa saja di tabel
-    
-
-
 }

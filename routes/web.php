@@ -9,6 +9,7 @@ use App\Http\Controllers\admin_page\AdminController;
 use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
+use App\Http\Controllers\admin_page\KuesionerController;
 
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\dashboard\Crm;
@@ -191,6 +192,12 @@ Route::get('/prodi/jurusan/data', [ProdiController::class, 'getJurusan']);
 Route::get('/prodi', [ProdiController::class, 'index'])->name('admin-page.prodi.prodi')->middleware('auth');
 Route::get('/prodi/data', [ProdiController::class, 'getProdi'])->middleware('auth'); 
 Route::post('/prodi/store', [ProdiController::class, 'store']);
+
+Route::get('/kuesioner', [KuesionerController::class, 'index'])->name('admin-page.kuesioner.kuesoner')->middleware('auth');
+Route::get('/kuesioner/data', [KuesionerController::class, 'getKuesioner'])->middleware('auth'); 
+Route::post('/kuesioner/store', [KuesionerController::class, 'store']);
+Route::put('/kuesioner/update/{id}', [KuesionerController::class, 'update'])->name('kuesioner.update');
+Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kesioner.destroy');
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
