@@ -14,6 +14,17 @@
             <label for="editNama" class="form-label">Nama Prodi</label>
             <input type="text" class="form-control" id="editNama" name="nama" required>
           </div>
+          
+          <div class="mb-3">
+          <label class="form-label" for="jurusan">Jurusan</label>
+            <select id="jurusan" name="id_jurusan" class="form-select" required>
+              <option value="">Pilih Jurusan</option>
+              <!-- Options will be populated via JavaScript -->
+            </select>
+          </div>
+
+          </div>
+
           <button type="submit" class="btn btn-primary">Update</button>
           <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
         </form>
