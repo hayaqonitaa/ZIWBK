@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Content navbar - Layouts')
+@section('title', 'Dashboard Admin')
 
 @section('content')
 
