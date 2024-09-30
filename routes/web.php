@@ -9,6 +9,7 @@ use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
+use App\Http\Controllers\admin_page\PembagianController;
 
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\dashboard\Crm;
@@ -198,10 +199,12 @@ Route::put('/prodi/update/{id}', [ProdiController::class, 'update'])->name('prod
 Route::delete('/prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
 
 Route::get('/kuesioner', [KuesionerController::class, 'index'])->name('admin-page.kuesioner.kuesoner')->middleware('auth');
-Route::get('/kuesioner/data', [KuesionerController::class, 'getKuesioner'])->middleware('auth'); 
+Route::get('/kuesioner/data', [KuesionerController::class, 'getKuesioner'])->name('kuesioner.data')->middleware('auth'); 
 Route::post('/kuesioner/store', [KuesionerController::class, 'store']);
 Route::put('/kuesioner/update/{id}', [KuesionerController::class, 'update'])->name('kuesioner.update');
 Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kesioner.destroy');
+
+Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pembagian.share'); // Rute untuk membagikan kuesioner
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');

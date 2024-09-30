@@ -11,8 +11,10 @@ class MahasiswaController extends Controller
 {
   public function index()
   {
-    return view('admin-page.mahasiswa.mahasiswa');
+      $mahasiswas = Mahasiswa::with('prodi')->get();
+      return view('admin-page.mahasiswa.mahasiswa', compact('mahasiswas'));
   }
+  
   public function getMahasiswa () {
     // Mengambil semua data di model mahasiswa beserta function mahasiswa
     $mahasiswa = Mahasiswa::with('prodi')->get();
@@ -69,17 +71,38 @@ class MahasiswaController extends Controller
 
     return response()->json([
       'message' => 'Prodi updated successfully!']);
-}
+  }
 
-public function destroy($id)
-{
-    // Cari jurusan yang ingin dihapus
-    $mahasiswa = Mahasiswa::findOrFail($id);
-    $mahasiswa->delete();
+  public function destroy($id)
+  {
+      // Cari jurusan yang ingin dihapus
+      $mahasiswa = Mahasiswa::findOrFail($id);
+      $mahasiswa->delete();
 
-    // Response JSON sukses
-    return response()->json([
-        'message' => 'Mahasiswa berhasil dihapus!'
-    ]);
-}
+      // Response JSON sukses
+      return response()->json([
+          'message' => 'Mahasiswa berhasil dihapus!'
+      ]);
+  }
+
+  public function shareQuestionnaire(Request $request)
+  {
+      $validatedData = $request->validate([
+          'mahasiswa_id' => 'required|array',
+          'kuesioner_id' => 'required|uuid',
+      ]);
+
+      foreach ($validatedData['mahasiswa_id'] as $mahasiswaId) {
+          // Buat pembagian kuesioner untuk setiap mahasiswa yang dipilih
+          Pembagian::create([
+              'id_mahasiswa' => $mahasiswaId,
+              'id_kuesioner' => $validatedData['kuesioner_id'],
+              'status' => 'belum dibagikan',
+          ]);
+      }
+
+      return response()->json([
+          'message' => 'Kuesioner berhasil dibagikan!'
+      ]);
+  }
 }

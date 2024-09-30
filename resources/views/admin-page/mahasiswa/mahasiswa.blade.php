@@ -19,6 +19,7 @@ $configData = Helper::appClasses();
 @vite(['resources/assets/js/admin/mahasiswa/addMahasiswa.js'])
 @vite(['resources/assets/js/admin/mahasiswa/editMahasiswa.js'])
 @vite(['resources/assets/js/admin/mahasiswa/deleteMahasiswa.js'])
+@vite(['resources/assets/js/admin/pembagian/pembagian.js'])
 @endsection
 
 @section('content')
@@ -39,17 +40,22 @@ $configData = Helper::appClasses();
 
 <!-- Scrollable -->
 <div class="card">
-  <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Mahasiswa</h5>
-    <!-- button add -->
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addMahasiswa">
-      <i class="fa-solid fa-plus"></i>
-    </button>
-  </div>
+    <div class="d-flex align-items-center"> <!-- Flex container for buttons -->
+      <!-- Button to add new Mahasiswa -->
+      <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addMahasiswa">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <!-- Button to share questionnaire -->
+      <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#shareQuestionnaireModal">
+          <i class="fas fa-paper-plane"></i> Bagikan Kuesioner
+      </button>
+    </div>
   <div class="card-datatable text-nowrap">
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
+          <th><input type="checkbox" id="selectAll"></th> <!-- Checkbox untuk Select All -->
+          <th>No</th>
           <th>NIM</th>
           <th>Nama</th>
           <th>Prodi</th>
@@ -60,8 +66,10 @@ $configData = Helper::appClasses();
   </div>
 </div>
 <!--/ Scrollable -->
+<!--/ Scrollable -->
 @include('admin-page/mahasiswa/modal-mahasiswa')
 @include('admin-page/mahasiswa/modal-edit-mahasiswa')
+@include('admin-page/pembagian/modal-add-pembagian')
 
 
 @endsection

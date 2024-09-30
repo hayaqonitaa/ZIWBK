@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('pembagian', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
+            $table->uuid('id_mahasiswa');
+            $table->uuid('id_kuesioner');
+            $table->string('status');
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswa')->onDelete('cascade');
             $table->foreign('id_kuesioner')->references('id')->on('kuesioner')->onDelete('cascade');
             $table->timestamps();
         });

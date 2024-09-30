@@ -75,4 +75,26 @@ class KuesionerController extends Controller
             'message' => 'Kuesioner berhasil dihapus!'
         ]);
     }
+
+    public function share(Request $request)
+    {
+        // Validasi input
+        $validatedData = $request->validate([
+            'id_mahasiswa' => 'required|array', // Mengharuskan ini menjadi array jika Anda memilih banyak mahasiswa
+            'id_kuesioner' => 'required|string', // Pastikan ini string atau UUID
+            'status' => 'required|string',
+        ]);
+    
+        // Looping untuk setiap mahasiswa yang dipilih
+        foreach ($validatedData['id_mahasiswa'] as $id_mahasiswa) {
+            Pembagian::create([
+                'id' => (string) \Illuminate\Support\Str::uuid(), // Menghasilkan UUID
+                'status' => $validatedData['status'],
+                'id_mahasiswa' => $id_mahasiswa,
+                'id_kuesioner' => $validatedData['id_kuesioner'],
+            ]);
+        }
+    
+        return response()->json(['message' => 'Pembagian berhasil!'], 201);
+    }
 }
