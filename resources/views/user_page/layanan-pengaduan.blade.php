@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Landing - Front Pages')
+@section('title', 'Landing - Layanan Pengaduan')
 
 <!-- Vendor Styles -->
 @section('vendor-style')
@@ -32,30 +32,58 @@ $configData = Helper::appClasses();
 @vite(['resources/assets/js/front-page-landing.js'])
 @endsection
 
-
 @section('content')
 <div data-bs-spy="scroll" class="scrollspy-example">
 
-
-  <!-- Useful features: Start -->
+  <!-- Useful Features: Start -->
   <section id="landingFeatures" class="section-py landing-features">
-    <div class="container">
-        <h1>Halo</h1>
-        <h6 class="pb-1 mb-4 text-muted">Grid Card</h6>
-<div class="col-lg-4 col-sm-6 text-center features-icon-box">
-  <div class="col">
-    <div class="card h-5">
-      <img class="card-img-top" src="{{asset('assets/img/elements/2.jpg')}}" alt="Card image cap" />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <div class="container-fluid px-0 position-relative">
+      <!-- Gambar Full Width SPU -->
+      <div class="mb-4 position-relative">
+        <img src="{{ asset('images/Polban.png') }}" alt="header SPU" class="img-fluid" style="width: 100vw; height: auto;" />
+
+        <!-- Teks "Layanan Pengaduan" dengan Persegi -->
+        <h3 class="position-absolute" style="bottom: 20px; left: 20px; color: white; font-size: 2.5rem; z-index: 10;">
+          <!-- Persegi oranye -->
+          <span style="display: inline-block; width: 40px; height: 40px; background-color: orange; margin-right: 10px; vertical-align: middle;"></span>
+          Layanan Pengaduan
+        </h3>
+      </div>
+
+      <!-- Judul Layanan Pengaduan -->
+      <div class="container text-center">
+        <h3 class="mb-4" style="border-bottom: 2px solid #000; display: inline-block;">Layanan Pengaduan</h3>
+        <div class="row justify-content-center">
+          <div class="col-sm-6 col-lg-3 mb-4">
+            <div class="card border border-primary shadow-none h-100">
+              <div class="card-body text-center">
+                <img src="{{ asset('images/Vector.png') }}" alt="pendidikan" class="mb-2" style="width: 80px; height: auto;" />
+                <h5 class="h5">Stop Gratifikasi</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 mb-4">
+            <div class="card border border-primary shadow-none h-100">
+              <div class="card-body text-center">
+                <img src="{{ asset('images/Vector2.png') }}" alt="penelitian" class="mb-2" style="width: 80px; height: auto;" />
+                <h5 class="h5">SP4N Lapor</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 mb-4">
+            <div class="card border border-primary shadow-none h-100">
+              <div class="card-body text-center">
+                <img src="{{ asset('images/Vector3.png') }}" alt="pengabdian" class="mb-2" style="width: 80px; height: auto;" />
+                <h5 class="h5">Whistleblower</h5>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-    </div>
   </section>
-  <!-- Useful features: End -->
+  <!-- Useful Features: End -->
 
 </div>
 @endsection

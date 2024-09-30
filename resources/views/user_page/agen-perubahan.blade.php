@@ -32,58 +32,58 @@ $configData = Helper::appClasses();
 @vite(['resources/assets/js/front-page-landing.js'])
 @endsection
 
-
 @section('content')
-<div data-bs-spy="scroll" class="scrollspy-example">
+<section id="agenPerubahan" class="section-py">
+    <div class="container-fluid px-0">
+        <!-- Gambar Full Width Header -->
+        <div class="mb-4 position-relative">
+            <img src="{{ asset('images/Polban.png') }}" alt="header image" class="img-fluid" style="width: 100vw; height: auto;" />
+            
+            <!-- Judul "Tim" di Ujung Bawah Kiri -->
+            <h2 class="position-absolute" style="left: 20px; bottom: 20px; color: white; font-family: Poppins; font-size: 28px; font-weight: 600; line-height: 42px; text-align: left;">Tim</h2>
+        </div>
 
-  <!-- Full-Width Header Image Section: Start -->
-  <section id="headerImage" class="section-py landing-features" style="position: relative; height: 500px;">
-    <div style="
-      background-image: url('{{ asset('assets/img/elements/Polban.png') }}');
-      background-size: cover;
-      background-position: center;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    "></div>
-    <div style="
-      position: absolute;
-      top: 50%; /* Vertikal tengah */
-      left: 0; /* Kiri ujung */
-      transform: translateY(-50%); /* Vertikal tengah secara tepat */
-      color: white; /* Warna teks putih */
-      font-size: 2rem; /* Ukuran font */
-      padding: 0 20px; /* Padding kiri dan kanan jika diperlukan */
-      z-index: 1; /* Pastikan teks berada di atas background */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Efek bayangan teks */
-    ">
-      <h2>Agen Perubahan</h2>
-    </div>
-  </section>
-  <!-- Full-Width Header Image Section: End -->
+        <!-- Judul Agen Perubahan -->
+        <h3 class="mb-0" style="color: #07294D; font-family: Poppins; font-size: 28px; font-weight: 600; line-height: 42px; text-align: center; margin-top: 20px;">Agen Perubahan</h3>
+        <div style="border-bottom: 2px solid #000; display: inline-block; width: 150px; margin: 5px auto 20px auto;"></div>
 
-  <!-- Useful features: Start -->
-  <section id="landingFeatures" class="section-py landing-features">
-    <div class="container">
-        <h1>Halo</h1>
-        <h6 class="pb-1 mb-4 text-muted">Grid Card</h6>
-        <div class="row row-cols-1 row-cols-md-3 g-1 mb-5">
-          <div class="col">
-            <div class="card h-5">
-              <img class="card-img-top" src="{{asset('assets/img/elements/17.jpg')}}" alt="Card Image" />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              </div>
+        <!-- Rectangle Agen Perubahan -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-sm-6 col-md-4 mb-4">
+                <div class="d-flex align-items-center" style="background-color: #D2DFEC; padding: 20px; border-radius: 100px 20px 20px 100px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-bottom: 30px;">
+                    <div class="ellipse" style="width: 100px; height: 100px; background-color: white; border-radius: 50%; overflow: hidden; border: 2px solid #00796B; margin-right: -50px; position: relative; z-index: 1;">
+                        <img src="{{ asset('images/rodiah.png') }}" alt="Rodiah" style="width: 100%; height: auto;">
+                    </div>
+                    <div style="margin-left: 50px; z-index: 0;">
+                        <h5 class="mt-0">Rodiah</h5>
+                        <p class="mb-0">Tenaga Kependidikan</p>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="col-sm-6 col-md-4 mb-4">
+                <div class="d-flex align-items-center" style="background-color: #D2DFEC; padding: 20px; border-radius: 100px 20px 20px 100px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                    <div class="ellipse" style="width: 100px; height: 100px; background-color: white; border-radius: 50%; overflow: hidden; border: 2px solid #00796B; margin-right: -50px; position: relative; z-index: 1;">
+                        <img src="{{ asset('images/Paula.png') }}" alt="Example" style="width: 100%; height: auto;">
+                    </div>
+                    <div style="margin-left: 50px; z-index: 0;">
+                        <h5 class="mt-0">Nama Lain</h5>
+                        <p class="mb-0">Jabatan Lain</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Judul Tim Kerja ZI WBBM -->
+        <h3 class="mb-0 mt-5" style="color: #07294D; font-family: Poppins; font-size: 28px; font-weight: 600; line-height: 42px; text-align: center;">Tim Kerja ZI WBBM</h3>
+        
+        <!-- Foto di Bawah Judul Tim Kerja ZI WBBM -->
+        <div class="text-center" style="margin-top: 20px;">
+            <img src="{{ asset('images/Tim-Kerja.png') }}" alt="Tim Kerja ZI WBBM" style="width: 60%; height: auto;">
         </div>
     </div>
-  </section>
-  <!-- Useful features: End -->
+</section>
+
+
 
 </div>
 @endsection
