@@ -198,6 +198,7 @@ Route::put('/jurusan/update/{id}', [JurusanController::class, 'update'])->name('
 Route::delete('/jurusan/delete/{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
 
 Route::get('/prodi/jurusan/data', [ProdiController::class, 'getJurusan']);
+Route::get('/prodi/jurusan/data', [ProdiController::class, 'getJurusan']);
 Route::get('/prodi', [ProdiController::class, 'index'])->name('admin-page.prodi.prodi')->middleware('auth');
 Route::get('/prodi/data', [ProdiController::class, 'getProdi'])->middleware('auth'); 
 Route::post('/prodi/store', [ProdiController::class, 'store']);
@@ -214,6 +215,8 @@ Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])
 Route::get('/pembagian', [PembagianController::class, 'index'])->name('admin-page.pembagian.pembagian')->middleware('auth');
 Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pembagian.share'); // Rute untuk membagikan kuesioner
 Route::get('/pembagian/data', [PembagianController::class, 'getPembagian'])->name('pembagian.data')->middleware('auth'); 
+Route::post('/pembagian/kirim', [PembagianController::class, 'kirimEmail']);
+
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');

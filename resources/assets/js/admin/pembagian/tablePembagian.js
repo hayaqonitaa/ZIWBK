@@ -1,8 +1,7 @@
 'use strict';
 
 $(function () {
-
-  // buat input
+  // Set up AJAX with CSRF token
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -11,16 +10,23 @@ $(function () {
 
   var dt_scrollable_table = $('.dt-scrollableTable');
 
-  // Scrollable
-  // --------------------------------------------------------------------
-
+  // Initialize DataTable
   if (dt_scrollable_table.length) {
     var dt_scrollableTable = dt_scrollable_table.DataTable({
       ajax: {
-        url: '/pembagian/data', // ini ke web.php
-        dataSrc: 'data' //  ini ke controller
-      }, // 
+        url: '/pembagian/data', // URL ke web.php
+        dataSrc: 'data' // Sumber data dari controller
+      },
       columns: [
+        { 
+          data: null, 
+          title: '<input type="checkbox" id="select-all">', // Checkbox untuk memilih semua
+          orderable: false,
+          searchable: false,
+          render: function (data, type, row) {
+            return `<input type="checkbox" class="row-checkbox" value="${row.id}">`; // Checkbox per baris
+          }
+        },
         { 
           data: null, 
           title: 'No', 
@@ -36,137 +42,99 @@ $(function () {
         { 
           data: null, 
           title: 'Actions', 
-          orderable: false, // Column cannot be sorted
+          orderable: false, 
           render: function (data, type, row) {
             return `
               <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}">
-                <i class="fas fa-edit"></i> 
+                <i class="fas fa-edit"></i>
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
-                <i class="fas fa-trash"></i> 
+                <i class="fas fa-trash"></i>
               </button>
             `;
           }
         }
       ],
-      // Scroll options
       scrollX: true,
       dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       initComplete: function (settings, json) {
-        // Add the mti-n1 class to the first row in tbody
         dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
       }
-    });  
-    
-    $('#editProdi').on('show.bs.modal', function () {
-      console.log('Modal dibuka'); // Cek apakah modal terbuka
-      var jurusanId = $('#editJurusan').val(); // Ambil ID jurusan yang sedang dipilih
-    
-      $.ajax({
-        url: '/pembagian/data',
-        type: 'GET',
-        success: function (data) {
-          console.log(data); // Debug: pastikan data muncul di console
-          var jurusanSelect = $('#jurusan');
-    
-          // Set jurusan yang sedang dipilih
-          jurusanSelect.val(jurusanId); // Set jurusan yang dipilih berdasarkan data yang ada
-    
-          jurusanSelect.append('<option value="" disabled selected>Pilih Jurusan</option>'); // Tambahkan opsi default
-    
-          // Looping untuk menambahkan data jurusan
-          data.data.forEach(function (jurusan) {
-            jurusanSelect.append(`<option value="${jurusan.id}">${jurusan.nama}</option>`);
-          });
-        },
-        error: function (xhr) {
-          alert('Terjadi kesalahan dalam memuat data jurusan.');
-        }
+    });
+
+    // Handle "Select All" checkbox click
+    $(document).on('click', '#select-all', function () {
+      var isChecked = this.checked;
+      $('.row-checkbox').each(function () {
+        this.checked = isChecked;
       });
     });
-    
-    
-    
-        // Handle edit button click
-        $(document).on('click', '.edit-btn', function () {
-          var id = $(this).data('id');
-          var nama = $(this).data('nama');
-          var id_jurusan = $(this).data('id_jurusan');
-          
-          // Set values in the edit modal
-          $('#editProdiId').val(id);
-          $('#editNama').val(nama);
-          $('#editJurusan').val(id_jurusan);
-          $('#editProdi').modal('show'); // Show the modal
+
+    // Handle individual row checkbox click
+    $(document).on('change', '.row-checkbox', function () {
+      var allCheckboxes = $('.row-checkbox');
+      var checkedCheckboxes = allCheckboxes.filter(':checked');
+
+      // Set "Select All" checkbox state
+      $('#select-all').prop('checked', allCheckboxes.length === checkedCheckboxes.length);
+    });
+
+    // Handle button "Kirim" click
+    $(document).on('click', '.btn-success', function () {
+      var selectedIds = [];
+      var selectedData = [];
+
+      // Loop through each checked checkbox
+      $('.row-checkbox:checked').each(function () {
+        var row = $(this).closest('tr');
+        var nim = row.find('td:eq(2)').text(); // Column NIM (adjust index as needed)
+        var nama = row.find('td:eq(3)').text();  // Column Nama (adjust index as needed)
+
+        selectedIds.push($(this).val());
+        selectedData.push({ nim: nim, nama: nama });
+      });
+
+      if (selectedIds.length > 0) {
+        // Show selected data in modal
+        var selectedDataList = $('#selectedDataList');
+        selectedDataList.empty(); // Clear previous list
+        selectedData.forEach(function (item) {
+          selectedDataList.append('<li>' + item.nim + ' - ' + item.nama + '</li>');
         });
 
+        // Store selected IDs in hidden input
+        $('#selectedIds').val(selectedIds.join(','));
 
-            // Handle form submission for editing jurusan
-        $('#editProdiForm').on('submit', function (e) {
-          e.preventDefault(); // Prevent the default form submission
+        // Show the modal
+        $('#sendModal').modal('show');
+      } else {
+        // Show notification if no data is selected
+        Swal.fire('Pilih Data', 'Silakan pilih minimal satu data untuk dikirim.', 'warning');
+      }
+    });
 
-          var formData = $(this).serialize(); // Serialize form data
-          var id = $('#editProdiId').val(); // Get the ID
+    // Handle confirm send button click
+    $('#confirmSend').on('click', function () {
+      var selectedIds = $('#selectedIds').val();
 
-          // AJAX request to submit the edit form data
-          $.ajax({
-            url: `/prodi/update/${id}`, // URL to your update method in the controller
-            type: 'PUT',
-            data: formData,
-            success: function (response) {
-              showAlert(response.message);
-              setTimeout(function() {
-                location.reload(); // Refresh the page after a short delay
-              }, 2000);
-            },
-            error: function (xhr) {
-              handleError(xhr);
-            }
-          });
+      if (selectedIds) {
+        $.ajax({
+          url: '/pembagian/kirim', // Adjust to your actual URL for sending data
+          type: 'POST',
+          data: {
+            ids: selectedIds
+          },
+          success: function (response) {
+            Swal.fire('Sukses', 'Data berhasil dikirim dan email telah terkirim.', 'success');
+            setTimeout(function () {
+              location.reload(); // Refresh the page after success
+            }, 2000);
+          },
+          error: function (xhr) {
+            Swal.fire('Error!', 'Terjadi kesalahan saat mengirim data.', 'error');
+          }
         });
-
-        
-        // Handle delete action
-        $(document).on('click', '.delete-btn', function () {
-          var id = $(this).data('id');
-    
-          // Show SweetAlert2 confirmation dialog
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#E3EBEA',
-            confirmButtonText: 'Yes, Delete',
-            cancelButtonText: 'Cancel'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // Perform AJAX DELETE request
-              $.ajax({
-                url: `/prodi/delete/${id}`, // URL to your delete method in the controller
-                type: 'DELETE',
-                success: function (response) {
-                  // Refresh the DataTable after deletion
-                  dt_scrollableTable.ajax.reload();
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Deleted!',
-                    text: response.message,
-                    timer: 2000,
-                    showConfirmButton: false
-                  });
-                },
-                error: function (xhr) {
-                  if (xhr.responseJSON && xhr.responseJSON.message) {
-                    Swal.fire('Error!', xhr.responseJSON.message, 'error');
-                  } else {
-                    Swal.fire('Error!', 'An unexpected error occurred.', 'error');
-                  }
-                }
-              });
-            }
-          });
-        });
+      }
+    });
   }
 });
