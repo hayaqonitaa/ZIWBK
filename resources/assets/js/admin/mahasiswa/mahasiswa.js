@@ -66,17 +66,17 @@ $(function () {
         }
     });
 
-    // Handle checkbox "Select All"
-    // $('#selectAll').on('click', function () {
-    //   var rows = dt_scrollableTable.rows({ 'search': 'applied' }).nodes();
-    //   $('input[type="checkbox"]', rows).prop('checked', this.checked);
-    // });
-
     // Handle individual row checkbox click
     dt_scrollable_table.on('click', '.row-checkbox', function () {
       if (!this.checked) {
         $('#selectAll').prop('checked', false);
       }
+    });
+
+    // Handle "Select All" checkbox
+    $('#selectAll').on('click', function () {
+      var isChecked = $(this).is(':checked'); // Check status of the Select All checkbox
+      $('.row-checkbox').prop('checked', isChecked); // Set all row checkboxes to the same status
     });
 
     // Handle edit button click
@@ -94,7 +94,7 @@ $(function () {
       $('#editMahasiswa').modal('show'); // Show the modal
     });
 
-    // Handle form submission for editing Prodi
+    // Handle form submission for editing Mahasiswa
     $('#editMahasiswaForm').on('submit', function (e) {
       e.preventDefault(); // Prevent the default form submission
 
@@ -117,51 +117,6 @@ $(function () {
         }
       });
     });
-
-    // $(document).ready(function () {
-    //   // Handle bagikan kuesioner button click
-    //   $('#bagikanKuesioner').on('click', function () {
-    //     var selectedMahasiswa = [];
-    //     $('.row-checkbox:checked').each(function () {
-    //       selectedMahasiswa.push($(this).val()); // Ambil ID mahasiswa yang dipilih
-    //     });
-    
-    //     var judulKuesioner = $('#judulKuesioner').val(); // Ambil judul kuesioner yang dipilih
-    
-    //     if (selectedMahasiswa.length === 0) {
-    //       alert('Silakan pilih mahasiswa terlebih dahulu.');
-    //       return;
-    //     }
-    
-    //     if (!judulKuesioner) {
-    //       alert('Silakan pilih judul kuesioner.');
-    //       return;
-    //     }
-    
-    //     // Kirim data ke server menggunakan AJAX
-    //     $.ajax({
-    //       url: '/kuesioner/bagikan', // URL endpoint untuk membagikan kuesioner
-    //       type: 'POST',
-    //       data: {
-    //         mahasiswa_ids: selectedMahasiswa,
-    //         judul: judulKuesioner
-    //       },
-    //       success: function (response) {
-    //         showAlert(response.message);
-    //         // Menampilkan hasil pembagian kuesioner
-    //         $('#hasilPembagianKuesioner').append(`
-    //           <div>
-    //             Mahasiswa: ${selectedMahasiswa.join(', ')} | Judul Kuesioner: ${judulKuesioner}
-    //           </div>
-    //         `);
-    //       },
-    //       error: function (xhr) {
-    //         handleError(xhr);
-    //       }
-    //     });
-    //   });
-    // });
-    
 
     // Function to show alert
     function showAlert(message) {

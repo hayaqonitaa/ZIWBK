@@ -7,7 +7,7 @@
       "slug": "dashboard"
     },
     {
-      "url": "/",
+      "url": "/pembagian",
       "name": "Pembagian Kuesioner",
       "icon": "menu-icon tf-icons ti ti-mail",
       "slug": ""
