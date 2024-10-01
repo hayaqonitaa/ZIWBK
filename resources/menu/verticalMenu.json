@@ -1,7 +1,7 @@
 {
   "menu": [
     {
-      "url": "/",
+      "url": "/dashboard",
       "name": "Dashboard",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "dashboard"
@@ -9,7 +9,13 @@
     {
       "url": "/",
       "name": "Pembagian Kuesioner",
-      "icon": "menu-icon tf-icons ti ti-square",
+      "icon": "menu-icon tf-icons ti ti-mail",
+      "slug": ""
+    },
+    {
+      "url": "",
+      "name": "Content",
+      "icon": "menu-icon tf-icons ti ti-components",
       "slug": ""
     },
     {
@@ -18,7 +24,7 @@
     {
       "url": "",
       "name": "Hasil Survey",
-      "icon": "menu-icon tf-icons ti ti-square",
+      "icon": "menu-icon tf-icons ti ti-files",
       "slug": ""
     },
     {
@@ -32,49 +38,19 @@
     },
     {
       "url": "",
-      "name": "Header",
-      "icon": "menu-icon tf-icons ti ti-square",
-      "slug": ""
-    },
-    {
-      "url": "",
-      "name": "Piagam",
-      "icon": "menu-icon tf-icons ti ti-square",
+      "name": "Content Categories",
+      "icon": "menu-icon tf-icons ti ti-box-multiple",
       "slug": ""
     },
     {
       "url": "/kuesioner",
       "name": "Kuesioner",
-      "icon": "menu-icon tf-icons ti ti-square",
+      "icon": "menu-icon tf-icons ti ti-checkbox",
       "slug": ""
     },
     {
-      "url": "",
-      "name": "Standar",
-      "icon": "menu-icon tf-icons ti ti-square",
-      "slug": ""
-    },
-    {
-      "url": "",
-      "name": "Agen Perubahan",
-      "icon": "menu-icon tf-icons ti ti-square",
-      "slug": ""
-    },
-    {
-      "url": "",
-      "name": "Tim Kerja",
-      "icon": "menu-icon tf-icons ti ti-square",
-      "slug": ""
-    },
-    {
-      "url": "",
-      "name": "Pengaduan",
-      "icon": "menu-icon tf-icons ti ti-square",
-      "slug": ""
-    }, 
-    {
-      "name": "Maharsiswa",
-      "icon": "menu-icon tf-icons ti ti-square",
+      "name": "Mahasiswa",
+      "icon": "menu-icon tf-icons ti ti-book",
       "slug": "",
       "submenu": [
         {
