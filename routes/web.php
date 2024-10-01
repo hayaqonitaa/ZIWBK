@@ -10,6 +10,7 @@ use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
+use App\Http\Controllers\admin_page\AgenPerubahanController;
 
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\dashboard\Crm;
@@ -174,7 +175,7 @@ use App\Http\Controllers\maps\Leaflet;
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('standar-pelayanan');
 Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
-Route::get('/agen-perubahan', [AgenPerubahan::class, 'index']);
+Route::get('/agen-perubahan', [agenPerubahan::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
@@ -198,6 +199,10 @@ Route::get('/kuesioner/data', [KuesionerController::class, 'getKuesioner'])->mid
 Route::post('/kuesioner/store', [KuesionerController::class, 'store']);
 Route::put('/kuesioner/update/{id}', [KuesionerController::class, 'update'])->name('kuesioner.update');
 Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kesioner.destroy');
+
+Route::get('agenPerubahan/AgenPerubahan', [AgenPerubahanController::class, 'index'])->name('admin-page.agenPerubahan.AgenPerubahan')->middleware('auth');
+
+
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
