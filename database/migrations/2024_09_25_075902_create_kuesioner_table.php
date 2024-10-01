@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kuesioner', function (Blueprint $table) {
-            $table->uuid('id')->primary; //untuk id supaya generate string id 
+            $table->uuid('id')->primary(); //untuk id supaya generate string id 
             $table->string('judul');
             $table->string('link_kuesioner');
             $table->timestamps(); //jangan dihapuss untuk membuat created_at dan updated_at
