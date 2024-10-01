@@ -16,9 +16,7 @@
     ReviewsSliderNext = document.querySelector('.swiper-button-next'),
     priceDurationToggler = document.querySelector('.price-duration-toggler'),
     priceMonthlyList = [].slice.call(document.querySelectorAll('.price-monthly')),
-    priceYearlyList = [].slice.call(document.querySelectorAll('.price-yearly')),
-    pdfEmbed = document.getElementById('pdfEmbed'), // Ambil elemen embed PDF
-    yearSelect = document.getElementById('yearSelect'); // Ambil elemen dropdown tahun
+    priceYearlyList = [].slice.call(document.querySelectorAll('.price-yearly'));z
 
   // Hero
   const mediaQueryXL = '1200';
@@ -145,30 +143,4 @@
       togglePrice();
     };
   });
-
-  // Change PDF based on selected year
-  document.addEventListener('DOMContentLoaded', function() {
-    const basePdfPath = "{{ asset('file/hasilsurvey') }}"; // Jalur dasar ke file PDF
-
-    yearSelect.addEventListener('change', function() {
-      const selectedYear = yearSelect.value; // Dapatkan nilai tahun yang dipilih
-      const pdfSrc = `${basePdfPath}_${selectedYear}.pdf`; // Jalur PDF yang dihasilkan
-
-      // Periksa apakah file PDF ada dengan membuat permintaan fetch
-      fetch(pdfSrc)
-        .then(response => {
-          if (response.ok) {
-            pdfEmbed.src = pdfSrc; // Ubah sumber PDF
-          } else {
-            alert(`PDF untuk tahun ${selectedYear} tidak tersedia.`); // Tampilkan peringatan
-            pdfEmbed.src = ''; // Kosongkan sumber PDF
-          }
-        })
-        .catch(() => {
-          alert(`PDF untuk tahun ${selectedYear} tidak tersedia.`); // Tampilkan peringatan jika ada kesalahan
-          pdfEmbed.src = ''; // Kosongkan sumber PDF
-        });
-    });
-  });
-
 })();

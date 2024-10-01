@@ -12,6 +12,7 @@ use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
+use App\Http\Controllers\admin_page\AgenPerubahanController;
 use App\Http\Controllers\admin_page\PembagianController;
     use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\dashboard\Crm;
@@ -178,7 +179,7 @@ Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey')
 Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('standar-pelayanan');
 Route::get('/tim-kerja', [TimKerja::class, 'index'])->name('tim-kerja');
 Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
-Route::get('/agen-perubahan', [AgenPerubahan::class, 'index']);
+Route::get('/agen-perubahan', [agenPerubahan::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
