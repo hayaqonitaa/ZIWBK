@@ -79,6 +79,46 @@ $(function () {
       }
     });
 
+    $('#addMahasiswa').on('show.bs.modal', function () {
+      $.ajax({
+        url: '/prodi/data',
+        type: 'GET',
+        success: function (data) {
+          console.log(data); // Cek apakah data muncul di console
+          var prodiSelect = $('#prodi');
+          prodiSelect.empty(); // Kosongkan pilihan yang ada di dropdown
+    
+          prodiSelect.append('<option value="" disabled selected>Pilih prodi</option>'); // Pilihan default
+    
+          // Looping melalui data prodi dan menambahkannya ke dropdown
+          data.data.forEach(function (prodi) {
+            prodiSelect.append(`<option value="${prodi.id}">${prodi.nama}</option>`);
+          });
+        },
+        error: function (xhr) {
+          // Handle error jika AJAX gagal
+          alert('Terjadi kesalahan dalam memuat data prodi.');
+        }
+      });
+    });
+    
+  
+    // Function to show alert
+    function showAlert(message) {
+      var alertDiv = $(`
+        <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+          <i class="fas fa-check-circle me-2"></i>
+          <div>${message}</div>
+        </div>
+      `);
+      $('body').append(alertDiv);
+      setTimeout(function() {
+        alertDiv.fadeOut('slow', function() {
+          $(this).remove(); // Remove alert after fade out
+        });
+      }, 3000);
+    }
+   
     // Handle edit button click
     $(document).on('click', '.edit-btn', function () {
       var NIM = $(this).data('nim');
@@ -97,7 +137,7 @@ $(function () {
     // Handle form submission for editing Prodi
     $('#editMahasiswaForm').on('submit', function (e) {
       e.preventDefault(); // Prevent the default form submission
-
+    
       var formData = $(this).serialize(); // Serialize form data
       var id = $('#editMahasiswaId').val(); // Get the ID
 
