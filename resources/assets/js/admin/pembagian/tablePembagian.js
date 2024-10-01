@@ -45,9 +45,6 @@ $(function () {
           orderable: false, 
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}">
-                <i class="fas fa-edit"></i>
-              </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
                 <i class="fas fa-trash"></i>
               </button>

@@ -71,4 +71,16 @@ class PembagianController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function destroy($id)
+    {
+        // Cari jurusan yang ingin dihapus
+        $pembagian = Pembagian::findOrFail($id);
+        $pembagian->delete();
+
+        // Response JSON sukses
+        return response()->json([
+            'message' => 'Data Pembagian Kuesioner berhasil dihapus!'
+        ]);
+    }
 }

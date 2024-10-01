@@ -4,7 +4,7 @@
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
-          <h3 class="mb-2">Bagikan Kuesioner</h3>
+          <h3 class="mb-2">Pemetaan Kuesioner</h3>
         </div>
         <form id="shareQuestionnaireForm" class="row g-3" onsubmit="return false">
           <div class="col-12">

@@ -40,16 +40,20 @@ $configData = Helper::appClasses();
 
 <!-- Scrollable -->
 <div class="card">
-    <div class="d-flex align-items-center"> <!-- Flex container for buttons -->
-      <!-- Button to add new Mahasiswa -->
-      <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addMahasiswa">
-        <i class="fa-solid fa-plus"></i>
-      </button>
-      <!-- Button to share questionnaire -->
-      <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#shareQuestionnaireModal">
-          <i class="fas fa-paper-plane"></i> Bagikan Kuesioner
-      </button>
+    <div class="d-flex justify-content-between align-items-center card-header">
+    <h5 class="mb-0">Data Pengisian Kuesioner</h5>
+        <div class="d-flex"> <!-- Flex container for buttons -->
+            <!-- Button to share questionnaire -->
+            <button type="button" class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#shareQuestionnaireModal">
+                <i class="fas fa-paper-plane"></i> Bagikan Kuesioner
+            </button>
+            <!-- Button to add new Mahasiswa -->
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addMahasiswa">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
     </div>
+
   <div class="card-datatable text-nowrap">
     <table class="dt-scrollableTable table">
       <thead>
@@ -64,6 +68,7 @@ $configData = Helper::appClasses();
       </thead>
     </table>
   </div>
+</div>
 </div>
 <!--/ Scrollable -->
 <!--/ Scrollable -->
