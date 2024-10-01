@@ -48,7 +48,7 @@ class MahasiswaController extends Controller
 
   // Response JSON sukses
   return response()->json([
-      'message' => 'Prodi berhasil ditambahkan!',
+      'message' => 'Mahasiswa berhasil ditambahkan!',
       'data' => $mahasiswa
   ]);
   }
@@ -61,7 +61,7 @@ class MahasiswaController extends Controller
       'email' => 'required|string|max:255',
     ]);
 
-    $mahasiswa = new Mahasiswa();
+    $mahasiswa = Mahasiswa::find($request->id);
     $mahasiswa->nim = $validatedData['nim'];
     $mahasiswa->nama = $validatedData['nama'];
     $mahasiswa->id_prodi = $validatedData['id_prodi'];
@@ -70,7 +70,7 @@ class MahasiswaController extends Controller
   
 
     return response()->json([
-      'message' => 'Prodi updated successfully!']);
+      'message' => 'Mahasiswa updated successfully!']);
   }
 
   public function destroy($id)

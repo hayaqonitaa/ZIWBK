@@ -79,12 +79,39 @@ $(function () {
       $('.row-checkbox').prop('checked', isChecked); // Set all row checkboxes to the same status
     });
 
+
+    $('#editMahasiswa').on('show.bs.modal', function () {
+      $.ajax({
+        url: '/prodi/data',
+        type: 'GET',
+        success: function (data) {
+          console.log(data); // Cek apakah data muncul di console
+          var prodiSelect = $('#editProdi');
+          prodiSelect.empty(); // Kosongkan pilihan yang ada di dropdown
+    
+          prodiSelect.append('<option value="" disabled selected>Pilih prodi</option>'); // Pilihan default
+    
+          // Looping melalui data prodi dan menambahkannya ke dropdown
+          data.data.forEach(function (prodi) {
+            prodiSelect.append(`<option value="${prodi.id}">${prodi.nama}</option>`);
+          });
+        },
+        error: function (xhr) {
+          // Handle error jika AJAX gagal
+          alert('Terjadi kesalahan dalam memuat data prodi.');
+        }
+      });
+    });
+    
+  
+
     // Handle edit button click
     $(document).on('click', '.edit-btn', function () {
       var NIM = $(this).data('nim');
       var nama = $(this).data('nama');
       var prodi = $(this).data('prodi');
       var email = $(this).data('email');
+      console.log(NIM);
 
       // Set values in the edit modal
       $('#editNIM').val(NIM);
@@ -97,7 +124,7 @@ $(function () {
     // Handle form submission for editing Mahasiswa
     $('#editMahasiswaForm').on('submit', function (e) {
       e.preventDefault(); // Prevent the default form submission
-    
+
       var formData = $(this).serialize(); // Serialize form data
       var id = $('#editMahasiswaId').val(); // Get the ID
 

@@ -22,11 +22,11 @@
 
             <div class="mb-3">
             <label class="form-label" for="prodi">Prodi</label>
-            <select id="prodi" name="id_prodi" class="form-select" required>
+            <select id="editProdi" name="id_prodi" class="form-select" required>
                 <option value="" disabled selected>Pilih Prodi</option>
                 <!-- Options akan diisi dari database melalui JavaScript -->
             </select>
-            </div>
+            </div>  
 
             <div class="mb-3">
             <label for="editEmail" class="form-label">Email</label>
