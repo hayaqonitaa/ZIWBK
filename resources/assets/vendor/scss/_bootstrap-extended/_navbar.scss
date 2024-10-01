@@ -3,39 +3,42 @@
 
 .navbar {
   z-index: 2;
-  // ! Fix: navbar dropdown focus outline
+  
+  // Fix: navbar dropdown focus outline
   .dropdown:focus,
   .dropdown-toggle:focus {
     outline: 0;
   }
+  
   .navbar-toggler:focus {
     box-shadow: none;
   }
+  
   .list-group-item:hover,
   .list-group-item:focus {
-    background-color: $navbar-dropdown-hover-bg;
+    background-color: $navbar-dropdown-hover-bg; /* Pastikan variabel ini didefinisikan */
     color: inherit;
   }
 }
 
 .fixed-top {
-  z-index: $zindex-fixed;
+  z-index: $zindex-fixed; /* Pastikan variabel ini didefinisikan */
 }
 
 .navbar.navbar-light {
-  color: $navbar-light-color;
+  color: $navbar-light-color; /* Pastikan variabel ini didefinisikan */
 }
 
 .navbar-light .navbar-nav .nav-link.disabled {
-  color: $navbar-light-disabled-color !important;
+  color: $navbar-light-disabled-color !important; /* Pastikan variabel ini didefinisikan */
 }
 
 .navbar.navbar-dark {
-  color: $navbar-dark-color;
+  color: $navbar-dark-color; /* Pastikan variabel ini didefinisikan */
 }
 
 .navbar-dark .navbar-nav .nav-link.disabled {
-  color: $navbar-dark-disabled-color !important;
+  color: $navbar-dark-disabled-color !important; /* Pastikan variabel ini didefinisikan */
 }
 
 // IE fix
@@ -45,43 +48,51 @@
   flex-shrink: 1;
 }
 
-// Icons
-// .navbar-icon {
-//   font-size: 130%;
-// }
-
 // Rulers
 .navbar-dark hr {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 .navbar-light hr {
-  border-color: $gray-100;
-}
-
-// RTL Style
-// ******************************************************************************
-
-@include rtl-only {
-  .navbar-nav {
-    padding-right: 0;
-  }
-
-  .navbar-brand {
-    margin-right: 0;
-    margin-left: $navbar-padding-x;
-  }
+  border-color: $gray-100; /* Pastikan variabel ini didefinisikan */
 }
 
 // Mega dropdown
-// ******************************************************************************
-
 .mega-dropdown {
   .dropdown-toggle {
     outline: 0;
     box-shadow: none;
   }
+  
   .dropdown-menu {
     width: 100%;
   }
+}
+
+// CSS untuk Dropdown
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none; /* Sembunyikan dropdown secara default */
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ddd;
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* Tampilkan dropdown saat hover */
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #5d596c;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
 }
