@@ -125,6 +125,17 @@ $(function () {
             ids: selectedIds
           },
           success: function (response) {
+            // Update status for each selected ID to "Sudah Terkirim"
+            selectedIds.split(',').forEach(function (id) {
+              // Find the row in DataTable and update the status column
+              var row = dt_scrollableTable.rows().data().toArray().find(row => row.id === id);
+              if (row) {
+                row.status = 'Sudah Terkirim'; // Update status
+              }
+            });
+
+            dt_scrollableTable.clear().rows.add(dt_scrollableTable.rows().data()).draw(); // Refresh DataTable
+
             Swal.fire('Sukses', 'Data berhasil dikirim dan email telah terkirim.', 'success');
             setTimeout(function () {
               location.reload(); // Refresh the page after success
