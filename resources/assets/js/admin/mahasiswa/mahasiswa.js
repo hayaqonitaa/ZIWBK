@@ -129,7 +129,7 @@ $(function () {
 
       var formData = $(this).serialize(); // Serialize form data
       var id = $('#editMahasiswaId').val(); // Get the ID
-      console.log(id);
+      console.log(formData);
 
       // AJAX request to submit the edit form data
       $.ajax({

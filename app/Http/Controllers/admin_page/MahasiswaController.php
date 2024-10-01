@@ -64,7 +64,7 @@ class MahasiswaController extends Controller
     $mahasiswa = Mahasiswa::find($request->id);
     $mahasiswa->nim = $request -> nim;
     $mahasiswa->nama = $request -> nama;
-    $mahasiswa->id_prodi = $request -> nama;
+    $mahasiswa->id_prodi = $request -> id_prodi;
     $mahasiswa->email = $request -> email;
     $mahasiswa->save();
   
