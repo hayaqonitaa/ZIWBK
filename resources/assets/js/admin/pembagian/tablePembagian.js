@@ -38,7 +38,20 @@ $(function () {
         { data: 'mahasiswa.nim', title: 'NIM' },
         { data: 'mahasiswa.nama', title: 'Nama' },
         { data: 'kuesioner.judul', title: 'Judul' },
-        { data: 'status', title: 'Status' },
+        {
+          data: 'status',
+          title: 'Status',
+          render: function (data, type, row) {
+            if (data === 'Sudah Terkirim') {
+              return `<span class="badge p-2 bg-label-success mb-2 rounded">${data}</span>`; // Hijau untuk status Sudah Terkirim
+            } else if (data === 'Belum Dikirim') {
+              return `<span class="badge p-2 bg-label-warning mb-2 rounded">${data}</span>`; // Kuning untuk status Belum Dikirim
+            } else {
+              return data; // Default, jika status lain
+            }
+          }
+        },
+        
         { 
           data: null, 
           title: 'Actions', 
@@ -122,6 +135,17 @@ $(function () {
             ids: selectedIds
           },
           success: function (response) {
+            // Update status for each selected ID to "Sudah Terkirim"
+            selectedIds.split(',').forEach(function (id) {
+              // Find the row in DataTable and update the status column
+              var row = dt_scrollableTable.rows().data().toArray().find(row => row.id === id);
+              if (row) {
+                row.status = 'Sudah Terkirim'; // Update status
+              }
+            });
+
+            dt_scrollableTable.clear().rows.add(dt_scrollableTable.rows().data()).draw(); // Refresh DataTable
+
             Swal.fire('Sukses', 'Data berhasil dikirim dan email telah terkirim.', 'success');
             setTimeout(function () {
               location.reload(); // Refresh the page after success

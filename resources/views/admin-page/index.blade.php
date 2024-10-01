@@ -22,9 +22,9 @@ $configData = Helper::appClasses();
     <div class="card">
       <div class="card-body">
         <div class="badge p-2 bg-label-info mb-2 rounded"><i class="ti ti-checkbox ti-lg"></i></div>
-        <h5 class="card-title mb-1 pt-2">Total Kuesioner</h5>
+        <h5 class="card-title mb-1 pt-2">Total Kuesioner Terkirim</h5>
         <!-- <small class="text-muted">Last week</small> -->
-        <p class="mb-2 mt-1">10</p>
+        <p class="mb-2 mt-1">{{ $totalTerkirim }}</p>
         <!-- <div class="pt-1">
           <span class="badge bg-label-secondary">-12.2%</span>
         </div> -->
@@ -37,7 +37,7 @@ $configData = Helper::appClasses();
         <div class="badge p-2 bg-label-info mb-2 rounded"><i class="ti ti-book ti-lg"></i></div>
         <h5 class="card-title mb-1 pt-2">Total Mahasiswa</h5>
         <!-- <small class="text-muted">Last week</small> -->
-        <p class="mb-2 mt-1">20</p>
+        <p class="mb-2 mt-1">{{$totalMahasiswa}}</p>
         <!-- <div class="pt-1">
           <span class="badge bg-label-secondary">-12.2%</span>
         </div> -->
