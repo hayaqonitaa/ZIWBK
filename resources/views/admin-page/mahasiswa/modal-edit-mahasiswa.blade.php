@@ -11,8 +11,8 @@
         <form id="editMahasiswaForm">
           <input type="hidden" id="editMahasiswaId" name="id">
           <div class="mb-3">
-            <label for="editNIM" class="form-label">NIM</label>
-            <input type="text" class="form-control" id="editNIM" name="nim" required>
+            <label for="editNim" class="form-label">NIM</label>
+            <input type="text" class="form-control" id="editNimMhs" name="nim" required>
             </div>
 
             <div class="mb-3">

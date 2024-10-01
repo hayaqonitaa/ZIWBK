@@ -62,10 +62,10 @@ class MahasiswaController extends Controller
     ]);
 
     $mahasiswa = Mahasiswa::find($request->id);
-    $mahasiswa->nim = $validatedData['nim'];
-    $mahasiswa->nama = $validatedData['nama'];
-    $mahasiswa->id_prodi = $validatedData['id_prodi'];
-    $mahasiswa->email = $validatedData['email'];
+    $mahasiswa->nim = $request -> nim;
+    $mahasiswa->nama = $request -> nama;
+    $mahasiswa->id_prodi = $request -> nama;
+    $mahasiswa->email = $request -> email;
     $mahasiswa->save();
   
 

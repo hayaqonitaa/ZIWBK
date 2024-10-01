@@ -107,14 +107,16 @@ $(function () {
 
     // Handle edit button click
     $(document).on('click', '.edit-btn', function () {
-      var NIM = $(this).data('nim');
+      var nim = $(this).data('nim');
       var nama = $(this).data('nama');
       var prodi = $(this).data('prodi');
       var email = $(this).data('email');
-      console.log(NIM);
+      var id = $(this).data('id');
+      console.log($(this).data());
 
       // Set values in the edit modal
-      $('#editNIM').val(NIM);
+      $('#editNimMhs').val(nim);
+      $('#editMahasiswaId').val(id)
       $('#editNama').val(nama);
       $('#editProdi').val(prodi);
       $('#editEmail').val(email);
@@ -127,6 +129,7 @@ $(function () {
 
       var formData = $(this).serialize(); // Serialize form data
       var id = $('#editMahasiswaId').val(); // Get the ID
+      console.log(id);
 
       // AJAX request to submit the edit form data
       $.ajax({
