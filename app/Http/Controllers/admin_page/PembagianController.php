@@ -5,12 +5,36 @@ namespace App\Http\Controllers\admin_page;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Pembagian;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestEmail;
+use App\Models\Admin\Mahasiswa;
 
 class PembagianController extends Controller
 {
     public function index()
     {
         return view('admin-page.pembagian.pembagian');
+    }
+
+    public function getPembagian() 
+    {
+        // Mengambil semua data dari model Pembagian beserta relasi mahasiswa dan kuesioner
+        $pembagian = Pembagian::with(['mahasiswa', 'kuesioner'])->get();
+        
+        return response()->json(['data' => $pembagian]); // Mengirim data ke admin/jurusan.js
+    }
+    
+
+    public function getMahasiswa() // New method for jurusan data
+    {
+        $mahasiswa = Mahasiswa::all(); // Fetch all jurusan data
+        return response()->json([$mahasiswa]);
+    }
+
+    public function getKuesioner() // New method for jurusan data
+    {
+        $kuesioner = Kuesioner::all(); // Fetch all jurusan data
+        return response()->json([$kuesioner]);
     }
 
     public function share(Request $request)
@@ -33,5 +57,18 @@ class PembagianController extends Controller
         }
     
         return response()->json(['message' => 'Pembagian berhasil!'], 201);
+    }
+
+    public function kirimEmail(Request $request)
+    {
+        $ids = explode(',', $request->input('ids')); // Mengambil ID dari permintaan
+        $pembagianItems = Pembagian::with('mahasiswa')->whereIn('id', $ids)->get();
+
+        foreach ($pembagianItems as $item) {
+            // Kirim email ke mahasiswa
+            Mail::to($item->mahasiswa->email)->send(new \App\Mail\KuesionerKirimMail($item));
+        }
+
+        return response()->json(['success' => true]);
     }
 }

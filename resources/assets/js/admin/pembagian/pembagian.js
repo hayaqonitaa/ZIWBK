@@ -69,17 +69,12 @@ $(function () {
           
                 // Looping melalui data kuesioner dan menambahkannya ke dropdown
                 response.data.forEach(function (kuesioner) {
-                    questionnaireSelect.append(`<option value="${kuesioner.id}">${kuesioner.judul}</option>`);
+                    questionnaireSelect.append('<option value="' + kuesioner.id + '">' + kuesioner.judul + '</option>');
                 });
             },
-            error: function (xhr) {
-                // Handle error jika AJAX gagal
-                alert('Terjadi kesalahan dalam memuat data kuesioner.');
-            }
         });
     });
 
-    // Function to show alert
     function showAlert(message) {
         var alertDiv = $(` 
             <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
