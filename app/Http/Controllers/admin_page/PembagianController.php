@@ -13,6 +13,27 @@ class PembagianController extends Controller
         return view('admin-page.pembagian.pembagian');
     }
 
+    public function getPembagian() 
+    {
+        // Mengambil semua data dari model Pembagian beserta relasi mahasiswa dan kuesioner
+        $pembagian = Pembagian::with(['mahasiswa', 'kuesioner'])->get();
+        
+        return response()->json(['data' => $pembagian]); // Mengirim data ke admin/jurusan.js
+    }
+    
+
+    public function getMahasiswa() // New method for jurusan data
+    {
+        $mahasiswa = Mahasiswa::all(); // Fetch all jurusan data
+        return response()->json([$mahasiswa]);
+    }
+
+    public function getKuesioner() // New method for jurusan data
+    {
+        $kuesioner = Kuesioner::all(); // Fetch all jurusan data
+        return response()->json([$kuesioner]);
+    }
+
     public function share(Request $request)
     {
         // Validasi input
