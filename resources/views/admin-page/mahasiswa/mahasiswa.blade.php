@@ -41,7 +41,7 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
     <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Data Pengisian Kuesioner</h5>
+    <h5 class="mb-0">Data Mahasiswa</h5>
         <div class="d-flex"> <!-- Flex container for buttons -->
             <!-- Button to share questionnaire -->
             <button type="button" class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#shareQuestionnaireModal">
