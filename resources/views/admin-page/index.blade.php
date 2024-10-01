@@ -18,14 +18,6 @@ $configData = Helper::appClasses();
 
 <!-- Layout Demo -->
 <div class="row">
-<form id="logout-form" action="{{ route('auth-logout') }}" method="POST" style="display: none;">
-  @csrf
-</form>
-
-<button class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-  Logout
-</button>
-
   <div class="col-md-6 col-12 mb-4">
     <div class="card">
       <div class="card-body">

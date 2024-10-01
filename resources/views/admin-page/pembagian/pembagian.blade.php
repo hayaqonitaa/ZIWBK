@@ -15,7 +15,7 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/admin/pembagian/pembagian.js'])
+@vite(['resources/assets/js/admin/pembagian/tablePembagian.js'])
 @endsection
 
 <h4 class="py-3 mb-4">
@@ -38,18 +38,16 @@ $configData = Helper::appClasses();
   <div class="d-flex justify-content-between align-items-center card-header">
     <h5 class="mb-0">Daftar Pembagian Kuesioner</h5>
     <!-- Button to add new entry -->
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addPembagian">
-      <i class="fa-solid fa-plus"></i> Tambah Pembagian
-    </button>
   </div>
   <div class="card-datatable text-nowrap">
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
-          <th>NIM Mahasiswa</th>
-          <th>Link Kuesioner</th>
+          <th>No</th>
+          <th>NIM</th>
+          <th>Nama</th>
+          <th>Judul</th>
           <th>Status</th>
-          <th>Aksi</th> <!-- Kolom untuk aksi -->
         </tr>
       </thead>
       <tbody>
@@ -59,8 +57,4 @@ $configData = Helper::appClasses();
   </div>
 </div>
 <!--/ Scrollable -->
-
-<!-- Include modals -->
-@include('admin-page/pembagian/modal-add-pembagian') <!-- Modal untuk menambah pembagian --><!-- Modal untuk mengedit pembagian -->
-
 @endsection

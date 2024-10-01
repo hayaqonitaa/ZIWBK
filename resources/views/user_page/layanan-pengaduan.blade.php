@@ -68,21 +68,25 @@
 
 @section('content')
 <div data-bs-spy="scroll" class="scrollspy-example">
+    <div class="header-container" style="position: relative; margin-top: 100px;">
+        <div class="container-fluid px-0">
+            <div class="mb-4">
+                <!-- Gambar Header dengan Penanda -->
+                <div class="header">
+                    <img src="{{ asset('images/Polban.png') }}" alt="headerpolban" class="img-fluid" />
 
-  <!-- Section for Layanan Pengaduan -->
-  <section id="LP" class="section-py landing-features">
-    <div class="container-fluid px-0 position-relative">
-      <!-- Gambar Full Width SPU -->
-      <div class="mb-4 position-relative">
-        <img src="{{ asset('images/Polban.png') }}" alt="header SPU" class="img-fluid" style="width: 100vw; height: auto;" />
+                    <div class="text-box">
+                        <!-- Kotak Kuning -->
+                        <div class="yellow-box"></div>
+                        <!-- Tulisan -->
+                        <span class="zi-wbk-text">Layanan Pengaduan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <!-- Teks "Layanan Pengaduan" dengan Persegi -->
-        <h3 class="position-absolute" style="bottom: 20px; left: 20px; color: white; font-size: 1.5rem; z-index: 10;">
-          <!-- Persegi oranye -->
-          <span style="display: inline-block; width: 40px; height: 40px; background-color: orange; margin-right: 10px; vertical-align: middle;"></span>
-          Layanan Pengaduan
-        </h3>
-      </div>
 
       <!-- Judul Layanan Pengaduan dengan Garis Bawah -->
       <div class="container text-center" id="LP">

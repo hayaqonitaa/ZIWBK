@@ -13,7 +13,7 @@ use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
 use App\Http\Controllers\admin_page\AgenPerubahanController;
-
+use App\Http\Controllers\admin_page\PembagianController;
     use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
@@ -208,9 +208,12 @@ Route::get('/kuesioner', [KuesionerController::class, 'index'])->name('admin-pag
 Route::get('/kuesioner/data', [KuesionerController::class, 'getKuesioner'])->name('kuesioner.data')->middleware('auth'); 
 Route::post('/kuesioner/store', [KuesionerController::class, 'store']);
 Route::put('/kuesioner/update/{id}', [KuesionerController::class, 'update'])->name('kuesioner.update');
-Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kesioner.destroy');
+Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kuesioner.destroy');
 
+Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])->name('pembagian.destroy');
+Route::get('/pembagian', [PembagianController::class, 'index'])->name('admin-page.pembagian.pembagian')->middleware('auth');
 Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pembagian.share'); // Rute untuk membagikan kuesioner
+Route::get('/pembagian/data', [PembagianController::class, 'getPembagian'])->name('pembagian.data')->middleware('auth'); 
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
