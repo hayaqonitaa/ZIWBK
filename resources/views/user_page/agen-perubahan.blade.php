@@ -92,8 +92,12 @@ $configData = Helper::appClasses();
 </div>
 
 <!-- Judul Agen Perubahan -->
-<h3 class="mb-0 mt-5" style="color: #07294D; font-family: Poppins; font-size: 22px; font-weight: 600; line-height: 42px; text-align: center;">Agen Perubahan</h3>
-<hr>
+<div class="container text-center" id="LP">
+        <h3 class="mb-4">Agen Perubahan</h3>
+        <hr>
+        
+        <!-- Row for the Cards -->
+        <div class="row justify-content-center">
 
 <!-- Rectangle Agen Perubahan -->
 <div class="rectangle-container">
