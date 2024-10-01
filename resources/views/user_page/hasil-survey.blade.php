@@ -58,23 +58,24 @@
 
 @section('content')
 <div data-bs-spy="scroll" class="scrollspy-example">
+    <div class="header-container" style="position: relative; margin-top: 100px;">
+        <div class="container-fluid px-0">
+            <div class="mb-4">
+                <!-- Gambar Header dengan Penanda -->
+                <div class="header">
+                    <img src="{{ asset('images/polbann.png') }}" alt="headerpolban" class="img-fluid" />
 
-  <!-- Useful features: Start -->
-  <section id="landingFeatures" class="section-py landing-features">
-    <div class="container-fluid px-0">
-      <!-- Gambar Full Width headerpolban -->
-      <div class="mb-4">
-        <img src="{{ asset('images/headerpolban.png') }}" alt="header polban" class="img-fluid" style="width: 100vw; height: 400px;" />
-      </div>
+                    <div class="text-box">
+                        <!-- Kotak Kuning -->
+                        <div class="yellow-box"></div>
+                        <!-- Tulisan -->
+                        <span class="zi-wbk-text">ZI WBK/WBBM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- header kotak -->
-    <div class="container" style="position: absolute; bottom: 150px; left: 50%; transform: translateX(-50%); display: flex; align-items: center;">
-      <!-- Kotak Kuning -->
-      <div style="background-color: #FFC107; width: 30px; height: 30px; margin-right: 10px;"></div>
-      <!-- Tulisan -->
-      <span style="color: white; font-weight: bold;">ZI WBK/WBBM</span>
-    </div>
+</div>
 
     <!-- Judul Standar Pelayanan -->
     <div class="container text-center" id="hasilsurvey">

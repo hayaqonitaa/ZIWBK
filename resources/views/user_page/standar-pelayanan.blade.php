@@ -36,7 +36,7 @@
     <div class="container-fluid px-0">
       <!-- Gambar Full Width SPU -->
       <div class="mb-4">
-        <img src="{{ asset('images/spu.png') }}" alt="header SPU" class="img-fluid" style="width: 100vw; height: auto;" />
+        <img src="{{ asset('images/standar-pelayanan.png') }}" alt="header SPU" class="img-fluid" style="width: 100vw; height: auto;" />
       </div>
 
       <!-- Judul Standar Pelayanan -->

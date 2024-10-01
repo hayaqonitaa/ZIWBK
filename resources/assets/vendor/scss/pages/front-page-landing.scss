@@ -402,4 +402,64 @@
   justify-content: center; /* Memastikan PDF berada di tengah kolom */
 }
 
+//header
+.header {
+  position: relative;
+  img {
+      width: 100vw;
+      height: auto;
+  }
+
+  .text-box {
+      position: absolute;
+      bottom: 30%;
+      left: 10%;
+      display: flex;
+      align-items: center;
+      z-index: 10;
+      font-family: 'Poppins', sans-serif; 
+
+      .yellow-box {
+          background-color: #FFC107;
+          width: 30px; /* Adjust size for consistency */
+          height: 30px;
+          margin-right: 15px;
+      }
+
+      .zi-wbk-text {
+          color: white;
+          font-weight: bold;
+          font-size: weight; /* Responsive font size */
+      }
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .text-box {
+      bottom: 5%;
+      left: 5%;
+      .yellow-box {
+          width: 30px;
+          height: 30px;
+      }
+      .zi-wbk-text {
+          font-size: 1.2rem;
+      }
+  }
+}
+
+@media (max-width: 480px) {
+  .text-box {
+      bottom: 3%;
+      left: 3%;
+      .yellow-box {
+          width: 20x;
+          height: 20px;
+      }
+      .zi-wbk-text {
+          font-size: 1rem;
+      }
+  }
+}
 
