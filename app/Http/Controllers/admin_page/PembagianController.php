@@ -56,7 +56,10 @@ class PembagianController extends Controller
             ]);
         }
     
-        return response()->json(['message' => 'Pembagian berhasil!'], 201);
+        return response()->json([
+            'message' => 'Kuesioner berhasil dibagikan!',
+            'redirect' => url('/pembagian')
+        ]);
     }
 
     public function kirimEmail(Request $request)

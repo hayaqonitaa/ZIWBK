@@ -84,26 +84,4 @@ class MahasiswaController extends Controller
           'message' => 'Mahasiswa berhasil dihapus!'
       ]);
   }
-
-  public function shareQuestionnaire(Request $request)
-  {
-      $validatedData = $request->validate([
-          'mahasiswa_id' => 'required|array',
-          'kuesioner_id' => 'required|uuid',
-      ]);
-
-      foreach ($validatedData['mahasiswa_id'] as $mahasiswaId) {
-          // Buat pembagian kuesioner untuk setiap mahasiswa yang dipilih
-          Pembagian::create([
-              'id_mahasiswa' => $mahasiswaId,
-              'id_kuesioner' => $validatedData['kuesioner_id'],
-              'status' => 'belum dibagikan',
-          ]);
-      }
-
-      return response()->json([
-          'message' => 'Kuesioner berhasil dibagikan!',
-          'redirect' => url('/pembagian')
-      ]);
-  }
 }

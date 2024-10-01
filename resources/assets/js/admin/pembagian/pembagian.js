@@ -2,43 +2,43 @@
 
 $(function () {
     // Handle form submission for sharing questionnaire
-    $('#shareQuestionnaireForm').on('submit', function (e) {
-        e.preventDefault(); // Prevent the default form submission
+        $('#shareQuestionnaireForm').on('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
 
-        // Ambil ID mahasiswa yang dipilih
-        var selectedIds = $('.row-checkbox:checked').map(function() {
-            return this.value; // Mengembalikan nilai checkbox yang terpilih
-        }).get();
+            // Ambil ID mahasiswa yang dipilih
+            var selectedIds = $('.row-checkbox:checked').map(function() {
+                return this.value; // Mengembalikan nilai checkbox yang terpilih
+            }).get();
 
-        if (selectedIds.length === 0) {
-            alert('Silakan pilih mahasiswa terlebih dahulu.'); // Periksa apakah ada mahasiswa yang dipilih
-            return;
-        }
-
-        // Pastikan untuk menambahkan id_kuesioner dan status dalam form data
-        var formData = $(this).serializeArray(); // Serialize form data to an array
-
-        // Tambahkan ID mahasiswa yang dipilih ke dalam form data tanpa JSON.stringify
-        selectedIds.forEach(function(id) {
-            formData.push({ name: 'mahasiswa_ids[]', value: id });
-        });
-
-        // AJAX request to submit the form data
-        $.ajax({
-            url: '/pembagian/share', // URL ke metode share di controller
-            type: 'POST',
-            data: formData,
-            success: function (response) {
-                showAlert(response.message);
-                setTimeout(function() {
-                    location.reload(); // Refresh halaman setelah delay singkat
-                }, 2000);
-            },
-            error: function (xhr) {
-                handleError(xhr);
+            if (selectedIds.length === 0) {
+                alert('Silakan pilih mahasiswa terlebih dahulu.'); // Periksa apakah ada mahasiswa yang dipilih
+                return;
             }
+
+            // Pastikan untuk menambahkan id_kuesioner dan status dalam form data
+            var formData = $(this).serializeArray(); // Serialize form data to an array
+
+            // Tambahkan ID mahasiswa yang dipilih ke dalam form data tanpa JSON.stringify
+            selectedIds.forEach(function(id) {
+                formData.push({ name: 'mahasiswa_ids[]', value: id });
+            });
+
+            // AJAX request to submit the form data
+            $.ajax({
+                url: '/pembagian/share', // URL ke metode share di controller
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    showAlert(response.message);
+                    setTimeout(function() {
+                        window.location.href = '/pembagian'; // Refresh halaman setelah delay singkat
+                    }, 2000);
+                },
+                error: function (xhr) {
+                    handleError(xhr);
+                }
+            });
         });
-    });
 
     // When the share questionnaire modal is shown
     $('#shareQuestionnaireModal').on('show.bs.modal', function () {
