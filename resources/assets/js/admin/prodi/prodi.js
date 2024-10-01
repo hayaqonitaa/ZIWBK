@@ -37,7 +37,7 @@ $(function () {
           orderable: false, // Column cannot be sorted
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}">
+              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}" data-id-Jurusan="${row.jurusan.id}" data-nama-Jurusan="${row.jurusan.nama}">
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
@@ -58,38 +58,51 @@ $(function () {
     
     $('#editProdi').on('show.bs.modal', function () {
       console.log('Modal dibuka'); // Cek apakah modal terbuka
-      var jurusanId = $('#editJurusan').val(); // Ambil ID jurusan yang sedang dipilih
-    
+      var jurusanId = $(this).data('idjurusan'); 
       $.ajax({
         url: '/jurusan/data',
         type: 'GET',
         success: function (data) {
-          console.log(data); // Debug: pastikan data muncul di console
-          var jurusanSelect = $('#jurusan');
-    
-          // Set jurusan yang sedang dipilih
-          jurusanSelect.val(jurusanId); // Set jurusan yang dipilih berdasarkan data yang ada
-    
-          jurusanSelect.append('<option value="" disabled selected>Pilih Jurusan</option>'); // Tambahkan opsi default
-    
+          var jurusanSelect = $('#editJurusan'); // diisi id dari blade jurusan
+          console.log($(this).data('namajurusan')); // Debug: pastikan data muncul di console
+
           // Looping untuk menambahkan data jurusan
           data.data.forEach(function (jurusan) {
             jurusanSelect.append(`<option value="${jurusan.id}">${jurusan.nama}</option>`);
           });
+          
+    
+          // Set jurusan yang sedang dipilih
+          jurusanSelect.val(jurusanId); // Set jurusan yang dipilih berdasarkan data yang ada
         },
         error: function (xhr) {
           alert('Terjadi kesalahan dalam memuat data jurusan.');
         }
       });
     });
-    
-    
-    
+      // Function to show alert
+  function showAlert(message) {
+    var alertDiv = $(`
+      <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+        <i class="fas fa-check-circle me-2"></i>
+        <div>${message}</div>
+      </div>
+    `);
+    $('body').append(alertDiv);
+    setTimeout(function() {
+      alertDiv.fadeOut('slow', function() {
+        $(this).remove(); // Remove alert after fade out
+      });
+    }, 3000);
+  }
+  
+  
         // Handle edit button click
         $(document).on('click', '.edit-btn', function () {
+          console.log($(this).data());
           var id = $(this).data('id');
           var nama = $(this).data('nama');
-          var id_jurusan = $(this).data('id_jurusan');
+          var id_jurusan = $(this).data('jurusan');
           
           // Set values in the edit modal
           $('#editProdiId').val(id);
@@ -118,7 +131,7 @@ $(function () {
               }, 2000);
             },
             error: function (xhr) {
-              handleError(xhr);
+               handleError(xhr);
             }
           });
         });

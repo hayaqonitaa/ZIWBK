@@ -23,7 +23,8 @@ class ProdiController extends Controller
   public function getJurusan() // New method for jurusan data
   {
       $jurusan = Jurusan::all(); // Fetch all jurusan data
-      return response()->json([$jurusan]);
+      return response()->json($jurusan);
+
   }
 
   public function store(Request $request)
@@ -51,10 +52,12 @@ class ProdiController extends Controller
     $request->validate([
         'id' => 'required|exists:prodi,id',
         'nama' => 'required|string|max:255',
+        'id_jurusan' => 'required|uuid',
     ]);
 
     $prodi = Prodi::find($request->id);
     $prodi->nama = $request->nama;
+    $prodi->id_jurusan = $request->id_jurusan;
     $prodi->save();
 
     return response()->json(['message' => 'Prodi updated successfully!']);
