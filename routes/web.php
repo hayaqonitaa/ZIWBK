@@ -4,7 +4,8 @@ use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\user_page\HasilSurvey;
 use App\Http\Controllers\user_page\StandarPelayanan;
-use App\Http\Controllers\user_page\LayananPengaduan
+use App\Http\Controllers\user_page\LayananPengaduan;
+use App\Http\Controllers\user_page\AgenPerubahan;
 use App\Http\Controllers\user_page\TimKerja;
 use App\Http\Controllers\admin_page\AdminController;
 use App\Http\Controllers\admin_page\MahasiswaController;
