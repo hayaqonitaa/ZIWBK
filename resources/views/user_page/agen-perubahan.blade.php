@@ -1,7 +1,3 @@
-@php
-$configData = Helper::appClasses();
-@endphp
-
 @extends('layouts/layoutMaster')
 
 @section('title', 'Landing - Agen Perubahan')
@@ -50,9 +46,26 @@ $configData = Helper::appClasses();
     height: 600px;
   }
 
+  /* Mengatur hover effect pada card */
+  .card {
+    border: 2px solid #d29e9e;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(166, 21, 21, 0.2);
+    border-color: #210407;
+  }
+
   /* Mengatur margin untuk rectangle */
   .rectangle-container {
     margin-bottom: 40px;
+  }
+
+  /* Menghilangkan underline dari link */
+  .card a {
+    text-decoration: none;
   }
 </style>
 @endsection
@@ -78,12 +91,11 @@ $configData = Helper::appClasses();
                 <!-- Gambar Header dengan Penanda -->
                 <div class="header">
                     <img src="{{ asset('images/Polban.png') }}" alt="headerpolban" class="img-fluid" />
-
                     <div class="text-box">
                         <!-- Kotak Kuning -->
                         <div class="yellow-box"></div>
                         <!-- Tulisan -->
-                        <span class="zi-wbk-text">Tim</span>
+                        <span class="zi-wbk-text">Tim Agen Perubahan</span>
                     </div>
                 </div>
             </div>
@@ -92,15 +104,11 @@ $configData = Helper::appClasses();
 </div>
 
 <!-- Judul Agen Perubahan -->
-<div class="container text-center" id="LP">
-        <h3 class="mb-4">Agen Perubahan</h3>
-        <hr>
-        
-        <!-- Row for the Cards -->
-        <div class="row justify-content-center">
-
-<!-- Rectangle Agen Perubahan -->
-<div class="rectangle-container">
+<div class="container text-center" id="agenPerubahan">
+    <h3 class="mb-4">Agen Perubahan</h3>
+    <hr>
+    
+    <!-- Row for the Cards -->
     <div class="row justify-content-center">
         <div class="col-sm-6 col-md-4 mb-4">
             <div class="d-flex align-items-center" style="background-color: #D2DFEC; padding: 20px; border-radius: 100px 20px 20px 100px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-bottom: 30px;">
@@ -121,19 +129,19 @@ $configData = Helper::appClasses();
                 </div>
                 <div style="margin-left: 30px; z-index: 0; text-align: center; flex-grow: 1;">
                     <h5 class="mt-0" style="font-family: Poppins; font-weight: 600; font-size: 20px; color: #110F0F; margin-bottom: 0;">Dr. IR. Paula Santi Rudati, M.si</h5>
-                    <p class="mb-0" style="font-family: Poppins; font-weight: 600; font-size: 12px; color: #443030;">  Wakil Direktur Bidang Perencanaan dan Sistem Informasi (Dosen)</p>
+                    <p class="mb-0" style="font-family: Poppins; font-weight: 600; font-size: 12px; color: #443030;">Wakil Direktur Bidang Perencanaan dan Sistem Informasi (Dosen)</p>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Judul Tim Kerja ZI WBBM -->
-<h3 class="mb-0 mt-5" style="color: #07294D; font-family: Poppins; font-size: 22px; font-weight: 600; line-height: 42px; text-align: center;">Tim Kerja ZI WBBM</h3>
-<hr>
+    <!-- Judul Tim Kerja ZI WBBM -->
+    <h3 class="mb-0 mt-5" style="color: #07294D; font-family: Poppins; font-size: 22px; font-weight: 600; line-height: 42px; text-align: center;">Tim Kerja ZI WBBM</h3>
+    <hr>
 
-<!-- Embed PDF -->
-<div id="pdfContainer">
-    <embed id="pdfEmbed" src="{{ asset('file/0154-SK-Tim-Kerja-Pembangunan-ZI-WBBM.pdf') }}" type="application/pdf" />
+    <!-- Embed PDF -->
+    <div id="pdfContainer">
+        <embed id="pdfEmbed" src="{{ asset('file/0154-SK-Tim-Kerja-Pembangunan-ZI-WBBM.pdf') }}" type="application/pdf" />
+    </div>
 </div>
 @endsection
