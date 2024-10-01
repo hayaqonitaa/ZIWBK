@@ -42,17 +42,17 @@ $navbarDetached = ($navbarDetached ?? '');
         <!-- Search -->
         <div class="navbar-nav align-items-center">
           <div class="nav-item navbar-search-wrapper mb-0">
-            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+            <!-- <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
               <i class="ti ti-search ti-md me-2"></i>
               <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
-            </a>
+            </a> -->
           </div>
         </div>
         <!-- /Search -->
         @endif
         <ul class="navbar-nav flex-row align-items-center ms-auto">
           <!-- Language -->
-          <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+          <!-- <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <i class='ti ti-language rounded-circle ti-md'></i>
             </a>
@@ -78,7 +78,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!--/ Language -->
 
           @if(isset($menuHorizontal))
@@ -93,7 +93,7 @@ $navbarDetached = ($navbarDetached ?? '');
           @if($configData['hasCustomizer'] == true)
           <!-- Style Switcher -->
           <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
-            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+            <!-- <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <i class='ti ti-md'></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
@@ -112,14 +112,14 @@ $navbarDetached = ($navbarDetached ?? '');
                   <span class="align-middle"><i class="ti ti-device-desktop me-2"></i>System</span>
                 </a>
               </li>
-            </ul>
+            </ul> -->
           </li>
           <!--/ Style Switcher -->
           @endif
 
           <!-- Quick links  -->
           <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
-            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+            <!-- <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
               <i class='ti ti-layout-grid-add ti-md'></i>
             </a>
             <div class="dropdown-menu dropdown-menu-end py-0">
@@ -195,13 +195,13 @@ $navbarDetached = ($navbarDetached ?? '');
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
           <!-- Quick links -->
 
           <!-- Notification -->
           <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
-            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+            <!-- <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
               <i class="ti ti-bell ti-md"></i>
               <span class="badge bg-danger rounded-pill badge-notifications">5</span>
             </a>
@@ -383,15 +383,14 @@ $navbarDetached = ($navbarDetached ?? '');
                   View all notifications
                 </a>
               </li>
-            </ul>
+            </ul> -->
           </li>
           <!--/ Notification -->
 
           <!-- User -->
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-              <div class="avatar avatar-online">
-                <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">
+              <div class="tf-icons ti ti-user-circle">
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
