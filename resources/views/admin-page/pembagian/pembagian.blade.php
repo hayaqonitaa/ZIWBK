@@ -35,10 +35,15 @@ $configData = Helper::appClasses();
 
 <!-- Scrollable -->
 <div class="card">
-  <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Daftar Pembagian Kuesioner</h5>
-    <!-- Button to add new entry -->
-  </div>
+<div class="d-flex justify-content-between align-items-center card-header">
+  <h5 class="mb-0">Data Pengisian Kuesioner</h5>
+  <!-- button add -->
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#sendEmailModal">
+    Kirim<i class="fa-solid fa-paper-plane ms-2"></i>
+  </button>
+  <input type="hidden" id="kuesionerId" value="">
+</div>
+
   <div class="card-datatable text-nowrap">
     <table class="dt-scrollableTable table">
       <thead>
@@ -57,4 +62,6 @@ $configData = Helper::appClasses();
   </div>
 </div>
 <!--/ Scrollable -->
+@include('admin-page/pembagian/modal-add-kirim')
+
 @endsection

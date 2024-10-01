@@ -390,7 +390,7 @@ $navbarDetached = ($navbarDetached ?? '');
           <!-- User -->
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-              <div class="tf-icons ti ti-user-circle">
+              <div class="tf-icons ti ti-user">
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -415,41 +415,29 @@ $navbarDetached = ($navbarDetached ?? '');
                   </div>
                 </a>
               </li>
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
-              <li>
+              <!-- <li>
                 <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
                   <i class="ti ti-user-check me-2 ti-sm"></i>
                   <span class="align-middle">My Profile</span>
                 </a>
-              </li>
-              @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
+              </li> -->
+              <!-- @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
               <li>
                 <a class="dropdown-item" href="{{ route('api-tokens.index') }}">
                   <i class='ti ti-key me-2 ti-sm'></i>
                   <span class="align-middle">API Tokens</span>
                 </a>
               </li>
-              @endif
-              <li>
+              @endif -->
+              <!-- <li>
                 <a class="dropdown-item" href="{{url('app/invoice/list')}}">
                   <span class="d-flex align-items-center align-middle">
                     <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
                     <span class="flex-grow-1 align-middle">Billing</span>
                     <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
                   </span> </a>
-              </li>
+              </li> -->
               @if (Auth::User() && Laravel\Jetstream\Jetstream::hasTeamFeatures())
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
-              <li>
-                <h6 class="dropdown-header">Manage Team</h6>
-              </li>
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
               <li>
                 <a class="dropdown-item" href="{{ Auth::user() ? route('teams.show', Auth::user()->currentTeam->id) : 'javascript:void(0)' }}">
                   <i class='ti ti-settings me-2'></i>
@@ -465,9 +453,6 @@ $navbarDetached = ($navbarDetached ?? '');
               </li>
               @endcan
               @if (Auth::user()->allTeams()->count() > 1)
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
               <li>
                 <h6 class="dropdown-header">Switch Teams</h6>
               </li>
@@ -489,8 +474,10 @@ $navbarDetached = ($navbarDetached ?? '');
               @if (Auth::check())
               <li>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  <i class='ti ti-logout me-2'></i>
-                  <span class="align-middle">Logout</span>
+                  <i>Logout</i>
+                  <form id="logout-form" action="{{ route('auth-logout') }}" method="POST" style="display: none;">
+                    @csrf
+                  </form>
                 </a>
               </li>
               <form method="POST" id="logout-form" action="{{ route('logout') }}">

@@ -316,6 +316,21 @@
   border-color: #ba25ab !important; // Menetapkan warna border biru dengan prioritas
 }
 
+#SPU h3 {
+  font-size: 20px;  
+  font-weight: bold; 
+  color: #273272; 
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0px; 
+}
+
+#SPU hr {
+  width: 100px;
+  border: 2px solid #273272; 
+  margin: 30px auto;
+  margin-top: 0px; 
+}
+
 //dashboard user / 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -340,7 +355,7 @@
 #zonaIntegritas h4 {
     font-size: 20px;
     font-weight: bold;
-    color: #273272; /* Mengubah warna teks */
+    color: rgb(39, 50, 114); /* Mengubah warna teks */
 }
 
 #zonaIntegritas .row p {
@@ -350,8 +365,41 @@
 }
 
 #zonaIntegritas hr {
-    width: 100px;
+    width: 70px;
     border: 2px solid #273272; /* Mengubah warna garis horizontal */
     margin: 10px auto;
 }
+
+#piagamZiwbkWbbm h4 {
+  font-size: 20px;  
+  font-weight: bold; 
+  color: #273272; 
+}
+
+#hasilsurvey h3 {
+  font-size: 20px;  
+  font-weight: bold; 
+  color: #273272; 
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0px; 
+}
+
+#hasilsurvey hr {
+  width: 100px;
+  border: 2px solid #273272; 
+  margin: 30px auto;
+  margin-top: 0px; 
+}
+
+
+// hasil survey
+.form-select {
+  width: 100%; /* Memastikan dropdown mengisi lebar kolom */
+}
+
+.embed-responsive {
+  display: flex;
+  justify-content: center; /* Memastikan PDF berada di tengah kolom */
+}
+
 
