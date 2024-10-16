@@ -1,5 +1,5 @@
 @extends('layouts/layoutMaster')
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 @section('title', 'Landing - Front Pages')
 
 <!-- Vendor Styles -->
@@ -30,15 +30,24 @@
 
 @section('content')
 <div data-bs-spy="scroll" class="scrollspy-example">
+    <div class="header-container" style="position: relative; margin-top: 100px;">
+        <div class="container-fluid px-0">
+            <div class="mb-4">
+                <!-- Gambar Header dengan Penanda -->
+                <div class="header">
+                    <img src="{{ asset('images/standar-pelayanan.png') }}" alt="headerpolban" class="img-fluid" />
 
-  <!-- Useful Features: Start -->
-  <section id="landingFeatures" class="section-py landing-features">
-    <div class="container-fluid px-0">
-      <!-- Gambar Full Width SPU -->
-      <div class="mb-4">
-        <img src="{{ asset('images/standar-pelayanan.png') }}" alt="header SPU" class="img-fluid" style="width: 100vw; height: auto;" />
-      </div>
-
+                    <div class="text-box">
+                        <!-- Kotak Kuning -->
+                        <div class="yellow-box"></div>
+                        <!-- Tulisan -->
+                        <span class="zi-wbk-text">STANDAR PELAYANAN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
       <!-- Judul Standar Pelayanan -->
       <div class="container text-center" id="SPU">
         <h3 class="mb-4">Standar Pelayanan</h3>

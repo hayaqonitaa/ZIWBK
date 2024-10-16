@@ -55,31 +55,67 @@ $(function () {
         dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
       }
     });  
+
+    $('#editProdi').on('show.bs.modal', function (event) {
+      // Ambil tombol yang memicu modal
+      var button = $(event.relatedTarget); // Button yang men-trigger modal
+      
+      // Ambil data dari tombol tersebut
+      var jurusanId = button.data('idJurusan'); 
+      console.log(button.data()); // Debug: Cek data yang diambil dari tombol
     
-    $('#editProdi').on('show.bs.modal', function () {
-      console.log('Modal dibuka'); // Cek apakah modal terbuka
-      var jurusanId = $(this).data('idjurusan'); 
+      // AJAX untuk memuat data jurusan
       $.ajax({
         url: '/jurusan/data',
         type: 'GET',
         success: function (data) {
-          var jurusanSelect = $('#editJurusan'); // diisi id dari blade jurusan
-          console.log($(this).data('namajurusan')); // Debug: pastikan data muncul di console
-
-          // Looping untuk menambahkan data jurusan
+          var jurusanSelect = $('#editJurusan'); // Pilihan dropdown jurusan
+          
+          // Kosongkan dropdown sebelum mengisi data baru
+          jurusanSelect.empty();
+          jurusanSelect.append(`<option value="">Pilih Jurusan</option>`);
+    
+          // Tambahkan data jurusan ke dalam dropdown
           data.data.forEach(function (jurusan) {
             jurusanSelect.append(`<option value="${jurusan.id}">${jurusan.nama}</option>`);
           });
-          
     
-          // Set jurusan yang sedang dipilih
-          jurusanSelect.val(jurusanId); // Set jurusan yang dipilih berdasarkan data yang ada
+          // Set value dropdown ke jurusan yang sedang dipilih
+          jurusanSelect.val(jurusanId); 
         },
         error: function (xhr) {
           alert('Terjadi kesalahan dalam memuat data jurusan.');
         }
       });
     });
+    
+
+    
+    // $('#editProdi').on('show.bs.modal', function (event) {  
+    //   var button = $(event.relatedTarget); // Button yang men-trigger modal
+    //   var jurusanId = button.data('idJurusan'); 
+    //   console.log(button.data());
+    //   $.ajax({
+    //     url: '/jurusan/data',
+    //     type: 'GET',
+    //     success: function (data) {
+    //       var jurusanSelect = $('#editJurusan'); // diisi id dari blade jurusan
+
+    //       console.log($(this).data('idJurusan')); // Debug: pastikan data muncul di console
+    //       // Looping untuk menambahkan data jurusan
+    //       data.data.forEach(function (jurusan) {
+    //         jurusanSelect.append(`<option value="${jurusan.id}">${jurusan.nama}</option>`);
+    //       });
+          
+    
+    //       // Set jurusan yang sedang dipilih
+    //       jurusanSelect.val(jurusanId); // Set jurusan yang dipilih berdasarkan data yang ada
+    //     },
+    //     error: function (xhr) {
+    //       alert('Terjadi kesalahan dalam memuat data jurusan.');
+    //     }
+    //   });
+    // });
       // Function to show alert
   function showAlert(message) {
     var alertDiv = $(`
@@ -99,10 +135,11 @@ $(function () {
   
         // Handle edit button click
         $(document).on('click', '.edit-btn', function () {
-          console.log($(this).data());
           var id = $(this).data('id');
           var nama = $(this).data('nama');
-          var id_jurusan = $(this).data('jurusan');
+          var id_jurusan = $(this).data('idJurusan');
+
+          console.log(id_jurusan);
           
           // Set values in the edit modal
           $('#editProdiId').val(id);

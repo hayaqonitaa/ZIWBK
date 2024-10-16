@@ -5,7 +5,9 @@ $(function () {
   $(document).on('click', '.edit-btn', function () {
     var id = $(this).data('id');
     var judul = $(this).data('judul');
-    var link_kuesioner = $(this).data('link_kuesioner');
+    var link_kuesioner = $(this).data('linkKuesioner');
+
+    console.log($(this).data())
     
     // Set values in the edit modal
     $('#editKuesionerId').val(id);

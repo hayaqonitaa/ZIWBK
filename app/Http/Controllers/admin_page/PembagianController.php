@@ -56,19 +56,38 @@ class PembagianController extends Controller
             ]);
         }
     
-        return response()->json(['message' => 'Pembagian berhasil!'], 201);
+        return response()->json([
+            'message' => 'Kuesioner berhasil dibagikan!',
+            'redirect' => url('/pembagian')
+        ]);
     }
 
     public function kirimEmail(Request $request)
     {
         $ids = explode(',', $request->input('ids')); // Mengambil ID dari permintaan
         $pembagianItems = Pembagian::with('mahasiswa')->whereIn('id', $ids)->get();
-
+    
         foreach ($pembagianItems as $item) {
             // Kirim email ke mahasiswa
             Mail::to($item->mahasiswa->email)->send(new \App\Mail\KuesionerKirimMail($item));
+    
+            // Perbarui status menjadi "Sudah Terkirim"
+            $item->status = 'Sudah Terkirim';
+            $item->save(); // Simpan perubahan di database
         }
-
+    
         return response()->json(['success' => true]);
+    }
+
+    public function destroy($id)
+    {
+        // Cari jurusan yang ingin dihapus
+        $pembagian = Pembagian::findOrFail($id);
+        $pembagian->delete();
+
+        // Response JSON sukses
+        return response()->json([
+            'message' => 'Data Pembagian Kuesioner berhasil dihapus!'
+        ]);
     }
 }

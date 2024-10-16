@@ -4,7 +4,7 @@
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
-          <h3 class="mb-2">Bagikan Kuesioner</h3>
+          <h3 class="mb-2">Pemetaan Kuesioner</h3>
         </div>
         <form id="shareQuestionnaireForm" class="row g-3" onsubmit="return false">
           <div class="col-12">
@@ -18,8 +18,9 @@
           <input type="hidden" id="selectedNIM" name="nim" value=""> <!-- Menyimpan NIM mahasiswa yang dipilih -->
 
           <div class="col-12">
-            <label class="form-label">Mahasiswa Terpilih</label>
-            <input type="text" class="form-control" id="selectedMahasiswa" value="" readonly>
+              <label class="form-label">Mahasiswa Terpilih</label>
+              <input type="text" class="form-control" id="selectedMahasiswa" value="" readonly> <!-- Input untuk nama -->
+              <ul id="selectedDataList" class="list-group mt-2"></ul> <!-- List untuk nama yang terpilih -->
           </div>
 
           <div class="col-12 text-center">
@@ -30,4 +31,5 @@
       </div>
     </div>
   </div>
+
 </div>
