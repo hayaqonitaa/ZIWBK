@@ -7,9 +7,15 @@ $(function () {
 
             // Ambil ID mahasiswa yang dipilih
             var selectedIds = $('.row-checkbox:checked').map(function() {
-                return this.value; // Mengembalikan nilai checkbox yang terpilih
+                return this.value; // Mengembalikan nilai checkbox yang terpilih 
             }).get();
 
+            // var selectedNames = $('.row-checkbox:checked').map(function() {
+            //     return this.data('nama'); // Mengembalikan nilai checkbox yang terpilih 
+            // }).get();
+
+            // console.log($(this).data('nama'));
+            console.log(selectedIds);
             if (selectedIds.length === 0) {
                 alert('Silakan pilih mahasiswa terlebih dahulu.'); // Periksa apakah ada mahasiswa yang dipilih
                 return;
@@ -44,6 +50,8 @@ $(function () {
     $('#shareQuestionnaireModal').on('show.bs.modal', function () {
         // Ambil mahasiswa yang dipilih
         var selectedIds = $('.row-checkbox:checked').map(function() {
+      
+            console.log($(this).data());
             return this.value; // Mengembalikan nilai checkbox yang terpilih
         }).get();
       
@@ -51,7 +59,6 @@ $(function () {
             alert('Silakan pilih mahasiswa terlebih dahulu.'); // Periksa apakah ada mahasiswa yang dipilih
             return;
         }
-      
         // Tampilkan NIM mahasiswa yang dipilih
         var nimList = selectedIds.join(', '); // Gabungkan NIM menjadi string
         $('#selectedMahasiswa').val(nimList); // Simpan NIM mahasiswa yang dipilih ke input
