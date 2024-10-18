@@ -105,4 +105,48 @@ class MahasiswaController extends Controller
           'message' => 'Kuesioner berhasil dibagikan!'
       ]);
   }
+
+  public function import(Request $request)
+  {
+      // Validasi file harus berupa Excel
+      $request->validate([
+          'file' => 'required|mimes:xlsx'
+      ]);
+
+      // Ambil file
+      $file = $request->file('file');
+
+      // Baca data dari file Excel
+      $data = Excel::toCollection(null, $file);
+
+      // Looping data untuk memasukkan ke database
+      foreach ($data[0] as $row) {
+          Mahasiswa::create([
+              'nim'   => $row['nim'],
+              'nama'  => $row['nama'],
+              'prodi' => $row['prodi'],
+              'email' => $row['email'],
+          ]);
+      }
+
+      // Redirect atau berikan pesan sukses
+      return back()->with('success', 'Data Mahasiswa berhasil diimport.');
+  }
+
+  public function uploadExcel(Request $request)
+  {
+      $request->validate([
+          'file' => 'required|mimes:xls,xlsx'
+      ]);
+  
+      try {
+          // Import data dari Excel
+          Excel::import(new MahasiswaImport, $request->file('file'));
+  
+          return response()->json(['message' => 'File berhasil diunggah dan data disimpan.']);
+      } catch (\Exception $e) {
+          return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
+      }
+  }
+
 }

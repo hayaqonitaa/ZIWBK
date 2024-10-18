@@ -11,15 +11,18 @@ $configData = Helper::appClasses();
 <!-- Vendor Scripts -->
 @section('vendor-script')
 @vite(['resources/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js'])
+@vite(['resources/assets/vendor/libs/dropzone/dropzone.scss'])
 @endsection
 
 <!-- Page Scripts -->
 @section('page-script')
 @vite(['resources/assets/js/admin/mahasiswa/mahasiswa.js'])
 @vite(['resources/assets/js/admin/mahasiswa/addMahasiswa.js'])
+@vite(['resources/assets/js/admin/mahasiswa/addFileMahasiswa.js'])
 @vite(['resources/assets/js/admin/mahasiswa/editMahasiswa.js'])
 @vite(['resources/assets/js/admin/mahasiswa/deleteMahasiswa.js'])
 @vite(['resources/assets/js/admin/pembagian/pembagian.js'])
+@vite(['resources/assets/vendor/libs/dropzone/dropzone.js'])
 @endsection
 
 @section('content')
@@ -48,9 +51,15 @@ $configData = Helper::appClasses();
                 <i class="fas fa-paper-plane"></i> Bagikan Kuesioner
             </button>
             <!-- Button to add new Mahasiswa -->
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addMahasiswa">
+            <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addMahasiswa">
                 <i class="fa-solid fa-plus"></i>
             </button>
+
+
+            <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#uploadExcelModal">
+              <i class="fas fa-upload"></i> Upload Excel
+            </button>
+
         </div>
     </div>
 
@@ -74,6 +83,7 @@ $configData = Helper::appClasses();
 <!--/ Scrollable -->
 @include('admin-page/mahasiswa/modal-mahasiswa')
 @include('admin-page/mahasiswa/modal-edit-mahasiswa')
+@include('admin-page/mahasiswa/modal-upload-file-mahasiswa')
 @include('admin-page/pembagian/modal-add-pembagian')
 
 
