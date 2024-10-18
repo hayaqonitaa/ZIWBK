@@ -1,7 +1,7 @@
 'use strict';
 
 $(function () {
-  // Set up CSRF token in AJAX requests
+  // Set up CSRF token in AJAX 
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -14,24 +14,24 @@ $(function () {
   if (dt_scrollable_table.length) {
     var dt_scrollableTable = dt_scrollable_table.DataTable({
       ajax: {
-        url: '/user/data', // Endpoint to fetch user data
-        dataSrc: 'data' // Path to data in the response
+        url: '/user/data', 
+        dataSrc: 'data' 
       },
       columns: [
         { 
           data: null, 
           title: 'No', 
           render: function (data, type, row, meta) {
-            return meta.row + 1; // Display row number
+            return meta.row + 1; 
           },
-          orderable: false // Column cannot be sorted
+          orderable: false 
         },
         { data: 'name', title: 'Name' },
         { data: 'email', title: 'Email' },
         { 
           data: null, 
           title: 'Actions', 
-          orderable: false, // Column cannot be sorted
+          orderable: false, 
           render: function (data, type, row) {
             return `
               <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-name="${row.name}" data-email="${row.email}">
