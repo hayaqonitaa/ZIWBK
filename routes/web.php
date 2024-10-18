@@ -14,6 +14,7 @@ use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
 use App\Http\Controllers\admin_page\AgenPerubahanController;
 use App\Http\Controllers\admin_page\PembagianController;
+use App\Http\Controllers\admin_page\UserController;
     use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
@@ -217,6 +218,11 @@ Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pe
 Route::get('/pembagian/data', [PembagianController::class, 'getPembagian'])->name('pembagian.data')->middleware('auth'); 
 Route::post('/pembagian/kirim', [PembagianController::class, 'kirimEmail']);
 
+Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
+Route::get('/user/data', [UserController::class, 'getUsers'])->name('admin.user.get');
+Route::post('/user/store', [UserController::class, 'store'])->name('admin.user.store');
+Route::put('/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
