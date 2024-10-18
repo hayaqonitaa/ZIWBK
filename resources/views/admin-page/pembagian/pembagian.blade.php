@@ -16,6 +16,7 @@ $configData = Helper::appClasses();
 <!-- Page Scripts -->
 @section('page-script')
 @vite(['resources/assets/js/admin/pembagian/tablePembagian.js'])
+@vite(['resources/assets/js/admin/pembagian/deletePembagian.js'])
 @endsection
 
 <h4 class="py-3 mb-4">

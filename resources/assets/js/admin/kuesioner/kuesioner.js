@@ -34,7 +34,7 @@ $(function () {
           orderable: false, // Column cannot be sorted
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}">
+              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}"data-judul="${row.judul}"data-link-Kuesioner="${row.link_kuesioner}">
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
@@ -51,15 +51,16 @@ $(function () {
       }
     });
         // Handle edit button click
-        $(document).on('click', '.edit-btn', function () {
-          var id = $(this).data('id');
-          var nama = $(this).data('nama');
+        // $(document).on('click', '.edit-btn', function () {
+        //   var id = $(this).data('id');
+        //   var nama = $(this).data('nama');
+        //   console.log(nama);
           
-          // Set values in the edit modal
-          $('#editKuesionerId').val(id);
-          $('#editNama').val(nama);
-          $('#editKuesioner').modal('show'); // Show the modal
-        });
+        //   // Set values in the edit modal
+        //   $('#editKuesionerId').val(id);
+        //   $('#editNama').val(nama);
+        //   $('#editKuesioner').modal('show'); // Show the modal
+        // });
     
         // Handle delete action
         $(document).on('click', '.delete-btn', function () {

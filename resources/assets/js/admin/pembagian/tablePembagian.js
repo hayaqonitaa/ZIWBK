@@ -38,16 +38,26 @@ $(function () {
         { data: 'mahasiswa.nim', title: 'NIM' },
         { data: 'mahasiswa.nama', title: 'Nama' },
         { data: 'kuesioner.judul', title: 'Judul' },
-        { data: 'status', title: 'Status' },
+        {
+          data: 'status',
+          title: 'Status',
+          render: function (data, type, row) {
+            if (data === 'Sudah Terkirim') {
+              return `<span class="badge p-2 bg-label-success mb-2 rounded">${data}</span>`; // Hijau untuk status Sudah Terkirim
+            } else if (data === 'Belum Dikirim') {
+              return `<span class="badge p-2 bg-label-warning mb-2 rounded">${data}</span>`; // Kuning untuk status Belum Dikirim
+            } else {
+              return data; // Default, jika status lain
+            }
+          }
+        },
+        
         { 
           data: null, 
           title: 'Actions', 
           orderable: false, 
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}">
-                <i class="fas fa-edit"></i>
-              </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
                 <i class="fas fa-trash"></i>
               </button>
@@ -125,6 +135,17 @@ $(function () {
             ids: selectedIds
           },
           success: function (response) {
+            // Update status for each selected ID to "Sudah Terkirim"
+            selectedIds.split(',').forEach(function (id) {
+              // Find the row in DataTable and update the status column
+              var row = dt_scrollableTable.rows().data().toArray().find(row => row.id === id);
+              if (row) {
+                row.status = 'Sudah Terkirim'; // Update status
+              }
+            });
+
+            dt_scrollableTable.clear().rows.add(dt_scrollableTable.rows().data()).draw(); // Refresh DataTable
+
             Swal.fire('Sukses', 'Data berhasil dikirim dan email telah terkirim.', 'success');
             setTimeout(function () {
               location.reload(); // Refresh the page after success
@@ -136,5 +157,47 @@ $(function () {
         });
       }
     });
+
+    $(document).on('click', '.delete-btn', function () {
+      var id = $(this).data('id');
+
+      // Show SweetAlert2 confirmation dialog
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#E3EBEA',
+          confirmButtonText: 'Yes, Delete',
+          cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.isConfirmed) {
+          // Perform AJAX DELETE request
+          $.ajax({
+              url: `/pembagian/delete/${id}`, // URL to your delete method in the controller
+              type: 'DELETE',
+              success: function (response) {
+              // Refresh the DataTable after deletion
+              dt_scrollableTable.ajax.reload();
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Deleted!',
+                  text: response.message,
+                  timer: 2000,
+                  showConfirmButton: false
+              });
+              },
+              error: function (xhr) {
+              if (xhr.responseJSON && xhr.responseJSON.message) {
+                  Swal.fire('Error!', xhr.responseJSON.message, 'error');
+              } else {
+                  Swal.fire('Error!', 'An unexpected error occurred.', 'error');
+              }
+              }
+          });
+          }
+      });
+  });
   }
 });

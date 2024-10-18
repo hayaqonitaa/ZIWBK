@@ -69,7 +69,7 @@
                         <!-- Kotak Kuning -->
                         <div class="yellow-box"></div>
                         <!-- Tulisan -->
-                        <span class="zi-wbk-text">ZI WBK/WBBM</span>
+                        <span class="zi-wbk-text">HASIL SURVEY</span>
                     </div>
                 </div>
             </div>

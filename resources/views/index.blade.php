@@ -35,7 +35,7 @@
             <div class="mb-4">
                 <!-- Gambar Header dengan Penanda -->
                 <div class="header">
-                    <img src="{{ asset('images/polbann.png') }}" alt="headerpolban" class="img-fluid" />
+                    <img src="{{ asset('images/Polban.png') }}" alt="headerpolban" class="img-fluid" />
 
                     <div class="text-box">
                         <!-- Kotak Kuning -->
@@ -48,8 +48,6 @@
         </div>
     </div>
 </div>
-
-
 
         <!-- Content Section -->
         <section id="zonaIntegritas" class="section-py text-center">
@@ -101,7 +99,5 @@
                 </div>
             </div>
         </div>
-
-    </section>
 @endsection
 
