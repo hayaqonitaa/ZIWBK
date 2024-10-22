@@ -8,10 +8,15 @@ $configData = Helper::appClasses();
 
 @section('content')
 
+<!-- Vendor Style -->
+@section('vendor-style')
+@vite(['resources/assets/vendor/libs/dropzone/dropzone.scss'])
+
 <!-- Vendor Scripts -->
 @section('vendor-script')
 @vite(['resources/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js'])
-@vite(['resources/assets/vendor/libs/dropzone/dropzone.scss'])
+        <!-- 'resources/assets/vendor/libs/dropzone/dropzone.js' -->
+        
 @endsection
 
 <!-- Page Scripts -->
@@ -22,7 +27,6 @@ $configData = Helper::appClasses();
 @vite(['resources/assets/js/admin/mahasiswa/editMahasiswa.js'])
 @vite(['resources/assets/js/admin/mahasiswa/deleteMahasiswa.js'])
 @vite(['resources/assets/js/admin/pembagian/pembagian.js'])
-@vite(['resources/assets/vendor/libs/dropzone/dropzone.js'])
 @endsection
 
 @section('content')

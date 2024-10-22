@@ -77,12 +77,13 @@ $(function () {
     const myDropzone = new Dropzone(dropzoneBasic, {
       previewTemplate: previewTemplate,
       parallelUploads: 1,
-      maxFilesize: 5, // Maximum file size in MB
-      acceptedFiles: '.xls,.xlsx', // Accept Excel files only
+      maxFilesize: 5,
       addRemoveLinks: true,
       maxFiles: 1
     });
   }
+
+  
   $('#uploadExcelForm').on('submit', function(e) {
     e.preventDefault();
 

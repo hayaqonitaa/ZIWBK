@@ -14,6 +14,7 @@ use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
 use App\Http\Controllers\admin_page\AgenPerubahanController;
 use App\Http\Controllers\admin_page\PembagianController;
+use App\Http\Controllers\admin_page\MahasiswaImportController;
     use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
@@ -190,7 +191,8 @@ Route::get('/mahasiswa/data', [MahasiswaController::class, 'getMahasiswa'])->mid
 Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
 Route::put('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
 Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
-Route::post('/mahasiswa/uploadExcel', [MahasiswaController::class, 'uploadExcel']);
+// Route::post('/mahasiswa/uploadExcel', [MahasiswaController::class, 'uploadExcel']);
+Route::post('/mahasiswa/uploadExcel', [MahasiswaImportController::class, 'uploadExcel']);
 
 Route::get('/jurusan', [JurusanController::class, 'index'])->name('admin-page.jurusan.jurusan')->middleware('auth');
 Route::get('/jurusan/data', [JurusanController::class, 'getJurusan'])->middleware('auth'); 
