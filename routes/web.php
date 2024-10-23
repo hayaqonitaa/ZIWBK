@@ -16,7 +16,8 @@ use App\Http\Controllers\admin_page\AgenPerubahanController;
 use App\Http\Controllers\admin_page\PembagianController;
 use App\Http\Controllers\admin_page\UserController;
 use App\Http\Controllers\admin_page\MahasiswaImportController;
-    use App\Http\Controllers\dashboard\Analytics;
+use App\Http\Controllers\konten\ContentAgenPerubahanController;
+use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
     use App\Http\Controllers\layouts\CollapsedMenu;
@@ -226,6 +227,8 @@ Route::get('/user/data', [UserController::class, 'getUsers'])->name('admin.user.
 Route::post('/user/store', [UserController::class, 'store'])->name('admin.user.store');
 Route::put('/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
+
+Route::get('/content/agen_perubahan', [ContentAgenPerubahanController::class, 'index'])->name('konten.agen_perubahan.index');
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');

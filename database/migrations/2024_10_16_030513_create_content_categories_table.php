@@ -6,22 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('content_categories', function (Blueprint $table) {
-            $table->string('id')->primary(); // id dengan tipe varchar sebagai primary key
-            $table->string('nama'); // kolom nama dengan tipe varchar
-        });
-    }
+    public function up()
+{
+    Schema::create('content_categories', function (Blueprint $table) {
+        $table->uuid('id')->primary();  // Kolom ID dengan UUID sebagai primary key
+        $table->string('nama', 255);    // Kolom Nama Kategori
+        $table->timestamps();           // Kolom created_at dan updated_at
+    });
+}
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('content_categories');
-    }
+public function down()
+{
+    Schema::dropIfExists('content_categories');
+}
+
 };

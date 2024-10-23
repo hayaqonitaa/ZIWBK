@@ -13,11 +13,27 @@
       "slug": ""
     },
     {
-      "url": "",
       "name": "Content",
       "icon": "menu-icon tf-icons ti ti-components",
-      "slug": ""
-    },
+      "slug": "",
+      "submenu": [
+        {
+          "url": "/content/agen_perubahan",
+          "name": "Agen Perubahan",
+          "slug": ""
+        },
+        {
+          "url": "/",
+          "name": "Standar Pelayanan",
+          "slug": ""
+        },
+        {
+          "url": "/",
+          "name": "Layanan Umum",
+          "slug": ""
+        }
+      ]
+      },
     {
       "menuHeader": "Report"
     },
