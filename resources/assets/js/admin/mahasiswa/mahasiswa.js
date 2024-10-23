@@ -25,7 +25,7 @@ $(function () {
                 title: '<input type="checkbox" id="selectAll">', // Checkbox untuk Select All
                 orderable: false, // Kolom tidak dapat diurutkan
                 render: function (data, type, row) {
-                    return `<input type="checkbox" class="row-checkbox" value="${row.id}">`;
+                  return `<input type="checkbox" class="row-checkbox" value="${row.id}" data-nama="${row.nama}" data-jurusan="${row.jurusan}">`;
                 }
             },
             { 

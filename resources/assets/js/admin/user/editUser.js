@@ -4,36 +4,28 @@ $(function () {
   // Handle edit button click
   $(document).on('click', '.edit-btn', function () {
     var id = $(this).data('id');
-    var judul = $(this).data('judul');
-    var link_kuesioner = $(this).data('linkKuesioner');
-
-    console.log($(this).data())
+    var name = $(this).data('name');
+    var email = $(this).data('email');
     
     // Set values in the edit modal
-    $('#editKuesionerId').val(id);
-    $('#editJudul').val(judul);
-    $('#editLink').val(link_kuesioner);
-    $('#editKuesioner').modal('show'); // Show the modal
+    $('#editUserId').val(id);
+    $('#editName').val(name);
+    $('#editEmail').val(email);
+    $('#editUserModal').modal('show'); // Show the modal
   });
 
-  // Handle form submission for editing kuesioner
-  $('#editKuesionerForm').on('submit', function (e) {
+  // Handle form submission for editing user
+  $('#editUserForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
     var formData = $(this).serialize(); // Serialize form data
-    var id = $('#editKuesionerId').val(); // Get the ID
-
-    // Append the method PUT to the form data for Laravel
-    formData += '&_method=PUT';
+    var id = $('#editUserId').val(); // Get the ID
 
     // AJAX request to submit the edit form data
     $.ajax({
-      url: '/kuesioner/update/' + id, // Use the actual id in the URL
-      type: 'POST', // Use POST because we are appending method PUT manually
+      url: `/user/update/${id}`, // URL to your update method in the controller
+      type: 'PUT',
       data: formData,
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Add CSRF token
-      },
       success: function (response) {
         showAlert(response.message);
         setTimeout(function() {
@@ -45,7 +37,7 @@ $(function () {
       }
     });
   });
-  
+
   // Function to show alert
   function showAlert(message) {
     var alertDiv = $(`

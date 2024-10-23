@@ -46,8 +46,6 @@ $(function () {
       }
     });
   });
-  
-
   // Function to show alert
   function showAlert(message) {
     var alertDiv = $(`
@@ -72,4 +70,42 @@ $(function () {
       alert('An unexpected error occurred.');
     }
   }
+
+  // upload file
+  const dropzoneBasic = document.querySelector('#dropzone-basic');
+  if (dropzoneBasic) {
+    const myDropzone = new Dropzone(dropzoneBasic, {
+      previewTemplate: previewTemplate,
+      parallelUploads: 1,
+      maxFilesize: 5,
+      addRemoveLinks: true,
+      maxFiles: 1
+    });
+  }
+
+  
+  $('#uploadExcelForm').on('submit', function(e) {
+    e.preventDefault();
+
+    var formData = new FormData(this);
+
+    $.ajax({
+        url: '/mahasiswa/uploadExcel', // Sesuaikan dengan route di Laravel
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            showAlert(response.message);
+            setTimeout(function() {
+                location.reload(); // Reload halaman setelah sukses
+            }, 2000);
+        },
+        error: function(xhr) {
+            handleError(xhr);
+        }
+    });
+});
+
+
 });

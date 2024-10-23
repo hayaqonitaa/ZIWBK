@@ -18,8 +18,9 @@
           <input type="hidden" id="selectedNIM" name="nim" value=""> <!-- Menyimpan NIM mahasiswa yang dipilih -->
 
           <div class="col-12">
-            <label class="form-label">Mahasiswa Terpilih</label>
-            <input type="text" class="form-control" id="selectedMahasiswa" value="" readonly>
+              <label class="form-label">Mahasiswa Terpilih</label>
+              <input type="text" class="form-control" id="selectedMahasiswa" value="" readonly> <!-- Input untuk nama -->
+              <ul id="selectedDataList" class="list-group mt-2"></ul> <!-- List untuk nama yang terpilih -->
           </div>
 
           <div class="col-12 text-center">
@@ -30,4 +31,5 @@
       </div>
     </div>
   </div>
+
 </div>

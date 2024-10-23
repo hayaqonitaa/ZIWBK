@@ -51,7 +51,7 @@
       previewTemplate: previewTemplate,
       parallelUploads: 1,
       maxFilesize: 5,
-      acceptedFiles: '.jpg,.jpeg,.png,.gif',
+      acceptedFiles: '.jpg,.jpeg,.png,.gif', //.xls,.xlsx
       addRemoveLinks: true,
       maxFiles: 1
     });
