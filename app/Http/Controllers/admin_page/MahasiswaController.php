@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Mahasiswa;
 use App\Models\Admin\Prodi;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\MahasiswaImport;
+use Illuminate\Support\Facades\Validator; // Add this line to import Validator
+
 
 class MahasiswaController extends Controller
 {
@@ -107,47 +111,35 @@ class MahasiswaController extends Controller
   }
 
   public function import(Request $request)
-  {
-      // Validasi file harus berupa Excel
-      $request->validate([
-          'file' => 'required|mimes:xlsx'
-      ]);
+{
+    // Validasi file harus berupa Excel
+    $request->validate([
+        'file' => 'required|mimes:xlsx,xls'
+    ]);
 
-      // Ambil file
-      $file = $request->file('file');
+    // Ambil file yang diunggah
+    $file = $request->file('file');
 
-      // Baca data dari file Excel
-      $data = Excel::toCollection(null, $file);
+    // Baca data dari file Excel menggunakan Excel::toCollection
+    $data = Excel::toCollection(null, $file);
 
-      // Looping data untuk memasukkan ke database
-      foreach ($data[0] as $row) {
-          Mahasiswa::create([
-              'nim'   => $row['nim'],
-              'nama'  => $row['nama'],
-              'prodi' => $row['prodi'],
-              'email' => $row['email'],
-          ]);
-      }
 
-      // Redirect atau berikan pesan sukses
-      return back()->with('success', 'Data Mahasiswa berhasil diimport.');
-  }
+    // Looping data untuk memasukkan ke database
+    foreach ($data[0] as $row) {
+        Mahasiswa::create([
+            'nim'   => $row[1], // Kolom kedua (nim)
+            'nama'  => $row[2], // Kolom ketiga (nama)
+            'prodi' => $row[3], // Kolom keempat (prodi)
+            'email' => $row[4], // Kolom kelima (email)
+        ]);
+    
+    }
+    
 
-//   public function uploadExcel(Request $request)
-//   {
-//       $request->validate([
-//           'file' => 'required|mimes:xls,xlsx'
-//       ]);
-  
-//       try {
-//           // Import data dari Excel
-//           Excel::import(new MahasiswaImport, $request->file('file'));
-  
-//           return response()->json(['message' => 'File berhasil diunggah dan data disimpan.']);
-//       } catch (\Exception $e) {
-//           return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
-//       }
-//   }    // Handle the Excel import
+    // Redirect atau berikan pesan sukses
+    return back()->with('success', 'Data Mahasiswa berhasil diimport.');
+}
+
   public function importMahasiswa(Request $request)
   {
       // Validate the uploaded file
@@ -161,5 +153,24 @@ class MahasiswaController extends Controller
       // Return success message
       return response()->json(['message' => 'Data mahasiswa berhasil diimport'], 200);
   }
-
+  public function uploadExcel(Request $request)
+  {
+      // Validasi file yang diupload
+      $validator = Validator::make($request->all(), [
+          'file' => 'required|mimes:xlsx,xls'
+      ]);
+  
+      if ($validator->fails()) {
+          return response()->json(['message' => 'File tidak valid'], 400);
+      }
+  
+      try {
+          // Proses file Excel menggunakan import class, ini akan menggunakan urutan kolom
+          Excel::import(new MahasiswaImport, $request->file('file'));
+          return response()->json(['message' => 'Data berhasil diimpor'], 200);
+      } catch (\Exception $e) {
+          return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
+      }
+  }
+  
 }
