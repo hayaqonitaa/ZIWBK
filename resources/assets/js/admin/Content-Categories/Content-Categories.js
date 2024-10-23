@@ -2,15 +2,15 @@
 
 $(function () {
   // Set up CSRF token in AJAX requests
-  // Initialize DataTable
-
   $.ajaxSetup({
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content_categories')
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
 
   var dt_scrollable_table = $('.dt-scrollableTable');
+
+  // Initialize DataTable
   if (dt_scrollable_table.length) {
     var dt_scrollableTable = dt_scrollable_table.DataTable({
       ajax: {
@@ -26,8 +26,8 @@ $(function () {
           },
           orderable: false // Column cannot be sorted
         },
-        { data: 'nama', title: 'Nama' },
-        {
+        { data: 'nama', title: 'Nama Kategori' }, // Column for category name
+        { 
           data: null, 
           title: 'Actions', 
           orderable: false, // Column cannot be sorted
@@ -49,58 +49,48 @@ $(function () {
         dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
       }
     });
-        // Handle edit button click
-        $(document).on('click', '.edit-btn', function () {
-          var id = $(this).data('id');
-          var nama = $(this).data('nama');
-          
-          // Set values in the edit modal
-          $('#editKuesionerId').val(id);
-          $('#editNama').val(nama);
-          $('#editKuesioner').modal('show'); // Show the modal
-        });
-    
-        // Handle delete action
-        $(document).on('click', '.delete-btn', function () {
-          var id = $(this).data('id');
-    
-          // Show SweetAlert2 confirmation dialog
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#E3EBEA',
-            confirmButtonText: 'Yes, Delete',
-            cancelButtonText: 'Cancel'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // Perform AJAX DELETE request
-              $.ajax({
-                url: `/kuesioner/delete/${id}`, // URL to your delete method in the controller
-                type: 'DELETE',
-                success: function (response) {
-                  // Refresh the DataTable after deletion
-                  dt_scrollableTable.ajax.reload();
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Deleted!',
-                    text: response.message,
-                    timer: 2000,
-                    showConfirmButton: false
-                  });
-                },
-                error: function (xhr) {
-                  if (xhr.responseJSON && xhr.responseJSON.message) {
-                    Swal.fire('Error!', xhr.responseJSON.message, 'error');
-                  } else {
-                    Swal.fire('Error!', 'An unexpected error occurred.', 'error');
-                  }
-                }
+
+    // Handle delete action
+    $(document).on('click', '.delete-btn', function () {
+      var id = $(this).data('id');
+
+      // Show SweetAlert2 confirmation dialog
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#E3EBEA',
+        confirmButtonText: 'Yes, Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Perform AJAX DELETE request
+          $.ajax({
+            url: `/content-categories/delete/${id}`, // URL to your delete method in the controller
+            type: 'DELETE',
+            success: function (response) {
+              // Refresh the DataTable after deletion
+              dt_scrollableTable.ajax.reload();
+              Swal.fire({
+                icon: 'success',
+                title: 'Deleted!',
+                text: response.message,
+                timer: 2000,
+                showConfirmButton: false
               });
+            },
+            error: function (xhr) {
+              if (xhr.responseJSON && xhr.responseJSON.message) {
+                Swal.fire('Error!', xhr.responseJSON.message, 'error');
+              } else {
+                Swal.fire('Error!', 'An unexpected error occurred.', 'error');
+              }
             }
           });
-        });
+        }
+      });
+    });
   }
 });

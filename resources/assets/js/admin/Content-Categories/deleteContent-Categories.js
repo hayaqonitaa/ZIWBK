@@ -16,11 +16,8 @@ $(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         $.ajax({
-          url: `/content-categories/delete/${id}`,
+          url: `/content_categories/delete/${id}`, // URL to your delete method in the controller
           type: 'DELETE',
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
           success: function (response) {
             dt_scrollableTable.ajax.reload();
             Swal.fire({

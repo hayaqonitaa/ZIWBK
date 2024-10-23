@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin_page;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\ContentCategories; // Pastikan model ini sesuai dengan struktur tabel di database
+use App\Models\Admin\ContentCategories; // Pastikan model sesuai dengan tabel content_categories
 use Illuminate\Http\Request;
 
 class ContentCategoriesController extends Controller
@@ -15,12 +15,11 @@ class ContentCategoriesController extends Controller
 
     public function getContentCategories() 
     {
-        // Mengambil semua data dari model ContentCategory
-        $contentCategories = ContentCategories::all();
+        // Mengambil semua data dari model ContentCategories
+        $categories = ContentCategories::all();
         
-        return response()->json(['data' => $contentCategories]); // Mengirim data ke admin/content_categories.js
+        return response()->json(['data' => $categories]); // Mengirim data ke JavaScript
     }
-    
 
     public function store(Request $request)
     {
@@ -30,14 +29,14 @@ class ContentCategoriesController extends Controller
         ]);
 
         // Simpan data ke tabel content_categories
-        $contentCategory = new ContentCategory();
-        $contentCategory->nama = $validatedData['nama'];
-        $contentCategory->save();
+        $category = new ContentCategories(); // Pastikan menggunakan model yang sesuai
+        $category->nama = $validatedData['nama'];
+        $category->save();
 
         // Response JSON sukses
         return response()->json([
-            'message' => 'Content Category berhasil ditambahkan!',
-            'data' => $contentCategory
+            'message' => 'Kategori konten berhasil ditambahkan!',
+            'data' => $category
         ]);
     }
 
@@ -49,28 +48,28 @@ class ContentCategoriesController extends Controller
             'nama' => 'required|string|max:255', // Validasi nama
         ]);
     
-        // Cari content category berdasarkan ID
-        $contentCategory = ContentCategory::find($request->id);
+        // Cari kategori berdasarkan ID
+        $category = ContentCategories::find($request->id);
         
         // Update field yang sesuai
-        $contentCategory->nama = $request->nama; // Update nama
+        $category->nama = $request->nama; // Update nama
     
         // Simpan perubahan
-        $contentCategory->save();
+        $category->save();
     
         // Kembalikan response sukses
-        return response()->json(['message' => 'Content Category updated successfully!']);
+        return response()->json(['message' => 'Kategori konten berhasil diperbarui!']);
     }    
 
     public function destroy($id)
     {
-        // Cari content category yang ingin dihapus
-        $contentCategory = ContentCategory::findOrFail($id);
-        $contentCategory->delete();
+        // Cari kategori yang ingin dihapus
+        $category = ContentCategories::findOrFail($id);
+        $category->delete();
 
         // Response JSON sukses
         return response()->json([
-            'message' => 'Content Category berhasil dihapus!'
+            'message' => 'Kategori konten berhasil dihapus!'
         ]);
     }
 }

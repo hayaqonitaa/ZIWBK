@@ -214,8 +214,8 @@ Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])
 
 Route::get('/content-categories', [ContentCategoriesController::class, 'index'])->name('admin-page.content_categories.index')->middleware('auth');
 Route::get('/content-categories/data', [ContentCategoriesController::class, 'getContentCategories'])->name('content-categories.data')->middleware('auth');
-Route::post('/content-categories/store', [ContentCategoriesController::class, 'store'])->name('content_categories.store');
-Route::put('/content-categories/update/{id}', [ContentCategoriesController::class, 'update'])->name('content_categories.update');
+Route::post('/content_categories/store', [ContentCategoriesController::class, 'store'])->name('content_categories.store');
+Route::put('/content_categories/update/{id}', [ContentCategoriesController::class, 'update'])->name('content_categories.update');
 Route::delete('/content-categories/delete/{id}', [ContentCategoriesController::class, 'destroy'])->name('content_categories.destroy');
 
 Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])->name('pembagian.destroy');

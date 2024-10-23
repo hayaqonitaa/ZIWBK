@@ -1,13 +1,13 @@
 'use strict';
 
 $(function () {
-  $('#addContentCategoriesForm').on('submit', function (e) {
+  $('#addContentCategoryForm').on('submit', function (e) {
     e.preventDefault();
 
     var formData = $(this).serialize();
 
     $.ajax({
-      url: '/content-categories/store',
+      url: '/content_categories/store', // URL to your store method in the controller
       type: 'POST',
       data: formData,
       success: function (response) {

@@ -1,22 +1,27 @@
-<!-- Edit Content Category Modal -->
-<div class="modal fade" id="editContentCategory" tabindex="-1" aria-labelledby="editContentCategoryLabel" aria-hidden="true">
-  <div class="modal-dialog modal-simple modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editContentCategoryLabel">Edit Content Category</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="editContentCategoryForm">
-          <input type="hidden" id="editContentCategoryId" name="id"> <!-- ID hidden field -->
-          <div class="mb-3">
-            <label for="editNama" class="form-label">Nama Content Category</label>
-            <input type="text" class="form-control" id="editNama" name="nama" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Update</button>
-          <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-        </form>
-      </div>
+<!-- Modal Edit Content Category -->
+<div class="modal fade" id="editContentCategoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                    <h3 class="mb-2">Edit Content Category</h3>
+                </div>
+                <form id="editContentCategoryForm" class="row g-3" onsubmit="return false">
+                    <!-- Hidden field for ID -->
+                    <input type="hidden" id="editContentCategoryId" name="id" />
+                    
+                    <div class="col-12 col-md-12">
+                        <label class="form-label" for="editNama">Nama Content Category</label>
+                        <input type="text" id="editNama" name="nama" class="form-control" required />
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+                        <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

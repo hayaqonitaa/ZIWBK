@@ -7,10 +7,10 @@ $(function () {
     
     $('#editContentCategoryId').val(id);
     $('#editNama').val(nama);
-    $('#editContentCategoriesModal').modal('show');
+    $('#editContentCategoryModal').modal('show');
   });
 
-  $('#editContentCategoriesForm').on('submit', function (e) {
+  $('#editContentCategoryForm').on('submit', function (e) {
     e.preventDefault();
 
     var formData = $(this).serialize();
@@ -19,7 +19,7 @@ $(function () {
     formData += '&_method=PUT';
 
     $.ajax({
-      url: '/content-categories/update/' + id,
+      url: '/content_categories/update/' + id,
       type: 'POST',
       data: formData,
       headers: {
@@ -36,7 +36,7 @@ $(function () {
       }
     });
   });
-
+  
   function showAlert(message) {
     var alertDiv = $(`
       <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">

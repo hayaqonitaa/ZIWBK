@@ -16,9 +16,8 @@ $configData = Helper::appClasses();
 <!-- Page Scripts -->
 @section('page-script')
 @vite(['resources/assets/js/admin/Content-Categories/Content-Categories.js'])
-@vite(['resources/assets/js/admin/Content_categories/addContent-Categories.js'])
-@vite(['resources/assets/js/admin/Content_categories/editContent-Categories.js'])
-@vite(['resources/assets/js/admin/Content_categories/deleteContent-Categories.js'])
+@vite(['resources/assets/js/admin/Content-Categories/addContent-Categories.js'])
+@vite(['resources/assets/js/admin/Content-Categories/editContent-Categories.js'])
 @endsection
 
 <h4 class="py-3 mb-4">
