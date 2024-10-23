@@ -15,14 +15,13 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/admin/kuesioner/kuesioner.js'])
-@vite(['resources/assets/js/admin/kuesioner/addKuesioner.js'])
-@vite(['resources/assets/js/admin/kuesioner/editKuesioner.js'])
+@vite(['resources/assets/js/admin/Content-Categories/Content-Categories.js'])
+@vite(['resources/assets/js/admin/Content-Categories/addContent-Categories.js'])
+@vite(['resources/assets/js/admin/Content-Categories/editContent-Categories.js'])
 @endsection
 
-@section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Kuesioner
+  <span class="text-muted fw-light">Dashboard /</span> Content Categories
 </h4>
 
 <!-- Display success notification if exists -->
@@ -39,8 +38,8 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
   <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Kuesioner</h5>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addKuesioner">
+    <h5 class="mb-0">Content Categories</h5>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentCategories">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
@@ -49,9 +48,8 @@ $configData = Helper::appClasses();
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
-            <th>No.</th>`
-            <th>Judul</th>
-            <th>Link</th>
+            <th>No.</th>
+            <th>Nama</th>
             <th>Actions</th>
         </tr>
       </thead>
@@ -59,7 +57,7 @@ $configData = Helper::appClasses();
   </div>
 </div>
 <!--/ Scrollable -->
-@include('admin-page/kuesioner/modal-kuesioner')
-@include('admin-page/kuesioner/modal-edit-kuesioner')
+@include('admin-page/content_categories/modal-content_categories')
+@include('admin-page/content_categories/modal-edit-content_categories')
 
 @endsection

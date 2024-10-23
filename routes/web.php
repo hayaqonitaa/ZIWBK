@@ -174,7 +174,7 @@ use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\charts\ApexCharts;
     use App\Http\Controllers\charts\ChartJs;
     use App\Http\Controllers\maps\Leaflet;
-
+    use App\Http\Controllers\admin_page\ContentCategoriesController;
     // Main Page Route
     // Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/', [IndexController::class, 'index'])->name('home');
@@ -215,6 +215,12 @@ Route::get('/kuesioner/data', [KuesionerController::class, 'getKuesioner'])->nam
 Route::post('/kuesioner/store', [KuesionerController::class, 'store']);
 Route::put('/kuesioner/update/{id}', [KuesionerController::class, 'update'])->name('kuesioner.update');
 Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kuesioner.destroy');
+
+Route::get('/content-categories', [ContentCategoriesController::class, 'index'])->name('admin-page.content_categories.index')->middleware('auth');
+Route::get('/content-categories/data', [ContentCategoriesController::class, 'getContentCategories'])->name('content-categories.data')->middleware('auth');
+Route::post('/content_categories/store', [ContentCategoriesController::class, 'store'])->name('content_categories.store');
+Route::put('/content_categories/update/{id}', [ContentCategoriesController::class, 'update'])->name('content_categories.update');
+Route::delete('/content-categories/delete/{id}', [ContentCategoriesController::class, 'destroy'])->name('content_categories.destroy');
 
 Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])->name('pembagian.destroy');
 Route::get('/pembagian', [PembagianController::class, 'index'])->name('admin-page.pembagian.pembagian')->middleware('auth');
