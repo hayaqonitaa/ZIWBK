@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin_page;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\ContentCategories; // Pastikan model sesuai dengan tabel content_categories
+use App\Models\ContentCategories; // Pastikan model sesuai dengan tabel content_categories
 use Illuminate\Http\Request;
 
 class ContentCategoriesController extends Controller

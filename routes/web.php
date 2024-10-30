@@ -23,8 +23,6 @@ use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\layouts\CollapsedMenu;
     use App\Http\Controllers\layouts\ContentNavbar;
     use App\Http\Controllers\layouts\ContentNavSidebar;
-    use App\Http\Controllers\layouts\NavbarFull;
-    use App\Http\Controllers\layouts\NavbarFullSidebar;
     use App\Http\Controllers\layouts\Horizontal;
     use App\Http\Controllers\layouts\Vertical;
     use App\Http\Controllers\layouts\WithoutMenu;
@@ -115,7 +113,6 @@ use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\cards\CardAdvance;
     use App\Http\Controllers\cards\CardStatistics;
     use App\Http\Controllers\cards\CardAnalytics;
-    use App\Http\Controllers\cards\CardGamifications;
     use App\Http\Controllers\cards\CardActions;
     use App\Http\Controllers\user_interface\Accordion;
     use App\Http\Controllers\user_interface\Alerts;
@@ -234,7 +231,10 @@ Route::post('/user/store', [UserController::class, 'store'])->name('admin.user.s
 Route::put('/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
 
-Route::get('/content/agen_perubahan', [ContentAgenPerubahanController::class, 'index'])->name('konten.agen_perubahan.index');
+Route::get('/content/agen_perubahan', [ContentAgenPerubahanController::class, 'index'])->name('konten.agen_perubahan.index')->middleware('auth');
+Route::get('/content/agen_perubahan/data', [ContentAgenPerubahanController::class, 'getAgenPerubahan'])->name('konten.agen_perubahan.data')->middleware('auth');
+Route::post('/content/agen_perubahan/store', [ContentAgenPerubahanController::class, 'store'])->middleware('auth');
+
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
@@ -245,8 +245,6 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 Route::get('/layouts/collapsed-menu', [CollapsedMenu::class, 'index'])->name('layouts-collapsed-menu');
 Route::get('/layouts/content-navbar', [ContentNavbar::class, 'index'])->name('layouts-content-navbar');
 Route::get('/layouts/content-nav-sidebar', [ContentNavSidebar::class, 'index'])->name('layouts-content-nav-sidebar');
-Route::get('/layouts/navbar-full', [NavbarFull::class, 'index'])->name('layouts-navbar-full');
-Route::get('/layouts/navbar-full-sidebar', [NavbarFullSidebar::class, 'index'])->name('layouts-navbar-full-sidebar');
 Route::get('/layouts/horizontal', [Horizontal::class, 'index'])->name('dashboard-analytics');
 Route::get('/layouts/vertical', [Vertical::class, 'index'])->name('dashboard-analytics');
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
@@ -351,7 +349,6 @@ Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
 Route::get('/cards/advance', [CardAdvance::class, 'index'])->name('cards-advance');
 Route::get('/cards/statistics', [CardStatistics::class, 'index'])->name('cards-statistics');
 Route::get('/cards/analytics', [CardAnalytics::class, 'index'])->name('cards-analytics');
-Route::get('/cards/gamifications', [CardGamifications::class, 'index'])->name('cards-gamifications');
 Route::get('/cards/actions', [CardActions::class, 'index'])->name('cards-actions');
 
 // User Interface

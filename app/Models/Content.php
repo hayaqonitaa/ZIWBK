@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Konten;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,9 +18,12 @@ class Content extends Model
 
     protected $fillable = ['id', 'id_kategori', 'id_admin', 'judul', 'deskripsi', 'file', 'link', 'status'];
 
-    public function content_categories (){// kan id prodi teh ngambil dari model prodi
-        return $this->belongsTo(Prodi::class, 'id_prodi'); //belongto artinya id_prodi di tabel mahasiswa = id di tabel prodi
+    public function content_categories (){
+        return $this->belongsTo(ContentCategories::class, 'id_kategori'); 
+    }
 
+    public function users (){
+        return $this->belongsTo(User::class, 'id_admin'); 
     }
 
 }

@@ -15,14 +15,14 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/admin/jurusan/jurusan.js'])
-@vite(['resources/assets/js/admin/jurusan/addJurusan.js'])
+@vite(['resources/assets/js/konten/agen_perubahan/agenPerubahan.js'])
+@vite(['resources/assets/js/konten/agen_perubahan/addAgenPerubahan.js'])
 @vite(['resources/assets/js/admin/jurusan/editJurusan.js'])
 @endsection
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Jurusan
+  <span class="text-muted fw-light">Dashboard /</span> Agen Perubahan
 </h4>
 
 <!-- Display success notification if exists -->
@@ -39,8 +39,8 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
   <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Jurusan</h5>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addJurusan">
+    <h5 class="mb-0">Agen Perubahan</h5>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentAgenPerubahan">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
@@ -51,6 +51,9 @@ $configData = Helper::appClasses();
         <tr>
             <th>No.</th>
             <th>Nama</th>
+            <th>Jabatan</th>
+            <th>Foto</th>
+            <th>Created By</th>
         </tr>
       </thead>
     </table>
@@ -58,7 +61,7 @@ $configData = Helper::appClasses();
 </div>
 <!--/ Scrollable -->
 
-@include('admin-page/jurusan/modal-jurusan')
+@include('konten/agen_perubahan/modal-add')
 @include('admin-page/jurusan/modal-edit-jurusan')
 
 @endsection

@@ -8,12 +8,12 @@
     },
     {
       "url": "/pembagian",
-      "name": "Pembagian Kuesioner",
+      "name": "Kirim Kuesioner",
       "icon": "menu-icon tf-icons ti ti-mail",
       "slug": ""
     },
     {
-      "name": "Content",
+      "name": "Konten",
       "icon": "menu-icon tf-icons ti ti-components",
       "slug": "",
       "submenu": [
@@ -48,13 +48,13 @@
     },
     {
       "url": "/user",
-      "name": "User",
+      "name": "Admin",
       "icon": "menu-icon tf-icons ti ti-users",
       "slug": ""
     },
     {
       "url": "/content-categories",
-      "name": "Content Categories",
+      "name": "Kategori Konten",
       "icon": "menu-icon tf-icons ti ti-box-multiple",
       "slug": ""
     },
