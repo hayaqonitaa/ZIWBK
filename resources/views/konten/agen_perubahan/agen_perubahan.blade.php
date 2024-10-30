@@ -17,7 +17,7 @@ $configData = Helper::appClasses();
 @section('page-script')
 @vite(['resources/assets/js/konten/agen_perubahan/agenPerubahan.js'])
 @vite(['resources/assets/js/konten/agen_perubahan/addAgenPerubahan.js'])
-@vite(['resources/assets/js/admin/jurusan/editJurusan.js'])
+@vite(['resources/assets/js/konten/agen_perubahan/editAgenPerubahan.js'])
 @endsection
 
 @section('content')
@@ -62,6 +62,6 @@ $configData = Helper::appClasses();
 <!--/ Scrollable -->
 
 @include('konten/agen_perubahan/modal-add')
-@include('admin-page/jurusan/modal-edit-jurusan')
+@include('konten/agen_perubahan/modal-edit')
 
 @endsection
