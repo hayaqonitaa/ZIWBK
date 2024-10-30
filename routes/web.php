@@ -236,6 +236,8 @@ Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('ad
 Route::get('/content/agen_perubahan', [ContentAgenPerubahanController::class, 'index'])->name('konten.agen_perubahan.index')->middleware('auth');
 Route::get('/content/agen_perubahan/data', [ContentAgenPerubahanController::class, 'getAgenPerubahan'])->name('konten.agen_perubahan.data')->middleware('auth');
 Route::post('/content/agen_perubahan/store', [ContentAgenPerubahanController::class, 'store'])->middleware('auth');
+Route::post('/content/agen_perubahan/update/{id}', [ContentAgenPerubahanController::class, 'update'])->name('konten.agen_perubahan.update')->middleware('auth');
+Route::delete('/content/agen_perubahan/delete/{id}', [ContentAgenPerubahanController::class, 'destroy'])->name('konten.agen_perubahan.delete')->middleware('auth');
 
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
