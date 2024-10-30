@@ -82,7 +82,6 @@ $configData = Helper::appClasses();
     </table>
   </div>
 </div>
-</div>
 <!--/ Scrollable -->
 <!--/ Scrollable -->
 @include('admin-page/mahasiswa/modal-mahasiswa')

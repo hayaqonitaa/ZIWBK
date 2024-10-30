@@ -25,7 +25,7 @@ $(function () {
                 title: '<input type="checkbox" id="selectAll">', // Checkbox untuk Select All
                 orderable: false, // Kolom tidak dapat diurutkan
                 render: function (data, type, row) {
-                  return `<input type="checkbox" class="row-checkbox" value="${row.id}" data-nama="${row.nama}" data-jurusan="${row.jurusan}">`;
+                  return `<input type="checkbox" class="row-checkbox" value="${row.nama}" data-nama="${row.nama}" data-jurusan="${row.jurusan}">`;
                 }
             },
             { 
@@ -103,7 +103,39 @@ $(function () {
       });
     });
     
-  
+    // Handle button "Kirim" click
+    $(document).on('click', '.btn-info', function () {
+      var selectedIds = [];
+      var selectedData = [];
+
+      // Loop through each checked checkbox
+      $('.row-checkbox:checked').each(function () {
+        var row = $(this).closest('tr');
+        var nim = row.find('td:eq(2)').text(); // Column NIM (adjust index as needed)
+        var nama = row.find('td:eq(3)').text();  // Column Nama (adjust index as needed)
+
+        selectedIds.push($(this).val());
+        selectedData.push({ nim: nim, nama: nama });
+      });
+
+      if (selectedIds.length > 0) {
+        // Show selected data in modal
+        var selectedDataList = $('#selectedMahasiswa');
+        selectedDataList.empty(); // Clear previous list
+        selectedData.forEach(function (item) {
+          selectedDataList.append('<li>' + item.nim + ' - ' + item.nama + '</li>');
+        });
+
+        // Store selected IDs in hidden input
+        $('#selectedIds').val(selectedIds.join(','));
+
+        // Show the modal
+        $('#sendModal').modal('show');
+      } else {
+        // Show notification if no data is selected
+        Swal.fire('Pilih Data', 'Silakan pilih minimal satu data untuk dikirim.', 'warning');
+      }
+    });
 
     // Handle edit button click
     $(document).on('click', '.edit-btn', function () {
