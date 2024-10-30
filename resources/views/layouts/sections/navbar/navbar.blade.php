@@ -393,7 +393,7 @@ $navbarDetached = ($navbarDetached ?? '');
               <div class="tf-icons ti ti-user">
               </div>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end">
+            <ul class="dropdown-menu">
               <li>
                 <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
                   <div class="d-flex">
@@ -473,7 +473,7 @@ $navbarDetached = ($navbarDetached ?? '');
               </li>
               @if (Auth::check())
               <li>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i>Logout</i>
                   <form id="logout-form" action="{{ route('auth-logout') }}" method="POST" style="display: none;">
                     @csrf

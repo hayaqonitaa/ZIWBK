@@ -15,14 +15,14 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/admin/kuesioner/kuesioner.js'])
-@vite(['resources/assets/js/admin/kuesioner/addKuesioner.js'])
-@vite(['resources/assets/js/admin/kuesioner/editKuesioner.js'])
+@vite(['resources/assets/js/konten/agen_perubahan/agenPerubahan.js'])
+@vite(['resources/assets/js/konten/agen_perubahan/addAgenPerubahan.js'])
+@vite(['resources/assets/js/admin/jurusan/editJurusan.js'])
 @endsection
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Kuesioner
+  <span class="text-muted fw-light">Dashboard /</span> Agen Perubahan
 </h4>
 
 <!-- Display success notification if exists -->
@@ -39,8 +39,8 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
   <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Kuesioner</h5>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addKuesioner">
+    <h5 class="mb-0">Agen Perubahan</h5>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentAgenPerubahan">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
@@ -49,17 +49,19 @@ $configData = Helper::appClasses();
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
-            <th>No.</th>`
-            <th>Judul</th>
-            <th>Link</th>
-            <th>Actions</th>
+            <th>No.</th>
+            <th>Nama</th>
+            <th>Jabatan</th>
+            <th>Foto</th>
+            <th>Created By</th>
         </tr>
       </thead>
     </table>
   </div>
 </div>
 <!--/ Scrollable -->
-@include('admin-page/kuesioner/modal-kuesioner')
-@include('admin-page/kuesioner/modal-edit-kuesioner')
+
+@include('konten/agen_perubahan/modal-add')
+@include('admin-page/jurusan/modal-edit-jurusan')
 
 @endsection

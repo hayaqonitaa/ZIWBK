@@ -8,16 +8,32 @@
     },
     {
       "url": "/pembagian",
-      "name": "Pembagian Kuesioner",
+      "name": "Kirim Kuesioner",
       "icon": "menu-icon tf-icons ti ti-mail",
       "slug": ""
     },
     {
-      "url": "",
-      "name": "Content",
+      "name": "Konten",
       "icon": "menu-icon tf-icons ti ti-components",
-      "slug": ""
-    },
+      "slug": "",
+      "submenu": [
+        {
+          "url": "/content/agen_perubahan",
+          "name": "Agen Perubahan",
+          "slug": ""
+        },
+        {
+          "url": "/",
+          "name": "Standar Pelayanan",
+          "slug": ""
+        },
+        {
+          "url": "/",
+          "name": "Layanan Umum",
+          "slug": ""
+        }
+      ]
+      },
     {
       "menuHeader": "Report"
     },
@@ -32,13 +48,13 @@
     },
     {
       "url": "/user",
-      "name": "User",
+      "name": "Admin",
       "icon": "menu-icon tf-icons ti ti-users",
       "slug": ""
     },
     {
-      "url": "",
-      "name": "Content Categories",
+      "url": "/content-categories",
+      "name": "Kategori Konten",
       "icon": "menu-icon tf-icons ti ti-box-multiple",
       "slug": ""
     },

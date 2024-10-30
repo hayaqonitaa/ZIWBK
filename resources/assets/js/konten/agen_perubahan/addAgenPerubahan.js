@@ -1,39 +1,26 @@
 'use strict';
 
 $(function () {
-  // Handle edit button click
-  $(document).on('click', '.edit-btn', function () {
-    var id = $(this).data('id');
-    var judul = $(this).data('judul');
-    var link_kuesioner = $(this).data('linkKuesioner');
-
-    console.log($(this).data())
-    
-    // Set values in the edit modal
-    $('#editKuesionerId').val(id);
-    $('#editJudul').val(judul);
-    $('#editLink').val(link_kuesioner);
-    $('#editKuesioner').modal('show'); // Show the modal
+  // Setup CSRF token for AJAX requests
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
   });
 
-  // Handle form submission for editing kuesioner
-  $('#editKuesionerForm').on('submit', function (e) {
+  // Handle form submission for adding new Agen Perubahan
+  $('#addContentAgenPerubahanForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
-    var formData = $(this).serialize(); // Serialize form data
-    var id = $('#editKuesionerId').val(); // Get the ID
+    var formData = new FormData(this); // Use FormData to handle file uploads
 
-    // Append the method PUT to the form data for Laravel
-    formData += '&_method=PUT';
-
-    // AJAX request to submit the edit form data
+    // AJAX request to submit the form data
     $.ajax({
-      url: '/kuesioner/update/' + id, // Use the actual id in the URL
-      type: 'POST', // Use POST because we are appending method PUT manually
+      url: '/content/agen_perubahan/store', // URL to your store method in the controller
+      type: 'POST',
       data: formData,
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Add CSRF token
-      },
+      contentType: false, // Set content type to false for FormData
+      processData: false, // Prevent jQuery from processing the data
       success: function (response) {
         showAlert(response.message);
         setTimeout(function() {
@@ -45,7 +32,7 @@ $(function () {
       }
     });
   });
-  
+
   // Function to show alert
   function showAlert(message) {
     var alertDiv = $(`
