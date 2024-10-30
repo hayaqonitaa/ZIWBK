@@ -22,6 +22,14 @@ $(function () {
         columns: [
             { 
                 data: null, 
+                title: '<input type="checkbox" id="selectAll">', // Checkbox untuk Select All
+                orderable: false, // Kolom tidak dapat diurutkan
+                render: function (data, type, row) {
+                  return `<input type="checkbox" class="row-checkbox" value="${row.id}" data-nama="${row.nama}" data-jurusan="${row.jurusan}">`;
+                }
+            },
+            { 
+                data: null, 
                 title: 'No', 
                 render: function (data, type, row, meta) {
                     return meta.row + 1; // Menampilkan nomor urut berdasarkan index
@@ -31,22 +39,7 @@ $(function () {
             { data: 'nim', title: 'NIM' },
             { data: 'nama', title: 'Nama' },
             { data: 'prodi.nama', title: 'Prodi' }, // Akses nama prodi
-            { data: 'email', title: 'Email' },
-            { 
-                data: null, 
-                title: 'Actions', 
-                orderable: false, // Kolom tidak dapat diurutkan
-                render: function (data, type, row) {
-                    return `
-                        <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nim="${row.nim}" data-nama="${row.nama}" data-prodi="${row.prodi.nama}" data-email="${row.email}">
-                            <i class="fas fa-edit"></i> 
-                        </button>
-                        <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
-                            <i class="fas fa-trash"></i> 
-                        </button>
-                    `;
-                }
-            }
+            { data: 'email', title: 'Email' }
         ],
         // Scroll options
         scrollY: '300px',
@@ -57,6 +50,20 @@ $(function () {
             dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
         }
     });
+
+    // Handle individual row checkbox click
+    dt_scrollable_table.on('click', '.row-checkbox', function () {
+      if (!this.checked) {
+        $('#selectAll').prop('checked', false);
+      }
+    });
+
+    // Handle "Select All" checkbox
+    $('#selectAll').on('click', function () {
+      var isChecked = $(this).is(':checked'); // Check status of the Select All checkbox
+      $('.row-checkbox').prop('checked', isChecked); // Set all row checkboxes to the same status
+    });
+
 
     $('#editMahasiswa').on('show.bs.modal', function () {
       $.ajax({
@@ -81,6 +88,40 @@ $(function () {
       });
     });
     
+    // Handle button "Kirim" click
+    $(document).on('click', '.btn-info', function () {
+      var selectedIds = [];
+      var selectedData = [];
+
+      // Loop through each checked checkbox
+      $('.row-checkbox:checked').each(function () {
+        var row = $(this).closest('tr');
+        var nim = row.find('td:eq(2)').text(); // Column NIM (adjust index as needed)
+        var nama = row.find('td:eq(3)').text();  // Column Nama (adjust index as needed)
+
+        selectedIds.push($(this).val());
+        selectedData.push({ nim: nim, nama: nama });
+      });
+
+      if (selectedIds.length > 0) {
+        // Show selected data in modal
+        var selectedDataList = $('#selectedMahasiswa');
+        selectedDataList.empty(); // Clear previous list
+        selectedData.forEach(function (item) {
+          selectedDataList.append('<li>' + item.nim + ' - ' + item.nama + '</li>');
+        });
+
+        // Store selected IDs in hidden input
+        $('#selectedIds').val(selectedIds.join(','));
+
+        // Show the modal
+        $('#sendModal').modal('show');
+      } else {
+        // Show notification if no data is selected
+        Swal.fire('Pilih Data', 'Silakan pilih minimal satu data untuk dikirim.', 'warning');
+      }
+    });
+
     // Handle edit button click
     $(document).on('click', '.edit-btn', function () {
       var nim = $(this).data('nim');

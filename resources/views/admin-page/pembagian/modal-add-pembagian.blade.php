@@ -23,7 +23,7 @@
           </div>
 
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary me-sm-3 me-1">Kirim</button>
+            <button type="submit" class="btn btn-primary me-sm-3 me-1">Petakan</button>
             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Batal</button>
           </div>
         </form>

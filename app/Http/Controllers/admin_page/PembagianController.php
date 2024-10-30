@@ -57,7 +57,7 @@ class PembagianController extends Controller
         }
     
         return response()->json([
-            'message' => 'Kuesioner berhasil dibagikan!',
+            'message' => 'Kuesioner berhasil dipetakan!',
             'redirect' => url('/pembagian')
         ]);
     }
