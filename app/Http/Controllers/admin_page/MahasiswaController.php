@@ -133,21 +133,21 @@ class MahasiswaController extends Controller
       return back()->with('success', 'Data Mahasiswa berhasil diimport.');
   }
 
-  public function uploadExcel(Request $request)
-  {
-      $request->validate([
-          'file' => 'required|mimes:xls,xlsx'
-      ]);
+//   public function uploadExcel(Request $request)
+//   {
+//       $request->validate([
+//           'file' => 'required|mimes:xls,xlsx'
+//       ]);
   
-      try {
-          // Import data dari Excel
-          Excel::import(new MahasiswaImport, $request->file('file'));
+//       try {
+//           // Import data dari Excel
+//           Excel::import(new MahasiswaImport, $request->file('file'));
   
-          return response()->json(['message' => 'File berhasil diunggah dan data disimpan.']);
-      } catch (\Exception $e) {
-          return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
-      }
-  }    // Handle the Excel import
+//           return response()->json(['message' => 'File berhasil diunggah dan data disimpan.']);
+//       } catch (\Exception $e) {
+//           return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
+//       }
+//   }    // Handle the Excel import
   public function importMahasiswa(Request $request)
   {
       // Validate the uploaded file

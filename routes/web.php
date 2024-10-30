@@ -15,14 +15,14 @@ use App\Http\Controllers\admin_page\KuesionerController;
 use App\Http\Controllers\admin_page\AgenPerubahanController;
 use App\Http\Controllers\admin_page\PembagianController;
 use App\Http\Controllers\admin_page\UserController;
-    use App\Http\Controllers\dashboard\Analytics;
+use App\Http\Controllers\admin_page\MahasiswaImportController;
+use App\Http\Controllers\konten\ContentAgenPerubahanController;
+use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
     use App\Http\Controllers\layouts\CollapsedMenu;
     use App\Http\Controllers\layouts\ContentNavbar;
     use App\Http\Controllers\layouts\ContentNavSidebar;
-    use App\Http\Controllers\layouts\NavbarFull;
-    use App\Http\Controllers\layouts\NavbarFullSidebar;
     use App\Http\Controllers\layouts\Horizontal;
     use App\Http\Controllers\layouts\Vertical;
     use App\Http\Controllers\layouts\WithoutMenu;
@@ -113,7 +113,6 @@ use App\Http\Controllers\admin_page\UserController;
     use App\Http\Controllers\cards\CardAdvance;
     use App\Http\Controllers\cards\CardStatistics;
     use App\Http\Controllers\cards\CardAnalytics;
-    use App\Http\Controllers\cards\CardGamifications;
     use App\Http\Controllers\cards\CardActions;
     use App\Http\Controllers\user_interface\Accordion;
     use App\Http\Controllers\user_interface\Alerts;
@@ -172,7 +171,7 @@ use App\Http\Controllers\admin_page\UserController;
     use App\Http\Controllers\charts\ApexCharts;
     use App\Http\Controllers\charts\ChartJs;
     use App\Http\Controllers\maps\Leaflet;
-
+    use App\Http\Controllers\admin_page\ContentCategoriesController;
     // Main Page Route
     // Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/', [IndexController::class, 'index'])->name('home');
@@ -191,7 +190,8 @@ Route::get('/mahasiswa/data', [MahasiswaController::class, 'getMahasiswa'])->mid
 Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
 Route::put('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
 Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
-Route::post('/mahasiswa/uploadExcel', [MahasiswaController::class, 'uploadExcel']);
+// Route::post('/mahasiswa/uploadExcel', [MahasiswaController::class, 'uploadExcel']);
+Route::post('/mahasiswa/uploadExcel', [MahasiswaImportController::class, 'uploadExcel']);
 
 Route::get('/jurusan', [JurusanController::class, 'index'])->name('admin-page.jurusan.jurusan')->middleware('auth');
 Route::get('/jurusan/data', [JurusanController::class, 'getJurusan'])->middleware('auth'); 
@@ -213,6 +213,12 @@ Route::post('/kuesioner/store', [KuesionerController::class, 'store']);
 Route::put('/kuesioner/update/{id}', [KuesionerController::class, 'update'])->name('kuesioner.update');
 Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kuesioner.destroy');
 
+Route::get('/content-categories', [ContentCategoriesController::class, 'index'])->name('admin-page.content_categories.index')->middleware('auth');
+Route::get('/content-categories/data', [ContentCategoriesController::class, 'getContentCategories'])->name('content-categories.data')->middleware('auth');
+Route::post('/content_categories/store', [ContentCategoriesController::class, 'store'])->name('content_categories.store');
+Route::put('/content_categories/update/{id}', [ContentCategoriesController::class, 'update'])->name('content_categories.update');
+Route::delete('/content-categories/delete/{id}', [ContentCategoriesController::class, 'destroy'])->name('content_categories.destroy');
+
 Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])->name('pembagian.destroy');
 Route::get('/pembagian', [PembagianController::class, 'index'])->name('admin-page.pembagian.pembagian')->middleware('auth');
 Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pembagian.share'); // Rute untuk membagikan kuesioner
@@ -225,6 +231,13 @@ Route::post('/user/store', [UserController::class, 'store'])->name('admin.user.s
 Route::put('/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
 
+Route::get('/content/agen_perubahan', [ContentAgenPerubahanController::class, 'index'])->name('konten.agen_perubahan.index')->middleware('auth');
+Route::get('/content/agen_perubahan/data', [ContentAgenPerubahanController::class, 'getAgenPerubahan'])->name('konten.agen_perubahan.data')->middleware('auth');
+Route::post('/content/agen_perubahan/store', [ContentAgenPerubahanController::class, 'store'])->middleware('auth');
+Route::post('/content/agen_perubahan/update/{id}', [ContentAgenPerubahanController::class, 'update'])->name('konten.agen_perubahan.update')->middleware('auth');
+Route::delete('/content/agen_perubahan/delete/{id}', [ContentAgenPerubahanController::class, 'destroy'])->name('konten.agen_perubahan.delete')->middleware('auth');
+
+
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
 // locale
@@ -234,8 +247,6 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 Route::get('/layouts/collapsed-menu', [CollapsedMenu::class, 'index'])->name('layouts-collapsed-menu');
 Route::get('/layouts/content-navbar', [ContentNavbar::class, 'index'])->name('layouts-content-navbar');
 Route::get('/layouts/content-nav-sidebar', [ContentNavSidebar::class, 'index'])->name('layouts-content-nav-sidebar');
-Route::get('/layouts/navbar-full', [NavbarFull::class, 'index'])->name('layouts-navbar-full');
-Route::get('/layouts/navbar-full-sidebar', [NavbarFullSidebar::class, 'index'])->name('layouts-navbar-full-sidebar');
 Route::get('/layouts/horizontal', [Horizontal::class, 'index'])->name('dashboard-analytics');
 Route::get('/layouts/vertical', [Vertical::class, 'index'])->name('dashboard-analytics');
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
@@ -340,7 +351,6 @@ Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
 Route::get('/cards/advance', [CardAdvance::class, 'index'])->name('cards-advance');
 Route::get('/cards/statistics', [CardStatistics::class, 'index'])->name('cards-statistics');
 Route::get('/cards/analytics', [CardAnalytics::class, 'index'])->name('cards-analytics');
-Route::get('/cards/gamifications', [CardGamifications::class, 'index'])->name('cards-gamifications');
 Route::get('/cards/actions', [CardActions::class, 'index'])->name('cards-actions');
 
 // User Interface

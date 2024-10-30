@@ -219,107 +219,32 @@
 
   // Navbar custom dropdown
   .navbar-dropdown {
-    .badge-notifications {
-      top: 0.5rem;
-      padding: 0.2rem 0.4rem;
-    }
     .dropdown-menu {
       min-width: $navbar-dropdown-width;
-      overflow: hidden;
-      .last-login {
-        white-space: normal;
+      overflow: auto; // Menambahkan scroll jika konten terlalu panjang
+      max-height: calc(100vh - 20px); // Batasi tinggi dropdown agar tidak melampaui layar
+      
+      // Pastikan dropdown tidak meluap ke kanan atau kiri
+      position: absolute;
+      right: 0; // Atur posisi dropdown ke tepi kanan navbar
+      left: auto;
+      
+      // Tambahkan logika untuk menyesuaikan posisi jika terlalu dekat dengan tepi layar
+      @media (max-width: 768px) {
+        right: auto;
+        left: 0;
       }
     }
-    // Notifications
-    &.dropdown-notifications {
-      .dropdown-notifications-list {
-        max-height: $navbar-dropdown-content-height;
-        .dropdown-notifications-item {
-          padding: $navbar-notifications-dropdown-item-padding;
-          cursor: pointer;
-
-          .dropdown-notifications-actions {
-            text-align: center;
-            > a {
-              display: block;
-            }
-          }
-
-          .dropdown-notifications-archive i,
-          .dropdown-notifications-archive span {
-            color: $body-color;
-          }
-
-          // Notification default marked as read/unread
-          &.marked-as-read {
-            .dropdown-notifications-read,
-            .dropdown-notifications-archive {
-              visibility: hidden;
-            }
-            //Dropdown notification unread badge bg color
-            .dropdown-notifications-read span {
-              background-color: $secondary;
-            }
-          }
-          &:not(.marked-as-read) {
-            .dropdown-notifications-archive {
-              visibility: hidden;
-            }
-          }
-
-          // Notification hover marked as read/unread
-          &:hover {
-            &.marked-as-read {
-              .dropdown-notifications-read,
-              .dropdown-notifications-archive {
-                visibility: visible;
-              }
-            }
-            &:not(.marked-as-read) {
-              .dropdown-notifications-archive {
-                visibility: visible;
-              }
-            }
-          }
-        }
-      }
-    }
-    // Shortcuts
-    &.dropdown-shortcuts {
-      .dropdown-shortcuts-list {
-        max-height: $navbar-dropdown-content-height;
-      }
-      .dropdown-shortcuts-item {
-        text-align: center;
-        padding: 0.875rem;
-        &:hover {
-          background-color: $navbar-dropdown-hover-bg;
-        }
-        .dropdown-shortcuts-icon {
-          height: 3rem;
-          width: 3rem;
-          margin-left: auto;
-          margin-right: auto;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: $navbar-dropdown-icon-bg;
-        }
-        a,
-        a:hover {
-          display: block;
-          margin-bottom: 0;
-          color: $body-color !important;
-          font-weight: $font-weight-medium;
-        }
-      }
-    }
+  
     &.dropdown-user {
       .dropdown-menu {
         min-width: 14rem;
+        overflow: auto; // Scroll jika diperlukan
+        max-height: calc(100vh - 20px); // Batasi tinggi
       }
     }
   }
+  
 
   &[class*='bg-']:not(.bg-navbar-theme) {
     .nav-item {
