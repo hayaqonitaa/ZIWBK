@@ -20,6 +20,14 @@
             <label class="form-label" for="file">File</label>
             <input type="file" id="file" name="file" class="form-control" required />
           </div>
+          <div class="col-12 col-md-12">
+            <label class="form-label" for="status">Status</label>
+            <select id="status" name="status" class="form-select" required>
+              <option value="" disabled selected>Pilih Status</option>
+              <option value="Aktif">Aktif</option>
+              <option value="Tidak Aktif">Tidak Aktif</option>
+            </select>
+          </div>
           <div class="col-12 text-center">
             <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
