@@ -15,6 +15,11 @@ $(document).on('click', '.edit-btn', function () {
     // If the file is an image, display it
     $('#currentFileImage').attr('src', `/storage/${file}`).show();
 
+    // Retrieve and show the current status
+    var currentStatus = button.data('status'); // Get the current status
+    $('#currentStatus').text(currentStatus); // Display the current status
+    $('#editStatus').val(currentStatus); // Set the current status in the dropdown
+
     $('#editContentAgenPerubahan').modal('show');
 });
 
@@ -41,7 +46,6 @@ $('#editContentAgenPerubahanForm').on('submit', function (e) {
         }
     });
 });
-
 
 // Show alert message
 function showAlert(message) {

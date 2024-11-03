@@ -115,7 +115,7 @@
 
   .text-wrapper h5 {
     font-family: 'Poppins';
-    font-weight: 300;
+    font-weight: 600;
     font-size: 16px;
     color: #110F0F;
     margin-bottom: 0;

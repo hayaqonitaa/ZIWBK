@@ -9,7 +9,8 @@ use App\Models\Content;
 class AgenPerubahanController extends Controller
 {
     public function index(){
-        $contents = Content::whereHas('content_categories', function ($query) {
+        $contents = Content::where('status', 'Aktif')
+        ->whereHas('content_categories', function ($query) {
             $query->where('nama', 'Agen Perubahan');
         })->get();
         $pageConfigs = ['myLayout' => 'front'];
