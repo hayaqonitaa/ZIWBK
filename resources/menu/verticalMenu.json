@@ -42,6 +42,11 @@
           "url": "/",
           "name": "Layanan Umum",
           "slug": ""
+        },
+        {
+          "url": "/content/tim_kerja",
+          "name": "Tim Kerja",
+          "slug": ""
         }
       ]
       },
