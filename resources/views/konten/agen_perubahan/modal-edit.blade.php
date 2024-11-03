@@ -29,6 +29,20 @@
             <label for="editFile" class="form-label">Foto</label>
             <input type="file" class="form-control" id="editFile" name="file">
           </div>
+
+          <!-- <div class="mb-3">
+            <label class="form-label">Status saat ini: </label>
+            <span id="currentStatus" class="badge bg-info"></span>
+          </div> -->
+
+          <div class="mb-3">
+            <label for="editStatus" class="form-label">Status</label>
+            <select id="editStatus" name="status" class="form-select">
+              <option value="" disabled selected>Pilih Status</option>
+              <option value="Aktif">Aktif</option>
+              <option value="Tidak Aktif">Tidak Aktif</option>
+            </select>
+          </div>
           
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Update</button>

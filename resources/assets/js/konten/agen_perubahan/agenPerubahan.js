@@ -36,13 +36,24 @@ $(function () {
           }
         },
         { data: 'users.name', title: 'Created By' },
+        { data: 'status', title: 'Status', 
+          render: function (data, type, row) {
+            if (data === 'Aktif') {
+              return `<span class="badge p-2 bg-label-success mb-2 rounded">${data}</span>`; // Hijau untuk status Sudah Terkirim
+            } else if (data === 'Tidak Aktif') {
+              return `<span class="badge p-2 bg-label-warning mb-2 rounded">${data}</span>`; // Kuning untuk status Belum Dikirim
+            } else {
+              return data; // Default, jika status lain
+            }
+          }
+        },
         { 
           data: null, 
           title: 'Actions', 
           orderable: false,
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-judul="${row.judul}" data-deskripsi="${row.deskripsi}" data-file="${row.file}" data-id-Users="${row.users.id}" data-nama-Users="${row.users.name}">
+              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-judul="${row.judul}" data-deskripsi="${row.deskripsi}" data-file="${row.file}" data-id-Users="${row.users.id}" data-nama-Users="${row.users.name}" data-status="${row.status}" >
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">

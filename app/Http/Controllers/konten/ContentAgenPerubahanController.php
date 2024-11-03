@@ -36,6 +36,7 @@ class ContentAgenPerubahanController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max file size 2MB
+            'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
     
         // Get the id of the "Agen Perubahan" category
@@ -56,6 +57,7 @@ class ContentAgenPerubahanController extends Controller
         $content->file = $filePath; // Store the file path relative to storage/app
         $content->id_kategori = $category->id; // Set category ID
         $content->id_admin = Auth::user()->id; // Automatically get the authenticated user's ID
+        $content->status = $request->status;
         $content->save(); // Save the content
     
         return response()->json([
@@ -108,6 +110,7 @@ class ContentAgenPerubahanController extends Controller
     
         $content->id_kategori = $category->id; // Ensure the category ID is set
         $content->id_admin = Auth::user()->id; // Set admin ID to the authenticated user
+        $content->status = $request->status;
         $content->save(); // Save the changes
     
         return response()->json([
