@@ -67,6 +67,67 @@
   .card a {
     text-decoration: none;
   }
+
+/* Gaya untuk card container */
+.card-container {
+  display: flex;
+  align-items: center;
+  background-color: #D2DFEC;
+  padding: 20px;
+  border-radius: 100px 20px 20px 100px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+
+/* Responsive styling for one column on smaller screens */
+@media (max-width: 768px) {
+  .row .col-sm-6.col-md-4 {
+    flex: 0 0 100%; /* Set width to 100% */
+    max-width: 100%; /* Set max-width to 100% */
+  }
+}
+
+
+  /* Gaya untuk gambar dalam card */
+  .img-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    border: 2px solid #00796B;
+    flex-shrink: 0;
+    margin-right: -40px;
+  }
+
+  .img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Gaya untuk teks dalam card */
+  .text-wrapper {
+    margin-left: 43px;
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .text-wrapper h5 {
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 16px;
+    color: #110F0F;
+    margin-bottom: 0;
+  }
+
+  .text-wrapper p {
+    font-family: 'Poppins';
+    font-weight: 200;
+    font-size: 13px;
+    margin-left: 10px; 
+    color: #443030;
+  }
 </style>
 @endsection
 
@@ -103,45 +164,28 @@
     </div>
 </div>
 
-<!-- Judul Agen Perubahan -->
-<div class="container text-center" id="agenPerubahan">
-    <h3 class="mb-4">Agen Perubahan</h3>
-    <hr>
-    
-    <!-- Row for the Cards -->
-    <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="d-flex align-items-center" style="background-color: #D2DFEC; padding: 20px; border-radius: 100px 20px 20px 100px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-bottom: 30px;">
-                <div class="ellipse" style="width: 100px; height: 100px; background-color: white; border-radius: 50%; overflow: hidden; border: 2px solid #00796B; margin-right: -50px; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;">
-                    <img src="{{ asset('images/rodiah.png') }}" alt="Rodiah" style="width: 90%; height: auto; object-fit: cover; position: relative; top: -10px; left: -10px; transform: scale(1.2);">
+<div data-bs-spy="scroll" class="scrollspy-example">
+    <!-- Judul Agen Perubahan -->
+    <div class="container text-center" id="agenPerubahan">
+        <h3 class="mb-4">Agen Perubahan</h3>
+        <hr>
+        
+        <!-- Row for the Cards -->
+        <div class="row justify-content-center">
+            @foreach($contents as $content)
+                <div class="col-sm-6 col-md-4 mb-4">
+                    <div class="card-container">
+                        <div class="img-wrapper">
+                            <img src="{{ asset('storage/' . $content->file) }}" alt="{{ $content->judul }}">
+                        </div>
+                        <div class="text-wrapper">
+                            <h5 class="mt-0">{{ $content->judul }}</h5>
+                            <p class="mb-0">{{ $content->deskripsi }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div style="margin-left: 30px; z-index: 0; text-align: center; flex-grow: 1;">
-                    <h5 class="mt-0" style="font-family: Poppins; font-weight: 600; font-size: 24px; color: #110F0F; margin-bottom: 0;">Rodiah</h5>
-                    <p class="mb-0" style="font-family: Poppins; font-weight: 600; font-size: 16px; color: #443030;">Tenaga Kependidikan</p>
-                </div>
-            </div>
+            @endforeach
         </div>
-
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="d-flex align-items-center" style="background-color: #D2DFEC; padding: 20px; border-radius: 100px 20px 20px 100px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
-                <div class="ellipse" style="width: 100px; height: 100px; background-color: white; border-radius: 50%; overflow: hidden; border: 2px solid #00796B; margin-right: -50px; position: relative; z-index: 1;">
-                    <img src="{{ asset('images/Paula.png') }}" alt="Dr. IR. Paula Santi Rudati, M.si" style="width: 100%; height: auto;">
-                </div>
-                <div style="margin-left: 30px; z-index: 0; text-align: center; flex-grow: 1;">
-                    <h5 class="mt-0" style="font-family: Poppins; font-weight: 600; font-size: 20px; color: #110F0F; margin-bottom: 0;">Dr. IR. Paula Santi Rudati, M.si</h5>
-                    <p class="mb-0" style="font-family: Poppins; font-weight: 600; font-size: 12px; color: #443030;">Wakil Direktur Bidang Perencanaan dan Sistem Informasi (Dosen)</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Judul Tim Kerja ZI WBBM -->
-    <h3 class="mb-0 mt-5" style="color: #07294D; font-family: Poppins; font-size: 22px; font-weight: 600; line-height: 42px; text-align: center;">Tim Kerja ZI WBBM</h3>
-    <hr>
-
-    <!-- Embed PDF -->
-    <div id="pdfContainer">
-        <embed id="pdfEmbed" src="{{ asset('file/0154-SK-Tim-Kerja-Pembangunan-ZI-WBBM.pdf') }}" type="application/pdf" />
     </div>
 </div>
 @endsection
