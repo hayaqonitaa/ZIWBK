@@ -1,64 +1,60 @@
 'use strict';
 
-$(document).on('click', '.edit-btn', function () {
-    var button = $(this);
-    var id = button.data('id');
-    $('#editContentAgenPerubahanId').val(id);
-    $('#editJudul').val(button.data('judul'));
-    $('#editDeskripsi').val(button.data('deskripsi'));
+$(function () {
+  // Setup CSRF token for AJAX requests
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
-    // Show the current file or image
-    var file = button.data('file');
-    var fileName = file.split('/').pop(); // Extract the file name
-    $('#currentFile').text(fileName); // Display the file name
+  // Handle form submission for adding new Agen Perubahan
+  $('#addContentAgenPerubahanForm').on('submit', function (e) {
+    e.preventDefault(); // Prevent the default form submission
 
-    // If the file is an image, display it
-    $('#currentFileImage').attr('src', `/storage/${file}`).show();
+    var formData = new FormData(this); // Use FormData to handle file uploads
 
-    // Set the current status
-    var currentStatus = button.data('status'); // Get the current status
-    $('#currentStatus').text(currentStatus); // Display the current status
-    $('#editStatus').val(currentStatus); // Set the selected value in the dropdown
-
-    $('#editContentAgenPerubahan').modal('show');
-});
-
-// Form submission for editing content
-$('#editContentAgenPerubahanForm').on('submit', function (e) {
-    e.preventDefault();
-
-    var formData = new FormData(this);
-    var id = $('#editContentAgenPerubahanId').val();
-
+    // AJAX request to submit the form data
     $.ajax({
-        url: `/content/agen_perubahan/update/${id}`,
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            showAlert(response.message);
-            // Refresh the page after the update
-            location.reload(); // This will refresh the entire page
-        },
-        error: function (xhr) {
-            handleError(xhr);
-        }
+      url: '/content/agen_perubahan/store', // URL to your store method in the controller
+      type: 'POST',
+      data: formData,
+      contentType: false, // Set content type to false for FormData
+      processData: false, // Prevent jQuery from processing the data
+      success: function (response) {
+        showAlert(response.message);
+        setTimeout(function() {
+          location.reload(); // Refresh the page after a short delay
+        }, 2000);
+      },
+      error: function (xhr) {
+        handleError(xhr);
+      }
     });
-});
+  });
 
-// Show alert message
-function showAlert(message) {
+  // Function to show alert
+  function showAlert(message) {
     var alertDiv = $(`
-        <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
-            <i class="fas fa-check-circle me-2"></i>
-            ${message}
-        </div>
+      <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+        <i class="fas fa-check-circle me-2"></i>
+        <div>${message}</div>
+      </div>
     `);
     $('body').append(alertDiv);
-    setTimeout(function () {
-        alertDiv.fadeOut('slow', function () {
-            $(this).remove();
-        });
+    setTimeout(function() {
+      alertDiv.fadeOut('slow', function() {
+        $(this).remove(); // Remove alert after fade out
+      });
     }, 3000);
-}
+  }
+
+  // Function to handle errors
+  function handleError(xhr) {
+    if (xhr.responseJSON && xhr.responseJSON.message) {
+      alert('Error: ' + xhr.responseJSON.message);
+    } else {
+      alert('An unexpected error occurred.');
+    }
+  }
+});

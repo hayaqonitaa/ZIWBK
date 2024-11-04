@@ -1,31 +1,26 @@
 'use strict';
 
 $(function () {
-  // Handle edit button click
-  $(document).on('click', '.edit-btn', function () {
-    var id = $(this).data('id');
-    var nama = $(this).data('nama');
-    var jabatan = $(this).data('jabatan');
-    
-    // Set values in the edit modal
-    $('#editAgenPerubahanId').val(id);
-    $('#editNama').val(nama);
-    $('#editJabatan').val(jabatan);
-    $('#editAgenPerubahan').modal('show'); // Show the modal
+  // Setup CSRF token for AJAX requests
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
   });
 
-  // Handle form submission for editing agen perubahan
-  $('#editAgenPerubahanForm').on('submit', function (e) {
+  // Handle form submission for adding new Agen Perubahan
+  $('#addContentLayananPengaduanForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
-    var formData = $(this).serialize(); // Serialize form data
-    var id = $('#editAgenPerubahanId').val(); // Get the ID
+    var formData = new FormData(this); // Use FormData to handle file uploads
 
-    // AJAX request to submit the edit form data
+    // AJAX request to submit the form data
     $.ajax({
-      url: `/agen-perubahan/update/${id}`, // URL to your update method in the controller
-      type: 'PUT',
+      url: '/content/layanan_pengaduan/store', // URL to your store method in the controller
+      type: 'POST',
       data: formData,
+      contentType: false, // Set content type to false for FormData
+      processData: false, // Prevent jQuery from processing the data
       success: function (response) {
         showAlert(response.message);
         setTimeout(function() {
@@ -37,7 +32,7 @@ $(function () {
       }
     });
   });
-  
+
   // Function to show alert
   function showAlert(message) {
     var alertDiv = $(`
