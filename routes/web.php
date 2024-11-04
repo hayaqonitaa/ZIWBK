@@ -4,7 +4,7 @@ use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\user_page\HasilSurvey;
 use App\Http\Controllers\user_page\StandarPelayanan;
-use App\Http\Controllers\user_page\LayananPengaduan;
+use App\Http\Controllers\user_page\LayananPengaduanController;
 use App\Http\Controllers\user_page\TimKerja;
 use App\Http\Controllers\admin_page\AdminController;
 use App\Http\Controllers\admin_page\MahasiswaController;
@@ -16,6 +16,7 @@ use App\Http\Controllers\admin_page\PembagianController;
 use App\Http\Controllers\admin_page\UserController;
 use App\Http\Controllers\admin_page\MahasiswaImportController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
+use App\Http\Controllers\konten\ContentLayananPengaduanController;
 use App\Http\Controllers\dashboard\Analytics;
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
@@ -177,7 +178,7 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
 Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('standar-pelayanan');
 Route::get('/tim-kerja', [TimKerja::class, 'index'])->name('tim-kerja');
-Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
+Route::get('/layanan-pengaduan', [LayananPengaduanContoller::class, 'index']);
 Route::get('/agen-perubahan', [AgenPerubahanController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
@@ -235,6 +236,12 @@ Route::get('/content/agen_perubahan/data', [ContentAgenPerubahanController::clas
 Route::post('/content/agen_perubahan/store', [ContentAgenPerubahanController::class, 'store'])->middleware('auth');
 Route::post('/content/agen_perubahan/update/{id}', [ContentAgenPerubahanController::class, 'update'])->name('konten.agen_perubahan.update')->middleware('auth');
 Route::delete('/content/agen_perubahan/delete/{id}', [ContentAgenPerubahanController::class, 'destroy'])->name('konten.agen_perubahan.delete')->middleware('auth');
+
+Route::get('/content/layanan_pengaduan', [ContentLayananPengaduanController::class, 'index'])->name('konten.layanan_pengaduan.index')->middleware('auth');
+Route::get('/content/layanan_pengaduan/data', [ContentLayananPengaduanController::class, 'getLayananPengaduan'])->name('konten.layanan_pengaduan.data')->middleware('auth');
+Route::post('/content/layanan_pengaduan/store', [ContentLayananPengaduanController::class, 'store'])->middleware('auth');
+Route::post('/content/layanan_pengaduan/update/{id}', [ContentLayananPengaduanController::class, 'update'])->name('konten.layanan_pengaduan.update')->middleware('auth');
+Route::delete('/content/layanan_pengaduan/delete/{id}', [ContentLayananPengaduanController::class, 'destroy'])->name('konten.layanan_pengaduan.delete')->middleware('auth');
 
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');

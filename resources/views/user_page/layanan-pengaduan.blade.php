@@ -88,52 +88,26 @@
 </div>
 
 
-      <!-- Judul Layanan Pengaduan dengan Garis Bawah -->
-      <div class="container text-center" id="LP">
-        <h3 class="mb-4">Layanan Pengaduan</h3>
-        <hr>
-        
-        <!-- Row for the Cards -->
-        <div class="row justify-content-center">
-          <!-- Stop Gratifikasi Card -->
-          <div class="col-sm-6 col-lg-3 mb-4">
-            <a href="https://gol.kpk.go.id/login" target="_blank" class="text-decoration-none">
-              <div class="card border border-primary shadow-none h-100">
-                <div class="card-body text-center">
-                  <img src="{{ asset('images/Vector.png') }}" alt="pendidikan" class="mb-2" style="width: 80px; height: auto;" />
-                  <h5 class="h5">Stop Gratifikasi</h5>
-                </div>
-              </div>
-            </a>
-          </div>
+<!-- Judul Layanan Pengaduan dengan Garis Bawah -->
+<div class="container text-center" id="LP">
+    <h3 class="mb-4">Layanan Pengaduan</h3>
+    <hr>
 
-          <!-- SP4N Lapor Card -->
-          <div class="col-sm-6 col-lg-3 mb-4">
-            <a href="https://www.lapor.go.id" target="_blank" class="text-decoration-none">
-              <div class="card border border-primary shadow-none h-100">
+<!-- Row for the Cards -->
+<div class="row justify-content-center">
+    <!-- Loop untuk membuat card berdasarkan data dari database -->
+    @foreach($contents as $content)
+    <div class="col-sm-6 col-lg-3 mb-4">
+        <!-- Link utama pada card sekarang menggunakan deskripsi sebagai URL -->
+        <a href="{{ $content->deskripsi }}" target="_blank" class="text-decoration-none">
+            <div class="card border border-primary shadow-none h-100" style="cursor: pointer;">
                 <div class="card-body text-center">
-                  <img src="{{ asset('images/Vector2.png') }}" alt="penelitian" class="mb-2" style="width: 80px; height: auto;" />
-                  <h5 class="h5">SP4N Lapor</h5>
+                    <img src="{{ asset('storage/' . $content->file) }}" alt="{{ $content->judul }}">
+                    <h5 class="h5">{{ $content->judul }}</h5>
                 </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- Whistleblower Card -->
-          <div class="col-sm-6 col-lg-3 mb-4">
-            <a href="https://kemdikbud.go.id" target="_blank" class="text-decoration-none">
-              <div class="card border border-primary shadow-none h-100">
-                <div class="card-body text-center">
-                  <img src="{{ asset('images/Vector3.png') }}" alt="pengabdian" class="mb-2" style="width: 80px; height: auto;" />
-                  <h5 class="h5">Whistleblower</h5>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
+            </div>
+        </a>
     </div>
-  </section>
-
+    @endforeach
 </div>
 @endsection
