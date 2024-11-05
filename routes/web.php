@@ -10,8 +10,9 @@ use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
-use App\Http\Controllers\user_page\TimController;
+use App\Http\Controllers\user_page\AgenPerubahanController;
 use App\Http\Controllers\user_page\TimKerjaController;
+use App\Http\Controllers\user_page\TimController;
 use App\Http\Controllers\admin_page\PembagianController;
 use App\Http\Controllers\admin_page\PemetaanController;
 use App\Http\Controllers\admin_page\UserController;
@@ -182,6 +183,7 @@ use App\Http\Controllers\konten\ContentStandarPelayananController;
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
 Route::get('/standar-pelayanan', [StandarPelayananController::class, 'index'])->name('standar-pelayanan');
+
 Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
 Route::get('/tim', [TimController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
