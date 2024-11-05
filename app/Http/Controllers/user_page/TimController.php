@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Content;
 
-class AgenPerubahanController extends Controller
+class TimController extends Controller
 {
     public function index()
     {

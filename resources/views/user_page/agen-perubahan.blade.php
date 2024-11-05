@@ -28,7 +28,7 @@
 }
 
 #agenPerubahan hr, #timKerja hr {
-    width: 100px;
+    width: 100px; 
     border: 2px solid #273272;
     margin: 0 auto 30px auto;
 }
