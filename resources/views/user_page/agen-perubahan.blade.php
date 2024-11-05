@@ -19,18 +19,19 @@
     font-family: 'Poppins', sans-serif;
   }
 
-  #agenPerubahan h3 {
+/* Apply styles to both #agenPerubahan and #timKerja */
+#agenPerubahan h3, #timKerja h3 {
     font-size: 20px;
     font-weight: bold;
     color: #273272;
     margin-bottom: 10px;
-  }
+}
 
-  #agenPerubahan hr {
+#agenPerubahan hr, #timKerja hr {
     width: 100px;
     border: 2px solid #273272;
     margin: 0 auto 30px auto;
-  }
+}
 
   /* Mengatur posisi PDF agar rata horizontal */
   #pdfContainer {
