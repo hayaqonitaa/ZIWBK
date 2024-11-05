@@ -25,6 +25,6 @@ class TimController extends Controller
         $pageConfigs = ['myLayout' => 'front'];
 
         // Pass both contents to the view
-        return view('user_page.agen-perubahan', compact('agenPerubahanContents', 'timKerjaContents'), ['pageConfigs' => $pageConfigs]);
+        return view('user_page.tim', compact('agenPerubahanContents', 'timKerjaContents'), ['pageConfigs' => $pageConfigs]);
     }
 }

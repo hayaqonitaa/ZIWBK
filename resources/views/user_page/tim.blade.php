@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Landing - Agen Perubahan')
+@section('title', 'Tim')
 
 <!-- Vendor Styles -->
 @section('vendor-style')
