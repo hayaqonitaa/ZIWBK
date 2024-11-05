@@ -14,7 +14,7 @@ $(function () {
   if (dt_scrollable_table.length) {
     var dt_scrollableTable = dt_scrollable_table.DataTable({
       ajax: {
-        url: '/content/agen_perubahan/data', // URL to fetch data from
+        url: '/content/layanan_pengaduan/data', // URL to fetch data from
         dataSrc: 'data' // Data source from the controller
       },
       columns: [
@@ -26,11 +26,11 @@ $(function () {
           },
           orderable: false // Disable sorting for this column
         },
-        { data: 'judul', title: 'Nama' },
-        { data: 'deskripsi', title: 'Jabatan' },
+        { data: 'judul', title: 'Judul' },
+        { data: 'deskripsi', title: 'Link' },
         { 
           data: 'file', 
-          title: 'Foto', 
+          title: 'Logo', 
           render: function (data, type, row) {
             return data ? `<img src="/storage/${data}" alt="${row.judul}" style="width: 100px; height: auto;">` : 'No image';
           }
@@ -73,7 +73,7 @@ $(function () {
     $(document).on('click', '.edit-btn', function () {
         var button = $(this);
         var id = button.data('id');
-        $('#editContentAgenPerubahanId').val(id);
+        $('#editContentLayananPengaduanId').val(id);
         $('#editJudul').val(button.data('judul'));
         $('#editDeskripsi').val(button.data('deskripsi'));
       
@@ -85,19 +85,19 @@ $(function () {
         // If the file is an image, display it
         $('#currentFileImage').attr('src', `/storage/${file}`).show();
       
-        $('#editContentAgenPerubahan').modal('show');
+        $('#editContentLayananPengaduan').modal('show');
       });
       
 
     // Form submission for editing content
-    $('#editContentAgenPerubahanForm').on('submit', function (e) {
+    $('#editContentLayananPengaduanForm').on('submit', function (e) {
       e.preventDefault();
 
       var formData = new FormData(this);
-      var id = $('#editContentAgenPerubahanId').val();
+      var id = $('#editLayananPengaduanId').val();
 
       $.ajax({
-        url: `/content/agen_perubahan/update/${id}`,
+        url: `/content/layanan_pengaduan/update/${id}`,
         type: 'POST',
         data: formData,
         processData: false,
@@ -105,7 +105,7 @@ $(function () {
         success: function (response) {
           showAlert(response.message);
           dt_scrollableTable.ajax.reload();
-          $('#editContentAgenPerubahan').modal('hide');
+          $('#editContentLayananPengaduan').modal('hide');
         },
         error: function (xhr) {
           handleError(xhr);
@@ -145,7 +145,7 @@ $(function () {
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
-            url: `/content/agen_perubahan/delete/${id}`,
+            url: `/content/layanan_pengaduan/delete/${id}`,
             type: 'DELETE',
             success: function (response) {
               dt_scrollableTable.ajax.reload();
