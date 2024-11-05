@@ -9,10 +9,14 @@
         </div>
         <form id="addContentTimKerjaForm" class="row g-3">
           <div class="col-12 col-md-12">
+            <label class="form-label" for="judul">Nama</label>
+            <input type="text" id="judul" name="judul" class="form-control" required />
+          </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="file">File</label>
-            <input type="file" id="file" name="file" class="form-control" required />
+            <input type="file" id="file" name="file" class="form-control" accept=".pdf" required />
           </div>
+
           <div class="col-12 col-md-12">
             <label class="form-label" for="status">Status</label>
             <select id="status" name="status" class="form-select" required>

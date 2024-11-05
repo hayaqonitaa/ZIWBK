@@ -8,14 +8,23 @@ use App\Models\Content;
 
 class AgenPerubahanController extends Controller
 {
-    public function index(){
-        $contents = Content::where('status', 'Aktif')
-        ->whereHas('content_categories', function ($query) {
-            $query->where('nama', 'Agen Perubahan');
-        })->get();
+    public function index()
+    {
+        // Retrieve "Agen Perubahan" content
+        $agenPerubahanContents = Content::where('status', 'Aktif')
+            ->whereHas('content_categories', function ($query) {
+                $query->where('nama', 'Agen Perubahan');
+            })->get();
+
+        // Retrieve "Tim Kerja" content
+        $timKerjaContents = Content::where('status', 'Aktif')
+            ->whereHas('content_categories', function ($query) {
+                $query->where('nama', 'Tim Kerja');
+            })->get();
+
         $pageConfigs = ['myLayout' => 'front'];
-        return view('user_page.agen-perubahan', compact('contents'), ['pageConfigs' => $pageConfigs]);
+
+        // Pass both contents to the view
+        return view('user_page.agen-perubahan', compact('agenPerubahanContents', 'timKerjaContents'), ['pageConfigs' => $pageConfigs]);
     }
 }
-
-

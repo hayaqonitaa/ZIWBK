@@ -62,4 +62,5 @@ $configData = Helper::appClasses();
 <!--/ Scrollable -->
 
 @include('konten/tim_kerja/modal-add')
+@include('konten/tim_kerja/modal-edit')
 @endsection

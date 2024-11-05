@@ -149,13 +149,10 @@
     <div class="header-container" style="position: relative; margin-top: 100px;">
         <div class="container-fluid px-0">
             <div class="mb-4">
-                <!-- Gambar Header dengan Penanda -->
                 <div class="header">
                     <img src="{{ asset('images/Polban.png') }}" alt="headerpolban" class="img-fluid" />
                     <div class="text-box">
-                        <!-- Kotak Kuning -->
                         <div class="yellow-box"></div>
-                        <!-- Tulisan -->
                         <span class="zi-wbk-text">Tim Agen Perubahan</span>
                     </div>
                 </div>
@@ -165,14 +162,14 @@
 </div>
 
 <div data-bs-spy="scroll" class="scrollspy-example">
-    <!-- Judul Agen Perubahan -->
+    <!-- Agen Perubahan Section -->
     <div class="container text-center" id="agenPerubahan">
         <h3 class="mb-4">Agen Perubahan</h3>
         <hr>
         
         <!-- Row for the Cards -->
         <div class="row justify-content-center">
-            @foreach($contents as $content)
+            @foreach($agenPerubahanContents as $content)
                 <div class="col-sm-6 col-md-4 mb-4">
                     <div class="card-container">
                         <div class="img-wrapper">
@@ -183,6 +180,24 @@
                             <p class="mb-0">{{ $content->deskripsi }}</p>
                         </div>
                     </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Tim Kerja Section -->
+    <div class="container text-center" id="timKerja">
+        <h3 class="mb-4">Tim Kerja</h3>
+        <hr>
+
+        <!-- PDF display for Tim Kerja -->
+        <div class="row justify-content-center">
+            @foreach($timKerjaContents as $content)
+                <div class="col-md-8 mb-4">
+                    <div class="pdf-container">
+                        <embed src="{{ asset('storage/' . $content->file) }}" type="application/pdf" width="100%" height="500px">
+                    </div>
+                    <p class="text-center">{{ $content->judul }}</p>
                 </div>
             @endforeach
         </div>

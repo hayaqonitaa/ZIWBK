@@ -20,20 +20,19 @@ class ContentTimKerjaController extends Controller
     {
         $data = Content::whereHas('content_categories', function ($query) {
             $query->where('nama', 'Tim Kerja');
-        })->with('content_categories', 'users')->get();
+        })->with(['content_categories', 'users'])->get();
     
         return response()->json([
             'success' => true,
             'data' => $data,
         ]);
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'required|mimes:pdf|max:2048', // Change to accept only PDF files
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
     
@@ -60,17 +59,16 @@ class ContentTimKerjaController extends Controller
             'data' => $content
         ]);
     }
-
+    
     public function update(Request $request, $id)
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'nullable|mimes:pdf|max:2048', // Change to accept only PDF files
         ]);
     
         $content = Content::find($id);
-        
+    
         if (!$content) {
             return response()->json(['message' => 'Content not found'], 404);
         }
@@ -87,7 +85,7 @@ class ContentTimKerjaController extends Controller
             if ($content->file && Storage::disk('public')->exists($content->file)) {
                 Storage::disk('public')->delete($content->file);
             }
-            
+    
             $filePath = $request->file('file')->store('uploads', 'public');
             $content->file = $filePath;
         }
@@ -103,7 +101,7 @@ class ContentTimKerjaController extends Controller
             'data' => $content
         ]);
     }
-
+    
     public function destroy($id)
     {
         $content = Content::find($id);
