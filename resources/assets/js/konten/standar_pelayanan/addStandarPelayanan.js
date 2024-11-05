@@ -8,15 +8,15 @@ $(function () {
     }
   });
 
-  // Handle form submission for adding new Agen Perubahan
-  $('#addContentAgenPerubahanForm').on('submit', function (e) {
+  // Handle form submission for adding new Standar Pelayanan
+  $('#addContentStandarPelayananForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
     var formData = new FormData(this); // Use FormData to handle file uploads
 
     // AJAX request to submit the form data
     $.ajax({
-      url: '/content/agen_perubahan/store', // URL to your store method in the controller
+      url: '/content/standar_pelayanan/store', // URL to your store method in the controller
       type: 'POST',
       data: formData,
       contentType: false, // Set content type to false for FormData
