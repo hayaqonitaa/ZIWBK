@@ -17,6 +17,9 @@ use App\Http\Controllers\admin_page\UserController;
 use App\Http\Controllers\admin_page\MahasiswaImportController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
 use App\Http\Controllers\dashboard\Analytics;
+use App\Http\Controllers\user_page\StandarPelayananController;
+use App\Http\Controllers\konten\ContentStandarPelayananController;
+
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
     use App\Http\Controllers\layouts\CollapsedMenu;
@@ -175,7 +178,7 @@ use App\Http\Controllers\dashboard\Analytics;
     // Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
-Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('standar-pelayanan');
+Route::get('/standar-pelayanan', [StandarPelayananController::class, 'index'])->name('standar-pelayanan');
 Route::get('/tim-kerja', [TimKerja::class, 'index'])->name('tim-kerja');
 Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
 Route::get('/agen-perubahan', [AgenPerubahanController::class, 'index']);
@@ -236,6 +239,11 @@ Route::post('/content/agen_perubahan/store', [ContentAgenPerubahanController::cl
 Route::post('/content/agen_perubahan/update/{id}', [ContentAgenPerubahanController::class, 'update'])->name('konten.agen_perubahan.update')->middleware('auth');
 Route::delete('/content/agen_perubahan/delete/{id}', [ContentAgenPerubahanController::class, 'destroy'])->name('konten.agen_perubahan.delete')->middleware('auth');
 
+Route::get('/content/standar_pelayanan', [ContentStandarPelayananController::class, 'index'])->name('konten.standar_pelayanan.index')->middleware('auth');
+Route::get('/content/standar_pelayanan/data', [ContentStandarPelayananController::class, 'getStandarPelayanan'])->name('konten.standar_pelayanan.data')->middleware('auth');
+Route::post('/content/standar_pelayanan/store', [ContentStandarPelayananController::class, 'store'])->middleware('auth');
+Route::post('/content/standar_pelayanan/update/{id}', [ContentStandarPelayananController::class, 'update'])->name('konten.standar_pelayanan.update')->middleware('auth');
+Route::delete('/content/standar_pelayanan/delete/{id}', [ContentStandarPelayananController::class, 'destroy'])->name('konten.standar_pelayanan.delete')->middleware('auth');
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
