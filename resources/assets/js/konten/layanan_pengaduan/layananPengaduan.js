@@ -85,12 +85,12 @@ $(function () {
         // If the file is an image, display it
         $('#currentFileImage').attr('src', `/storage/${file}`).show();
       
-        $('#editContentAgenPerubahan').modal('show');
+        $('#editContentLayananPengaduan').modal('show');
       });
       
 
     // Form submission for editing content
-    $('#editContentAgenPerubahanForm').on('submit', function (e) {
+    $('#editContentLayananPengaduanForm').on('submit', function (e) {
       e.preventDefault();
 
       var formData = new FormData(this);

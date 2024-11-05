@@ -178,7 +178,7 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
 Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('standar-pelayanan');
 Route::get('/tim-kerja', [TimKerja::class, 'index'])->name('tim-kerja');
-Route::get('/layanan-pengaduan', [LayananPengaduanContoller::class, 'index']);
+Route::get('/layanan-pengaduan', [LayananPengaduanController::class, 'index']);
 Route::get('/agen-perubahan', [AgenPerubahanController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');

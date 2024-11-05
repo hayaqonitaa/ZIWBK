@@ -39,7 +39,7 @@ class ContentLayananPengaduanController extends Controller
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
     
-        // Get the id of the "Agen Perubahan" category
+        // Get the id of the "Layanan Pengaduan" category
         $category = ContentCategories::where('nama', 'Layanan Pengaduan')->first();
     
         // Check if category exists
@@ -86,8 +86,8 @@ class ContentLayananPengaduanController extends Controller
             return response()->json(['message' => 'Content not found'], 404);
         }
     
-        // Check if category exists for 'Agen Perubahan'
-        $category = ContentCategories::where('nama', 'Agen Perubahan')->first();
+        // Check if category exists for 'Layanan Pengaduan'
+        $category = ContentCategories::where('nama', 'Layanan Pengaduan')->first();
         if (!$category) {
             return response()->json(['message' => 'Category not found'], 404);
         }

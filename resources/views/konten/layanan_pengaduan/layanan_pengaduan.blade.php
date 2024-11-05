@@ -17,7 +17,7 @@ $configData = Helper::appClasses();
 @section('page-script')
 @vite(['resources/assets/js/konten/layanan_pengaduan/layananPengaduan.js'])
 @vite(['resources/assets/js/konten/layanan_pengaduan/addLayananPengaduan.js'])
-<!-- @vite(['resources/assets/js/konten/agen_perubahan/editAgenPerubahan.js']) -->
+@vite(['resources/assets/js/konten/layanan_pengaduan/editLayananPengaduan.js'])
 @endsection
 
 @section('content')
@@ -62,6 +62,6 @@ $configData = Helper::appClasses();
 <!--/ Scrollable -->
 
 @include('konten/layanan_pengaduan/modal-add')
-<!-- @include('konten/agen_perubahan/modal-edit') -->
+@include('konten/layanan_pengaduan/modal-edit')
 
 @endsection

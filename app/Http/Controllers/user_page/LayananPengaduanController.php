@@ -17,5 +17,3 @@ class LayananPengaduanController extends Controller
         return view('user_page.layanan-pengaduan', compact('contents'), ['pageConfigs' => $pageConfigs]);
     }
 }
-
-
