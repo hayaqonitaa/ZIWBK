@@ -15,16 +15,14 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/admin/AgenPerubahan/agenPerubahan.js'])
-@vite(['resources/assets/js/admin/AgenPerubahan/addAgenPerubahan.js'])
-@vite(['resources/assets/js/admin/AgenPerubahan/editAgenPerubahan.js'])
-@vite(['resources/assets/js/admin/AgenPerubahan/deleteAgenPerubahan.js'])
-
+@vite(['resources/assets/js/konten/tim_kerja/timKerja.js'])
+@vite(['resources/assets/js/konten/tim_kerja/addTimKerja.js'])
+@vite(['resources/assets/js/konten/tim_kerja/editTimKerja.js'])
 @endsection
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Kuesioner
+  <span class="text-muted fw-light">Dashboard /</span> Tim Kerja
 </h4>
 
 <!-- Display success notification if exists -->
@@ -41,8 +39,8 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
   <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">agenPerubahan</h5>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addKuesioner">
+    <h5 class="mb-0">Tim Kerja</h5>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentTimKerja">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
@@ -51,17 +49,17 @@ $configData = Helper::appClasses();
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
-            <th>id</th>
-            <th>nama</th>
-            <th>jabatan</th>
-            <th>foto</th>
-            <th>status</th>
-            <th>masa_jabatan</th>
+            <th>No.</th>
+            <th>Judul</th>
+            <th>File</th>
+            <th>Status</th>
+            <th>Created By</th>
         </tr>
       </thead>
     </table>
   </div>
 </div>
 <!--/ Scrollable -->
-@include('admin-page/agenPerubahan/AgenPerubahan')
+
+@include('konten/tim_kerja/modal-add')
 @endsection
