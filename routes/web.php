@@ -11,13 +11,20 @@ use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
-use App\Http\Controllers\user_page\AgenPerubahanController;
+use App\Http\Controllers\user_page\TimController;
+use App\Http\Controllers\user_page\TimKerjaController;
 use App\Http\Controllers\admin_page\PembagianController;
+use App\Http\Controllers\admin_page\PemetaanController;
 use App\Http\Controllers\admin_page\UserController;
 use App\Http\Controllers\admin_page\MahasiswaImportController;
+
+use App\Http\Controllers\konten\ContentTimKerjaController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
 use App\Http\Controllers\konten\ContentLayananPengaduanController;
 use App\Http\Controllers\dashboard\Analytics;
+use App\Http\Controllers\user_page\StandarPelayananController;
+use App\Http\Controllers\konten\ContentStandarPelayananController;
+
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
     use App\Http\Controllers\layouts\CollapsedMenu;
@@ -219,11 +226,12 @@ Route::post('/content_categories/store', [ContentCategoriesController::class, 's
 Route::put('/content_categories/update/{id}', [ContentCategoriesController::class, 'update'])->name('content_categories.update');
 Route::delete('/content-categories/delete/{id}', [ContentCategoriesController::class, 'destroy'])->name('content_categories.destroy');
 
-Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])->name('pembagian.destroy');
 Route::get('/pembagian', [PembagianController::class, 'index'])->name('admin-page.pembagian.pembagian')->middleware('auth');
+Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])->name('pembagian.destroy');
 Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pembagian.share'); // Rute untuk membagikan kuesioner
 Route::get('/pembagian/data', [PembagianController::class, 'getPembagian'])->name('pembagian.data')->middleware('auth'); 
 Route::post('/pembagian/kirim', [PembagianController::class, 'kirimEmail']);
+Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('admin-page.pembagian.pemetaan')->middleware('auth');
 
 Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
 Route::get('/user/data', [UserController::class, 'getUsers'])->name('admin.user.get');

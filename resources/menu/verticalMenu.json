@@ -7,11 +7,22 @@
       "slug": "dashboard"
     },
     {
-      "url": "/pembagian",
-      "name": "Kirim Kuesioner",
+      "name": "Kuesioner",
       "icon": "menu-icon tf-icons ti ti-mail",
-      "slug": ""
-    },
+      "slug": "",
+      "submenu": [
+        {
+          "url": "/pembagian",
+          "name": "Kirim Kuesioner",
+          "slug": ""
+        },
+        {
+          "url": "/pemetaan",
+          "name": "Pemetaan Kuesioner",
+          "slug": ""
+        }
+      ]
+      },
     {
       "name": "Konten",
       "icon": "menu-icon tf-icons ti ti-components",
@@ -23,13 +34,18 @@
           "slug": ""
         },
         {
-          "url": "/",
+          "url": "/content/standar_pelayanan",
           "name": "Standar Pelayanan",
           "slug": ""
         },
         {
           "url": "/content/layanan_pengaduan",
           "name": "Layanan Pengaduan",
+          "slug": ""
+        },
+        {
+          "url": "/content/tim_kerja",
+          "name": "Tim Kerja",
           "slug": ""
         }
       ]

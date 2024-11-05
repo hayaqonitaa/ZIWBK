@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Content navbar - Layouts')
+@section('title', 'Content Navbar - Standar Pelayanan')
 
 @section('content')
 
@@ -15,16 +15,14 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/admin/AgenPerubahan/agenPerubahan.js'])
-@vite(['resources/assets/js/admin/AgenPerubahan/addAgenPerubahan.js'])
-@vite(['resources/assets/js/admin/AgenPerubahan/editAgenPerubahan.js'])
-@vite(['resources/assets/js/admin/AgenPerubahan/deleteAgenPerubahan.js'])
-
+@vite(['resources/assets/js/konten/standar_pelayanan/standarPelayanan.js'])
+@vite(['resources/assets/js/konten/standar_pelayanan/addStandarPelayanan.js'])
+@vite(['resources/assets/js/konten/standar_pelayanan/editStandarPelayanan.js'])
 @endsection
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Kuesioner
+  <span class="text-muted fw-light">Dashboard /</span> Standar Pelayanan
 </h4>
 
 <!-- Display success notification if exists -->
@@ -41,8 +39,8 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
   <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">agenPerubahan</h5>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addKuesioner">
+    <h5 class="mb-0">Standar Pelayanan</h5>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentStandarPelayanan">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
@@ -51,17 +49,22 @@ $configData = Helper::appClasses();
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
-            <th>id</th>
-            <th>nama</th>
-            <th>jabatan</th>
-            <th>foto</th>
-            <th>status</th>
-            <th>masa_jabatan</th>
+            <th>No.</th>
+            <th>Judul</th>
+            <th>Gambar</th>
+            <th>Dokumen PDF</th>
+            <th>Created By</th>
         </tr>
       </thead>
+      <tbody>
+        <!-- Data akan diisi oleh JavaScript -->
+      </tbody>
     </table>
   </div>
 </div>
 <!--/ Scrollable -->
-@include('admin-page/agenPerubahan/AgenPerubahan')
+
+@include('konten.standar_pelayanan.modal-add')
+@include('konten.standar_pelayanan.modal-edit')
+
 @endsection
