@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Landing - Front Pages')
+@section('title', 'Layanan Pengaduan')
 
 <!-- Vendor Styles -->
 @section('vendor-style')

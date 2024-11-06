@@ -1,4 +1,3 @@
-<!-- Edit Standard Service Modal -->
 <div class="modal fade" id="editContentStandarPelayanan" tabindex="-1" aria-labelledby="editContentStandarPelayananLabel" aria-hidden="true">
   <div class="modal-dialog modal-simple modal-dialog-centered">
     <div class="modal-content">
@@ -27,8 +26,8 @@
           </div>
 
           <div class="mb-3">
-            <label for="currentImage" class="form-label">Gambar saat ini:</label><br>
-            <img id="currentImage" src="" alt="Current Image" style="width: 80%; height: auto; display: none;">
+            <label class="form-label">Gambar saat ini:</label><br>
+            <img id="currentImageFile" src="" alt="Current Image" style="width: 80%; height: auto; display: none;">
           </div>
 
           <div class="mb-3">

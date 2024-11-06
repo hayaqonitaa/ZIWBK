@@ -4,15 +4,16 @@ use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\user_page\HasilSurvey;
 use App\Http\Controllers\user_page\StandarPelayanan;
+use App\Http\Controllers\user_page\LayananPengaduan;
 use App\Http\Controllers\user_page\LayananPengaduanController;
-use App\Http\Controllers\user_page\TimKerja;
 use App\Http\Controllers\admin_page\AdminController;
 use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
-use App\Http\Controllers\user_page\TimController;
+use App\Http\Controllers\user_page\AgenPerubahanController;
 use App\Http\Controllers\user_page\TimKerjaController;
+use App\Http\Controllers\user_page\TimController;
 use App\Http\Controllers\admin_page\PembagianController;
 use App\Http\Controllers\admin_page\PemetaanController;
 use App\Http\Controllers\admin_page\UserController;
@@ -184,9 +185,9 @@ use App\Http\Controllers\konten\ContentStandarPelayananController;
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
 Route::get('/standar-pelayanan', [StandarPelayananController::class, 'index'])->name('standar-pelayanan');
-Route::get('/tim-kerja', [TimKerja::class, 'index'])->name('tim-kerja');
+
 Route::get('/layanan-pengaduan', [LayananPengaduanController::class, 'index']);
-Route::get('/agen-perubahan', [AgenPerubahanController::class, 'index']);
+Route::get('/tim', [TimController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
@@ -245,6 +246,21 @@ Route::get('/content/agen_perubahan/data', [ContentAgenPerubahanController::clas
 Route::post('/content/agen_perubahan/store', [ContentAgenPerubahanController::class, 'store'])->middleware('auth');
 Route::post('/content/agen_perubahan/update/{id}', [ContentAgenPerubahanController::class, 'update'])->name('konten.agen_perubahan.update')->middleware('auth');
 Route::delete('/content/agen_perubahan/delete/{id}', [ContentAgenPerubahanController::class, 'destroy'])->name('konten.agen_perubahan.delete')->middleware('auth');
+
+
+Route::get('/content/tim_kerja', [ContentTimKerjaController::class, 'index'])->name('konten.tim_kerja.index')->middleware('auth');
+Route::get('/content/tim_kerja/data', [ContentTimKerjaController::class, 'getTimKerja'])->name('konten.tim_kerja.data')->middleware('auth');
+Route::post('/content/tim_kerja/store', [ContentTimKerjaController::class, 'store'])->middleware('auth');
+Route::post('/content/tim_kerja/update/{id}', [ContentTimKerjaController::class, 'update'])->name('konten.tim_kerja.update')->middleware('auth');
+Route::delete('/content/tim_kerja/delete/{id}', [ContentTimKerjaController::class, 'destroy'])->name('konten.tim_kerja.delete')->middleware('auth');
+
+
+Route::get('/content/standar_pelayanan', [ContentStandarPelayananController::class, 'index'])->name('konten.standar_pelayanan.index')->middleware('auth');
+Route::get('/content/standar_pelayanan/data', [ContentStandarPelayananController::class, 'getStandarPelayanan'])->name('konten.standar_pelayanan.data')->middleware('auth');
+Route::post('/content/standar_pelayanan/store', [ContentStandarPelayananController::class, 'store'])->middleware('auth');
+Route::post('/content/standar_pelayanan/update/{id}', [ContentStandarPelayananController::class, 'update'])->name('konten.standar_pelayanan.update')->middleware('auth');
+Route::delete('/content/standar_pelayanan/delete/{id}', [ContentStandarPelayananController::class, 'destroy'])->name('konten.standar_pelayanan.delete')->middleware('auth');
+
 
 Route::get('/content/layanan_pengaduan', [ContentLayananPengaduanController::class, 'index'])->name('konten.layanan_pengaduan.index')->middleware('auth');
 Route::get('/content/layanan_pengaduan/data', [ContentLayananPengaduanController::class, 'getLayananPengaduan'])->name('konten.layanan_pengaduan.data')->middleware('auth');

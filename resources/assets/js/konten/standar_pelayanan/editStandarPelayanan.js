@@ -7,21 +7,25 @@ $(document).on('click', '.edit-btn', function () {
     $('#editJudul').val(button.data('judul'));
 
     // Show the current image and PDF
-    var imageFile = button.data('image');
-    var pdfFile = button.data('pdf');
-    var imageFileName = imageFile.split('/').pop(); // Extract the image file name
-    var pdfFileName = pdfFile.split('/').pop(); // Extract the PDF file name
+    var deskripsi = button.data('image') || '';
+    var file = button.data('pdf') || '';
+    var imageFileName = deskripsi ? deskripsi.split('/').pop() : 'No image available';
+    var pdfFileName = file ? file.split('/').pop() : 'No PDF available';
 
-    $('#currentImageFile').text(imageFileName); // Display the image file name
-    $('#currentPdfFile').text(pdfFileName); // Display the PDF file name
+    $('#currentImageFile').text(imageFileName);
+    $('#currentPdfFile').text(pdfFileName);
 
     // If the image file exists, display it
-    $('#currentImage').attr('src', `/storage/${imageFile}`).show();
+    if (deskripsi) {
+        $('#currentImageFile').attr('src', `/storage/${deskripsi}`).show();
+    } else {
+        $('#currentImage').hide();
+    }
 
     // Retrieve and show the current status
-    var currentStatus = button.data('status'); // Get the current status
-    $('#currentStatus').text(currentStatus); // Display the current status
-    $('#editStatus').val(currentStatus); // Set the current status in the dropdown
+    var currentStatus = button.data('status') || 'inactive';
+    $('#currentStatus').text(currentStatus);
+    $('#editStatus').val(currentStatus);
 
     $('#editContentStandarPelayanan').modal('show');
 });
@@ -41,8 +45,7 @@ $('#editContentStandarPelayananForm').on('submit', function (e) {
         contentType: false,
         success: function (response) {
             showAlert(response.message);
-            // Refresh the page after the update
-            location.reload(); // This will refresh the entire page
+            location.reload();
         },
         error: function (xhr) {
             handleError(xhr);
@@ -68,7 +71,16 @@ function showAlert(message) {
 
 // Function to handle errors
 function handleError(xhr) {
-    if (xhr.responseJSON && xhr.responseJSON.message) {
+    if (xhr.responseJSON && xhr.responseJSON.errors) {
+        let errors = xhr.responseJSON.errors;
+        let errorMessage = '';
+        for (const key in errors) {
+            if (errors.hasOwnProperty(key)) {
+                errorMessage += errors[key] + '\n';
+            }
+        }
+        alert('Error:\n' + errorMessage);
+    } else if (xhr.responseJSON && xhr.responseJSON.message) {
         alert('Error: ' + xhr.responseJSON.message);
     } else {
         alert('An unexpected error occurred.');
