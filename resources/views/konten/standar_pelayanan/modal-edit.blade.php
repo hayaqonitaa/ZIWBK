@@ -1,4 +1,3 @@
-<!-- Edit Standard Service Modal -->
 <div class="modal fade" id="editContentStandarPelayanan" tabindex="-1" aria-labelledby="editContentStandarPelayananLabel" aria-hidden="true">
   <div class="modal-dialog modal-simple modal-dialog-centered">
     <div class="modal-content">
