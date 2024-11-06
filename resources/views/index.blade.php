@@ -87,16 +87,20 @@
 
 <!-- Full-Width Image and Text Section -->
 <div class="container my-5">
+@foreach($contents as $content) 
     <div class="row align-items-center" id="piagamZiwbkWbbm">
         <!-- Text Column: Atur agar muncul di atas gambar pada layar kecil -->
         <div class="col-12 col-md-4 text-center text-md-start order-1 order-md-2">
-            <h4>Piagam ZIWBK/WBBM</h4>
+            <h4>{{ $content->judul }}</h4>
         </div>
 
         <!-- Image Column: Atur agar muncul di bawah teks pada layar kecil -->
+
         <div class="col-12 col-md-8 order-2 order-md-1">
-            <img src="{{ asset('images/piagam.jpg') }}" alt="Piagam" class="img-fluid w-100 mb-3" />
+            <img src="{{ asset('storage/' . $content->file) }}" alt="Piagam" class="img-fluid w-100 mb-3" />
         </div>
     </div>
+    @endforeach
+
 </div>
 @endsection

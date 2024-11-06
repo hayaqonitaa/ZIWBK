@@ -47,7 +47,13 @@
           "url": "/content/tim_kerja",
           "name": "Tim Kerja",
           "slug": ""
+        },
+        {
+          "url": "/content/piagam",
+          "name": "Piagam",
+          "slug": ""
         }
+        
       ]
       },
     {

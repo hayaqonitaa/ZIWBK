@@ -11,8 +11,9 @@ use App\Http\Controllers\admin_page\MahasiswaController;
 use App\Http\Controllers\admin_page\JurusanController;
 use App\Http\Controllers\admin_page\ProdiController;
 use App\Http\Controllers\admin_page\KuesionerController;
-use App\Http\Controllers\user_page\TimController;
+use App\Http\Controllers\user_page\AgenPerubahanController;
 use App\Http\Controllers\user_page\TimKerjaController;
+use App\Http\Controllers\user_page\TimController;
 use App\Http\Controllers\admin_page\PembagianController;
 use App\Http\Controllers\admin_page\PemetaanController;
 use App\Http\Controllers\admin_page\UserController;
@@ -23,8 +24,9 @@ use App\Http\Controllers\konten\ContentAgenPerubahanController;
 use App\Http\Controllers\konten\ContentLayananPengaduanController;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\user_page\StandarPelayananController;
+use App\Http\Controllers\user_page\PiagamController;
 use App\Http\Controllers\konten\ContentStandarPelayananController;
-
+use App\Http\Controllers\konten\ContentPiagamController;
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
     use App\Http\Controllers\layouts\CollapsedMenu;
@@ -183,10 +185,10 @@ use App\Http\Controllers\konten\ContentStandarPelayananController;
     // Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
-Route::get('/standar-pelayanan', [StandarPelayanan::class, 'index'])->name('standar-pelayanan');
-Route::get('/tim-kerja', [TimKerja::class, 'index'])->name('tim-kerja');
-Route::get('/layanan-pengaduan', [LayananPengaduanController::class, 'index']);
-Route::get('/agen-perubahan', [AgenPerubahanController::class, 'index']);
+Route::get('/standar-pelayanan', [StandarPelayananController::class, 'index'])->name('standar-pelayanan');
+Route::get('/piagam', [PiagamController::class, 'index'])->name('piagam');
+Route::get('/layanan-pengaduan', [LayananPengaduan::class, 'index']);
+Route::get('/tim', [TimController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
@@ -250,6 +252,24 @@ Route::get('/content/layanan_pengaduan/data', [ContentLayananPengaduanController
 Route::post('/content/layanan_pengaduan/store', [ContentLayananPengaduanController::class, 'store'])->middleware('auth');
 Route::post('/content/layanan_pengaduan/update/{id}', [ContentLayananPengaduanController::class, 'update'])->name('konten.layanan_pengaduan.update')->middleware('auth');
 Route::delete('/content/layanan_pengaduan/delete/{id}', [ContentLayananPengaduanController::class, 'destroy'])->name('konten.layanan_pengaduan.delete')->middleware('auth');
+
+Route::get('/content/tim_kerja', [ContentTimKerjaController::class, 'index'])->name('konten.tim_kerja.index')->middleware('auth');
+Route::get('/content/tim_kerja/data', [ContentTimKerjaController::class, 'getTimKerja'])->name('konten.tim_kerja.data')->middleware('auth');
+Route::post('/content/tim_kerja/store', [ContentTimKerjaController::class, 'store'])->middleware('auth');
+Route::post('/content/tim_kerja/update/{id}', [ContentTimKerjaController::class, 'update'])->name('konten.tim_kerja.update')->middleware('auth');
+Route::delete('/content/tim_kerja/delete/{id}', [ContentTimKerjaController::class, 'destroy'])->name('konten.tim_kerja.delete')->middleware('auth');
+
+Route::get('/content/piagam', [ContentPiagamController::class, 'index'])->name('konten.piagam.index')->middleware('auth');
+Route::get('/content/piagam/data', [ContentPiagamController::class, 'getPiagam'])->name('konten.piagam.data')->middleware('auth');
+Route::post('/content/piagam/store', [ContentPiagamController::class, 'store'])->middleware('auth');
+Route::post('/content/piagam/update/{id}', [ContentPiagamController::class, 'update'])->name('konten.piagam.update')->middleware('auth');
+Route::delete('/content/piagam/delete/{id}', [ContentPiagamController::class, 'destroy'])->name('konten.piagam.delete')->middleware('auth');
+
+Route::get('/content/standar_pelayanan', [ContentStandarPelayananController::class, 'index'])->name('konten.standar_pelayanan.index')->middleware('auth');
+Route::get('/content/standar_pelayanan/data', [ContentStandarPelayananController::class, 'getStandarPelayanan'])->name('konten.standar_pelayanan.data')->middleware('auth');
+Route::post('/content/standar_pelayanan/store', [ContentStandarPelayananController::class, 'store'])->middleware('auth');
+Route::post('/content/standar_pelayanan/update/{id}', [ContentStandarPelayananController::class, 'update'])->name('konten.standar_pelayanan.update')->middleware('auth');
+Route::delete('/content/standar_pelayanan/delete/{id}', [ContentStandarPelayananController::class, 'destroy'])->name('konten.standar_pelayanan.delete')->middleware('auth');
 
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
