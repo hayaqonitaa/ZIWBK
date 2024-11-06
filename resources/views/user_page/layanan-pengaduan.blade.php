@@ -50,7 +50,7 @@
 
 <!-- Judul Standar Pelayanan -->
 <div class="container text-center" id="SPU">
-    <h3 class="mb-4">Standar Pelayanan</h3>
+    <h3 class="mb-4">Layanan Pengaduan</h3>
     <hr> 
     <div class="row justify-content-center">
         <!-- Loop untuk Standar Pelayanan -->
