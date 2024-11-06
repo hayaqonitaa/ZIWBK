@@ -17,7 +17,7 @@ $(document).on('click', '.edit-btn', function () {
 
     // If the image file exists, display it
     if (deskripsi) {
-        $('#currentImage').attr('src', `/storage/${deskripsi}`).show();
+        $('#currentImageFile').attr('src', `/storage/${deskripsi}`).show();
     } else {
         $('#currentImage').hide();
     }

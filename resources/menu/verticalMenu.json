@@ -69,12 +69,6 @@
       "slug": ""
     },
     {
-      "url": "/content-categories",
-      "name": "Kategori Konten",
-      "icon": "menu-icon tf-icons ti ti-box-multiple",
-      "slug": ""
-    },
-    {
       "url": "/kuesioner",
       "name": "Kuesioner",
       "icon": "menu-icon tf-icons ti ti-checkbox",
