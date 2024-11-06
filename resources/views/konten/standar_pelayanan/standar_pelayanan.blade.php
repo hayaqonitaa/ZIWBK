@@ -64,7 +64,7 @@ $configData = Helper::appClasses();
 </div>
 <!--/ Scrollable -->
 
-@include('konten.standar_pelayanan.modal-add')
-@include('konten.standar_pelayanan.modal-edit')
+@include('konten/standar_pelayanan/modal-add')
+@include('konten/standar_pelayanan/modal-edit')
 
 @endsection

@@ -30,7 +30,6 @@ class ContentStandarPelayananController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'judul' => 'required|string|max:255',
             'pdf' => 'required|file|mimes:pdf|max:2048',
@@ -38,22 +37,20 @@ class ContentStandarPelayananController extends Controller
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
     
-        // Mendapatkan id dari kategori "Standar Pelayanan"
         $category = ContentCategories::where('nama', 'Standar Pelayanan')->first();
     
         if (!$category) {
             return response()->json(['message' => 'Category not found'], 404);
         }
     
-        // Proses upload file
-        $pdfPath = $request->file('pdf')->store('uploads/pdf', 'public'); // Simpan path PDF di kolom 'file'
-        $imagePath = $request->file('gambar')->store('uploads/images', 'public'); // Simpan path gambar di kolom 'deskripsi'
+        // Gunakan struktur path yang konsisten
+        $pdfPath = $request->file('pdf')->store('uploads', 'public');
+        $imagePath = $request->file('gambar')->store('uploads', 'public');
     
-        // Membuat konten baru
         $content = new Content();
         $content->judul = $request->judul;
-        $content->file = $pdfPath; // Menyimpan path PDF di kolom 'file'
-        $content->deskripsi = $imagePath; // Menyimpan path gambar di kolom 'deskripsi'
+        $content->file = $pdfPath;
+        $content->deskripsi = $imagePath;
         $content->id_kategori = $category->id;
         $content->id_admin = Auth::user()->id;
         $content->status = $request->status;
@@ -68,38 +65,33 @@ class ContentStandarPelayananController extends Controller
     
     public function update(Request $request, $id)
     {
-        // Validasi input
         $request->validate([
             'judul' => 'required|string|max:255',
             'pdf' => 'nullable|file|mimes:pdf|max:2048',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
-        // Mencari konten berdasarkan ID
         $content = Content::find($id);
     
         if (!$content) {
             return response()->json(['message' => 'Content not found'], 404);
         }
     
-        // Perbarui data yang ada
         $content->judul = $request->judul;
     
-        // Update file PDF jika ada upload baru
         if ($request->hasFile('pdf')) {
             if ($content->file && Storage::disk('public')->exists($content->file)) {
                 Storage::disk('public')->delete($content->file);
             }
-            $pdfPath = $request->file('pdf')->store('uploads/pdf', 'public');
+            $pdfPath = $request->file('pdf')->store('uploads', 'public');
             $content->file = $pdfPath;
         }
     
-        // Update gambar jika ada upload baru
         if ($request->hasFile('gambar')) {
             if ($content->deskripsi && Storage::disk('public')->exists($content->deskripsi)) {
                 Storage::disk('public')->delete($content->deskripsi);
             }
-            $imagePath = $request->file('gambar')->store('uploads/images', 'public');
+            $imagePath = $request->file('gambar')->store('uploads', 'public');
             $content->deskripsi = $imagePath;
         }
     
@@ -128,7 +120,6 @@ class ContentStandarPelayananController extends Controller
             Storage::disk('public')->delete($content->deskripsi);
         }
         
-    
         $content->delete();
     
         return response()->json([
