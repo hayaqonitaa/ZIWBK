@@ -1,6 +1,6 @@
 @extends('layouts.layoutMaster')
 
-@section('title', 'User Management - Layouts')
+@section('title', 'Admin')
 
 @section('content')
 
@@ -22,7 +22,7 @@ $configData = Helper::appClasses();
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Users
+  <span class="text-muted fw-light">Dashboard /</span> Admin
 </h4>
 
 <!-- Display success notification if exists -->
