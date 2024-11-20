@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Pembagian Kuesioner - Mahasiswa')
+@section('title', 'Kirim Kuesioner')
 
 @section('content')
 
@@ -20,7 +20,7 @@ $configData = Helper::appClasses();
 @endsection
 
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Pembagian Kuesioner
+  <span class="text-muted fw-light">Dashboard /</span> Kirim Kuesioner
 </h4>
 
 <!-- Display success notification if exists -->
@@ -37,7 +37,7 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
 <div class="d-flex justify-content-between align-items-center card-header">
-  <h5 class="mb-0">Data Pengisian Kuesioner</h5>
+  <h5 class="mb-0">Data Kirim Kuesioner</h5>
   <!-- button add -->
   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#sendEmailModal">
     Kirim<i class="fa-solid fa-paper-plane ms-2"></i>

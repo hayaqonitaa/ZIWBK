@@ -163,7 +163,6 @@ class MahasiswaController extends Controller
       if ($validator->fails()) {
           return response()->json(['message' => 'File tidak valid'], 400);
       }
-  
       try {
           // Proses file Excel menggunakan import class, ini akan menggunakan urutan kolom
           Excel::import(new MahasiswaImport, $request->file('file'));
@@ -171,6 +170,6 @@ class MahasiswaController extends Controller
       } catch (\Exception $e) {
           return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
       }
-  }
+  } 
   
-}
+} 

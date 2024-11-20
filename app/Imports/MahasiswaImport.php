@@ -13,7 +13,7 @@ class MahasiswaImport implements ToModel
             return null;
         }
 
-        // Cek apakah data mahasiswa dengan NIM tersebut sudah ada
+        // Cek apakah data mahasiswa dengan NIM tersketika sebut sudah ada
         $existingMahasiswa = Mahasiswa::where('nim', $row[1])->first();
 
         // Jika NIM sudah ada, update data yang ada
