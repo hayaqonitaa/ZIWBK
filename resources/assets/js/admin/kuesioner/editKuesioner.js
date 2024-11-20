@@ -5,6 +5,7 @@ $(function () {
   $(document).on('click', '.edit-btn', function () {
     var id = $(this).data('id');
     var judul = $(this).data('judul');
+    var tahun = $(this).data('tahun');
     var link_kuesioner = $(this).data('linkKuesioner');
 
     console.log($(this).data())
@@ -12,6 +13,7 @@ $(function () {
     // Set values in the edit modal
     $('#editKuesionerId').val(id);
     $('#editJudul').val(judul);
+    $('#editTahun').val(tahun);
     $('#editLink').val(link_kuesioner);
     $('#editKuesioner').modal('show'); // Show the modal
   });

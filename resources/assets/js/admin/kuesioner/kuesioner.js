@@ -27,6 +27,7 @@ $(function () {
           orderable: false // Column cannot be sorted
         },
         { data: 'judul', title: 'Judul' },
+        { data: 'tahun', title: 'Tahun' },
         { data: 'link_kuesioner', title: 'Link' },
         {
           data: null, 
@@ -34,7 +35,7 @@ $(function () {
           orderable: false, // Column cannot be sorted
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}"data-judul="${row.judul}"data-link-Kuesioner="${row.link_kuesioner}">
+              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}"data-judul="${row.judul}"data-tahun="${row.tahun}"data-link-Kuesioner="${row.link_kuesioner}">
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
