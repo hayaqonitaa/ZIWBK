@@ -9,6 +9,8 @@ use App\Models\Admin\Prodi;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\MahasiswaImport;
 use Illuminate\Support\Facades\Validator; // Add this line to import Validator
+use Illuminate\Support\Facades\Log;
+
 
 
 class MahasiswaController extends Controller
@@ -31,31 +33,57 @@ class MahasiswaController extends Controller
       return response()->json([$prodi]);
   }
 
-  public function store(Request $request)
-  {
-    // validasi data yang dikirim
-    $validatedData = $request->validate([
-      'nim' => 'required|string|max:255',
-      'nama' => 'required|string|max:255',
-      'id_prodi' => 'required|uuid',
-      'email' => 'required|string|max:255',
-  ]);
+//   public function store(Request $request)
+//   {
+//     // validasi data yang dikirim
+//     $validatedData = $request->validate([
+//       'nim' => 'required|string|max:255',
+//       'nama' => 'required|string|max:255',
+//       'id_prodi' => 'required|uuid',
+//       'email' => 'required|string|max:255',
+//   ]);
 
-  // Simpan data ke tabel jurusan
-  // Simpan data ke tabel mahasiswa
-  $mahasiswa = new Mahasiswa();
-  $mahasiswa->nim = $validatedData['nim'];
-  $mahasiswa->nama = $validatedData['nama'];
-  $mahasiswa->id_prodi = $validatedData['id_prodi'];
-  $mahasiswa->email = $validatedData['email'];
-  $mahasiswa->save();
+//   // Simpan data ke tabel jurusan
+//   // Simpan data ke tabel mahasiswa
+//   $mahasiswa = new Mahasiswa();
+//   $mahasiswa->nim = $validatedData['nim'];
+//   $mahasiswa->nama = $validatedData['nama'];
+//   $mahasiswa->id_prodi = $validatedData['id_prodi'];
+//   $mahasiswa->email = $validatedData['email'];
+//   $mahasiswa->save();
+ 
+//   // Response JSON sukses
+//   return response()->json([
+//       'message' => 'Mahasiswa berhasil ditambahkan!',
+//       'data' => $mahasiswa
+//   ]);  
+//   }
 
-  // Response JSON sukses
-  return response()->json([
-      'message' => 'Mahasiswa berhasil ditambahkan!',
-      'data' => $mahasiswa
-  ]);
-  }
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'nim' => 'required|unique:mahasiswa,nim',
+        'email' => 'required|email|unique:mahasiswa,email',
+        'nama' => 'required|string',
+        'id_prodi' => 'required|exists:prodi,id',
+    ], [
+        'nim.unique' => 'Mahasiswa dengan NIM ini sudah terdaftar.',
+        'email.unique' => 'Email ini sudah digunakan dengan NIM ' . $request->nim,
+    ]);
+    
+    // Jika tidak ada error, simpan data mahasiswa baru
+    Mahasiswa::create([
+        'nim' => $request->nim,
+        'nama' => $request->nama,
+        'id_prodi' => $request->id_prodi,
+        'email' => $request->email,
+    ]);
+
+    return response()->json([
+        'message' => 'Data mahasiswa berhasil disimpan.',
+    ]);
+}
+
   
   public function update(Request $request) {
     $request->validate([
@@ -154,22 +182,40 @@ class MahasiswaController extends Controller
       return response()->json(['message' => 'Data mahasiswa berhasil diimport'], 200);
   }
   public function uploadExcel(Request $request)
-  {
-      // Validasi file yang diupload
-      $validator = Validator::make($request->all(), [
-          'file' => 'required|mimes:xlsx,xls'
-      ]);
-  
-      if ($validator->fails()) {
-          return response()->json(['message' => 'File tidak valid'], 400);
-      }
-      try {
-          // Proses file Excel menggunakan import class, ini akan menggunakan urutan kolom
-          Excel::import(new MahasiswaImport, $request->file('file'));
-          return response()->json(['message' => 'Data berhasil diimpor'], 200);
-      } catch (\Exception $e) {
-          return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
-      }
-  } 
+{
+    $validator = Validator::make($request->all(), [
+        'file' => 'required|mimes:xlsx,xls',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['message' => 'File tidak valid'], 400);
+    }
+
+    try {
+        // Impor data dan mendapatkan instance dari MahasiswaImport
+        $import = new MahasiswaImport();
+        Excel::import($import, $request->file('file'));
+
+        // Cek apakah ada error yang terkumpul
+        $prodiErrors = $import->getProdiErrors();
+        $emailErrors = $import->getEmailErrors();
+
+        // Cek apakah ada nilai di salah satu array error
+        if (!empty($prodiErrors) || !empty($emailErrors)) {
+            return response()->json([
+                'message' => 'Data berhasil diimpor dengan beberapa kesalahan.',
+                'email_errors' => $emailErrors,
+                'prodi_errors' => $prodiErrors,
+            ], 422); // Kirimkan respons error dengan status 422
+        }
+
+        return response()->json(['message' => 'Data berhasil diimpor'], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Terjadi kesalahan: ' . $e->getMessage(),
+        ], 500);
+    }
+}
+
   
 } 
