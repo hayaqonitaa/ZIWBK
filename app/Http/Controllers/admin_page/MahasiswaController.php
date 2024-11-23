@@ -10,6 +10,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\MahasiswaImport;
 use Illuminate\Support\Facades\Validator; // Add this line to import Validator
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 
 
@@ -68,9 +70,9 @@ public function store(Request $request)
         'id_prodi' => 'required|exists:prodi,id',
     ], [
         'nim.unique' => 'Mahasiswa dengan NIM ini sudah terdaftar.',
-        'email.unique' => 'Email ini sudah digunakan dengan NIM ' . $request->nim,
+        'email.unique' => 'Email ini sudah digunakan'
     ]);
-    
+
     // Jika tidak ada error, simpan data mahasiswa baru
     Mahasiswa::create([
         'nim' => $request->nim,
@@ -199,14 +201,27 @@ public function store(Request $request)
         // Cek apakah ada error yang terkumpul
         $prodiErrors = $import->getProdiErrors();
         $emailErrors = $import->getEmailErrors();
+        $mahasiswaAdded = $import->getMahasiswaAdded();  // Mengambil jumlah mahasiswa yang berhasil ditambahkan
+
 
         // Cek apakah ada nilai di salah satu array error
         if (!empty($prodiErrors) || !empty($emailErrors)) {
-            return response()->json([
-                'message' => 'Data berhasil diimpor dengan beberapa kesalahan.',
-                'email_errors' => $emailErrors,
-                'prodi_errors' => $prodiErrors,
-            ], 422); // Kirimkan respons error dengan status 422
+            if ($mahasiswaAdded > 0){
+                return response()->json([
+                    'message' => 'Data berhasil diimpor dengan beberapa kesalahan.',
+                    'email_errors' => $emailErrors,
+                    'prodi_errors' => $prodiErrors,
+                ], 422); // Kirimkan respons error dengan status 422
+            }
+            else{
+                return response()->json([
+                    'message' => 'Tidak ada datang yang diimpor ada beberapa kesalahan.',
+                    'email_errors' => $emailErrors,
+                    'prodi_errors' => $prodiErrors,
+                ], 422); // Kirimkan respons error dengan status 422
+
+            }
+
         }
 
         return response()->json(['message' => 'Data berhasil diimpor'], 200);
@@ -215,6 +230,18 @@ public function store(Request $request)
             'message' => 'Terjadi kesalahan: ' . $e->getMessage(),
         ], 500);
     }
+}
+public function downloadTemplate(): BinaryFileResponse
+{
+    // Pastikan file template ada di direktori storage atau public
+    $filePath = storage_path('app/templates/template_mahasiswa.xlsx');
+
+    if (!file_exists($filePath)) {
+        abort(404, 'Template file not found.');
+    }
+
+    // Return file as a response for download
+    return response()->download($filePath, 'template_mahasiswa.xlsx');
 }
 
   

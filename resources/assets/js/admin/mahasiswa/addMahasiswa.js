@@ -70,16 +70,19 @@ $(function () {
       // Mengecek apakah ada error pada prodi atau email dan menambahkannya ke pesan
       if (xhr.responseJSON.prodi_errors && xhr.responseJSON.prodi_errors.length > 0) {
           alertMessage += '\n\nProdi Salah di baris: ' + xhr.responseJSON.prodi_errors.join(', ');
+          
       }
 
       if (xhr.responseJSON.email_errors && xhr.responseJSON.email_errors.length > 0) {
           alertMessage += '\nDuplikat email di baris: ' + xhr.responseJSON.email_errors.join(', ');
       }
       alert(alertMessage);
+      
+    
+    location.reload();  // Halaman akan di-refresh setelah menutup alert
     } else {
       alert('An unexpected error occurred.');
     }
-    location.reload();  // Halaman akan di-refresh setelah menutup alert
   }
 
   // upload file

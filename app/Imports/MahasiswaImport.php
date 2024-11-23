@@ -14,6 +14,7 @@ class MahasiswaImport implements ToModel
     // Array untuk menampung error prodi dan email
     protected $prodiErrors = [];
     protected $emailErrors = [];
+    protected $mahasiswaadded = 0;
 
     public function model(array $row)
     {
@@ -44,14 +45,15 @@ class MahasiswaImport implements ToModel
             return null;  // Lanjutkan ke baris berikutnya
         }
 
+        $this -> mahasiswaadded++;
+        
         // Jika NIM sudah ada, update data yang ada
-        elseif ($existingMahasiswa) {
+        if ($existingMahasiswa) {
             $existingMahasiswa->update([
                 'nama' => $row[2],
                 'id_prodi' => $this->getProdiId($row[3]),
                 'email' => $row[4],
             ]);
-
             // Kembalikan null agar tidak membuat instance baru
             return null;
         }
@@ -63,6 +65,7 @@ class MahasiswaImport implements ToModel
             'id_prodi' => $this->getProdiId($row[3]), // Kolom keempat adalah Prodi
             'email' => $row[4],  // Kolom kelima adalah Email
         ]);
+        
     }
 
     private function getProdiId($namaProdi)
@@ -81,5 +84,10 @@ class MahasiswaImport implements ToModel
     {
         return $this->emailErrors;
     }
+    
+    public function getMahasiswaAdded()
+{
+    return $this->mahasiswaadded; // Fungsi untuk mendapatkan jumlah mahasiswa yang berhasil ditambahkan
+}
 }
 
