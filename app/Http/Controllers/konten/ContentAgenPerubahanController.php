@@ -35,7 +35,7 @@ class ContentAgenPerubahanController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max file size 2MB
+            'file' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Max file size 2MB
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
     

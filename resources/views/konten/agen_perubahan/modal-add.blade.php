@@ -14,11 +14,11 @@
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="deskripsi">Jabatan</label>
-            <input type="text" id="deskripsi" name="deskripsi" class="form-control" required />
+            <input type="text" id="deskripsi" name="deskripsi" class="form-control"  required />
           </div>
           <div class="col-12 col-md-12">
-            <label class="form-label" for="file">File</label>
-            <input type="file" id="file" name="file" class="form-control" required />
+            <label class="form-label" for="file">Foto</label>
+            <input type="file" id="file" name="file" class="form-control" accept=".jpeg,.png,.jpg" required />
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="status">Status</label>

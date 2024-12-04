@@ -67,7 +67,7 @@ $(function () {
   // Function to handle errors
   function handleError(xhr) {
     if (xhr.responseJSON && xhr.responseJSON.message) {
-      alert('Error: ' + xhr.responseJSON.message);
+      alert(xhr.responseJSON.message);
     } else {
       alert('An unexpected error occurred.');
     }

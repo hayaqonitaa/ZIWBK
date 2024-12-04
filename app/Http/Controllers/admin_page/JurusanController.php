@@ -25,7 +25,9 @@ class JurusanController extends Controller
     {
         // Validasi data yang dikirimkan
         $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|unique:jurusan,nama',
+        ],[
+            'nama.unique' => 'Jurusan sudah terdaftar.'
         ]);
 
         // Simpan data ke tabel jurusan
