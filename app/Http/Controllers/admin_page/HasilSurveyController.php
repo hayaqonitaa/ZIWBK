@@ -15,7 +15,7 @@ class HasilSurveyController extends Controller
     }
 
     public function getHasilSurvey () {
-        $hasil_survey = HasilSurvey::with('mahasiswa')->get();
+        $hasil_survey = HasilSurvey::all();
         return response()->json(['data' => $hasil_survey]); // ini ke admin/mahasiswa.js
       }
     
