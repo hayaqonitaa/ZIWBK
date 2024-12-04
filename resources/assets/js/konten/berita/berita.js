@@ -14,7 +14,7 @@ $(function () {
   if (dt_scrollable_table.length) {
     var dt_scrollableTable = dt_scrollable_table.DataTable({
       ajax: {
-        url: '/content/standar_pelayanan/data', // URL to fetch data from
+        url: '/content/berita/data', // URL to fetch data from
         dataSrc: 'data' // Data source from the controller
       },
       columns: [
@@ -27,24 +27,26 @@ $(function () {
           orderable: false // Disable sorting for this column
         },
         { data: 'judul', title: 'Judul' },
-
+        { data: 'deskripsi', title: 'Deskripsi' },
         { 
-            data: 'deskripsi', // Kolom deskripsi digunakan untuk gambar
-            title: 'Gambar', 
-            render: function (data, type, row) {
-              return data ? `<img src="/storage/${data}" alt="${row.judul}" style="width: 100px; height: auto;">` : 'No image';
-            }
-          },
-          { 
-            data: 'file', // Kolom file digunakan untuk PDF
-            title: 'PDF', 
-            render: function (data) {
-              return data ? `<a href="/storage/${data}" target="_blank" class="btn btn-sm btn-primary">View PDF</a>` : 'No file';
-            }
-          },
-
-        { data: 'status', title: 'Status', 
-          render: function (data) {
+          data: 'file', 
+          title: 'Gambar', 
+          render: function (data, type, row) {
+            return data ? `<img src="/storage/${data}" alt="${row.judul}" style="width: 100px; height: auto;">` : 'No image';
+          }
+        },
+        { 
+          data: 'link', 
+          title: 'Link', 
+          render: function (data, type, row) {
+            return data ? `<a href="${data}" target="_blank" class="btn btn-sm btn-info">Visit Link</a>` : 'No link';
+          }
+        },
+        { data: 'users.name', title: 'Created By' },
+        { 
+          data: 'status', 
+          title: 'Status', 
+          render: function (data, type, row) {
             if (data === 'Aktif') {
               return `<span class="badge p-2 bg-label-success mb-2 rounded">${data}</span>`; // Hijau untuk status Aktif
             } else if (data === 'Tidak Aktif') {
@@ -60,7 +62,7 @@ $(function () {
           orderable: false,
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-judul="${row.judul}" data-gambar="${row.gambar}" data-pdf="${row.pdf}" data-status="${row.status}">
+              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-judul="${row.judul}" data-deskripsi="${row.deskripsi}" data-file="${row.file}" data-link="${row.link}" data-id-Users="${row.users.id}" data-nama-Users="${row.users.name}" data-status="${row.status}">
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
@@ -75,6 +77,50 @@ $(function () {
       initComplete: function () {
         dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
       }
+    });
+
+    // Edit Button Click
+    $(document).on('click', '.edit-btn', function () {
+        var button = $(this);
+        var id = button.data('id');
+        $('#editContentBeritaId').val(id);
+        $('#editJudul').val(button.data('judul'));
+        $('#editDeskripsi').val(button.data('deskripsi'));
+        $('#editLink').val(button.data('link')); // Set link in form
+
+        // Show the current file or image
+        var file = button.data('file');
+        var fileName = file.split('/').pop(); // Extract the file name
+        $('#currentFile').text(fileName); // Display the file name
+
+        // If the file is an image, display it
+        $('#currentFileImage').attr('src', `/storage/${file}`).show();
+
+        $('#editContentBerita').modal('show');
+    });
+
+    // Form submission for editing content
+    $('#editContentBeritaForm').on('submit', function (e) {
+      e.preventDefault();
+
+      var formData = new FormData(this);
+      var id = $('#editContentBeritaId').val();
+
+      $.ajax({
+        url: `/content/berita/update/${id}`,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          showAlert(response.message);
+          dt_scrollableTable.ajax.reload();
+          $('#editContentBerita').modal('hide');
+        },
+        error: function (xhr) {
+          handleError(xhr);
+        }
+      });
     });
 
     // Show alert message
@@ -109,7 +155,7 @@ $(function () {
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
-            url: `/content/standar_pelayanan/delete/${id}`,
+            url: `/content/berita/delete/${id}`,
             type: 'DELETE',
             success: function (response) {
               dt_scrollableTable.ajax.reload();

@@ -302,18 +302,18 @@
 
 //hover untuk standar pelayanan
 .card {
-  border: 2px solid #d29e9e; // Mengatur border menjadi biru
+  border: 2px solid #edf0ec; // Mengatur border menjadi biru
   transition: all 0.3s ease; // Menambahkan transisi halus
 
   &:hover {
-    transform: scale(1.05); // Membesarkan kartu sedikit
-    box-shadow: 0 4px 8px rgba(166, 21, 21, 0.2); // Menambahkan bayangan saat hover
-    border-color: #210407; // Mengubah warna border menjadi biru tua saat hover
+    transform: scale(1.01); // Membesarkan kartu sedikit
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); // Menambahkan bayangan saat hover
+    border-color: #ffffff; // Mengubah warna border menjadi biru tua saat hover
   }
 }
 
 .border-primary {
-  border-color: #ba25ab !important; // Menetapkan warna border biru dengan prioritas
+  border-color: #057410 !important; // Menetapkan warna border biru dengan prioritas
 }
 
 #SPU h3 {
@@ -492,5 +492,109 @@
           font-size: 1rem;
       }
   }
+}
+
+
+// Variables for easy customization
+$primary-color: #273272;
+$secondary-color: #000000;
+$card-bg: #ffffff;
+$carousel-control-size: 50px;
+
+// Berita Carousel Section
+#berita-carousel {
+    .section-py {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    // Card styling
+    .card {
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            transition: transform 1s ease;
+
+            &:hover {
+                transform: scale(1.01);
+            }
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+
+            .card-title {
+                font-weight: bold;
+                color: $primary-color;
+                margin-bottom: 0.5rem;
+                text-align: left;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            .card-text {
+                color: $secondary-color;
+                margin-bottom: 1rem;
+                text-align: left;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            .btn-primary {
+                align-self: flex-start;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: darken($primary-color, 10%);
+                }
+            }
+        }
+    }
+
+    // Custom carousel controls
+    .custom-carousel-control span {
+        width: 20px; // Ukuran panah
+        height: 20px;
+        filter: invert(1); // Ubah warna ikon arrow ke putih
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10; 
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(255, 255, 255); // Warna latar default
+        transition: background-color 0.3s ease-in-out; // Efek hover
+    }
+
+    .carousel-control-prev {
+        left: -60px; // Geser tombol ke luar dari container
+    }
+
+    .carousel-control-next {
+        right: -60px; // Geser tombol ke luar dari container
+    }
+
+    // Hover effect for carousel buttons
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background-color: #0000000e; // Ubah warna saat hover
+    }
 }
 
