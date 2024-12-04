@@ -18,6 +18,7 @@ use App\Http\Controllers\admin_page\PembagianController;
 use App\Http\Controllers\admin_page\PemetaanController;
 use App\Http\Controllers\admin_page\UserController;
 use App\Http\Controllers\admin_page\MahasiswaImportController;
+use App\Http\Controllers\admin_page\HasilSurveyController;
 
 use App\Http\Controllers\konten\ContentTimKerjaController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
@@ -235,6 +236,9 @@ Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pe
 Route::get('/pembagian/data', [PembagianController::class, 'getPembagian'])->name('pembagian.data')->middleware('auth'); 
 Route::post('/pembagian/kirim', [PembagianController::class, 'kirimEmail'])->middleware('auth');
 Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('admin-page.pembagian.pemetaan')->middleware('auth');
+
+Route::get('/hasil_survey', [HasilSurveyController::class, 'index'])->name('admin-page.hasil_survey.hasil_survey')->middleware('auth');
+Route::get('/hasil_survey/data', [HasilSurveyController::class, 'getHasilSurvey'])->middleware('auth'); 
 
 
 Route::get('/content-categories', [ContentCategoriesController::class, 'index'])->name('admin-page.content_categories.index')->middleware('auth');
