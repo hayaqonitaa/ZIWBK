@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('standar_pelayanan', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('judul');
-            $table->string('pdf');
-            $table->string('gambar');
-            $table->string('status');
-            $table->timestamps();
+        Schema::table('kuesioner', function (Blueprint $table) {
+            $table->year('tahun')->nullable()->after('judul');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('standar_pelayanan');
+        Schema::table('kuesioner', function (Blueprint $table) {
+            $table->dropColumn('tahun');
+        });
     }
 };

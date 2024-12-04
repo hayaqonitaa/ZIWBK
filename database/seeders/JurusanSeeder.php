@@ -18,6 +18,9 @@ class JurusanSeeder extends Seeder
             'Jurusan Teknik Elektro',
             'Jurusan Teknik Kimia',
             'Jurusan Teknik Komputer dan Informatika',
+            'Jurusan Akuntansi',
+            'Jurusan Administrasi Niaga',
+            'Jurusan Bahasa Inggris',
         ];
 
         foreach ($jurusanList as $jurusan) {

@@ -13,6 +13,10 @@
             <input type="text" id="judul" name="judul" class="form-control" required/>
           </div>
           <div class="col-12 col-md-12">
+            <label class="form-label" for="tahun">Tahun Kuesioner</label>
+            <input type="text" id="tahun" name="tahun" class="form-control" required/>
+          </div>
+          <div class="col-12 col-md-12">
             <label class="form-label" for="judul">Link Kuesioner</label>
             <input type="text" id="link_kuesioner" name="link_kuesioner" class="form-control" required/>
           </div>

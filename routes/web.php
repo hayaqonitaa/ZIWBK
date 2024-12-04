@@ -18,6 +18,7 @@ use App\Http\Controllers\admin_page\PembagianController;
 use App\Http\Controllers\admin_page\PemetaanController;
 use App\Http\Controllers\admin_page\UserController;
 use App\Http\Controllers\admin_page\MahasiswaImportController;
+use App\Http\Controllers\admin_page\HasilSurveyController;
 
 use App\Http\Controllers\konten\ContentTimKerjaController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
@@ -192,56 +193,60 @@ Route::get('/layanan-pengaduan', [LayananPengaduanController::class, 'index']);
 Route::get('/tim', [TimController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
-Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout');
+
+
+Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout')->middleware('auth');
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
-Route::get('/tim', [TimController::class, 'index']);
 
 Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->middleware('auth');
 Route::get('/mahasiswa/data', [MahasiswaController::class, 'getMahasiswa'])->middleware('auth'); // untuk mengambil data mahasiswa
-Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
-Route::put('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
-Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
-// Route::post('/mahasiswa/uploadExcel', [MahasiswaController::class, 'uploadExcel']);
-Route::post('/mahasiswa/uploadExcel', [MahasiswaController::class, 'uploadExcel']);
+Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->middleware('auth');
+Route::put('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update')->middleware('auth');
+Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy')->middleware('auth');
+Route::post('/mahasiswa/uploadExcel', [MahasiswaController::class, 'uploadExcel'])->middleware('auth');
+Route::get('mahasiswa/download-template', [mahasiswaController::class, 'downloadTemplate'])->name('mahasiswa.template')->middleware('auth');
 
 Route::get('/jurusan', [JurusanController::class, 'index'])->name('admin-page.jurusan.jurusan')->middleware('auth');
 Route::get('/jurusan/data', [JurusanController::class, 'getJurusan'])->middleware('auth'); 
-Route::post('/jurusan/store', [JurusanController::class, 'store']);
-Route::put('/jurusan/update/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
-Route::delete('/jurusan/delete/{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
+Route::post('/jurusan/store', [JurusanController::class, 'store'])->middleware('auth');
+Route::put('/jurusan/update/{id}', [JurusanController::class, 'update'])->name('jurusan.update')->middleware('auth');
+Route::delete('/jurusan/delete/{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy')->middleware('auth');
 
-Route::get('/prodi/jurusan/data', [ProdiController::class, 'getJurusan']);
-Route::get('/prodi/jurusan/data', [ProdiController::class, 'getJurusan']);
+Route::get('/prodi/jurusan/data', [ProdiController::class, 'getJurusan'])->middleware('auth');
 Route::get('/prodi', [ProdiController::class, 'index'])->name('admin-page.prodi.prodi')->middleware('auth');
 Route::get('/prodi/data', [ProdiController::class, 'getProdi'])->middleware('auth'); 
-Route::post('/prodi/store', [ProdiController::class, 'store']);
-Route::put('/prodi/update/{id}', [ProdiController::class, 'update'])->name('prodi.update');
-Route::delete('/prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
+Route::post('/prodi/store', [ProdiController::class, 'store'])->middleware('auth');
+Route::put('/prodi/update/{id}', [ProdiController::class, 'update'])->name('prodi.update')->middleware('auth');
+Route::delete('/prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy')->middleware('auth');
 
 Route::get('/kuesioner', [KuesionerController::class, 'index'])->name('admin-page.kuesioner.kuesoner')->middleware('auth');
 Route::get('/kuesioner/data', [KuesionerController::class, 'getKuesioner'])->name('kuesioner.data')->middleware('auth'); 
-Route::post('/kuesioner/store', [KuesionerController::class, 'store']);
-Route::put('/kuesioner/update/{id}', [KuesionerController::class, 'update'])->name('kuesioner.update');
-Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kuesioner.destroy');
+Route::post('/kuesioner/store', [KuesionerController::class, 'store'])->middleware('auth');
+Route::put('/kuesioner/update/{id}', [KuesionerController::class, 'update'])->name('kuesioner.update')->middleware('auth');
+Route::delete('/kuesioner/delete/{id}', [KuesionerController::class, 'destroy'])->name('kuesioner.destroy')->middleware('auth');
+
+Route::get('/user', [UserController::class, 'index'])->name('admin.user.index')->middleware('auth');
+Route::get('/user/data', [UserController::class, 'getUsers'])->name('admin.user.get')->middleware('auth');
+Route::post('/user/store', [UserController::class, 'store'])->name('admin.user.store')->middleware('auth');
+Route::put('/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update')->middleware('auth');
+Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete')->middleware('auth');
+
+Route::get('/pembagian', [PembagianController::class, 'index'])->name('admin-page.pembagian.pembagian')->middleware('auth');
+Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])->name('pembagian.destroy')->middleware('auth');
+Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pembagian.share')->middleware('auth');
+Route::get('/pembagian/data', [PembagianController::class, 'getPembagian'])->name('pembagian.data')->middleware('auth'); 
+Route::post('/pembagian/kirim', [PembagianController::class, 'kirimEmail'])->middleware('auth');
+Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('admin-page.pembagian.pemetaan')->middleware('auth');
+
+Route::get('/hasil_survey', [HasilSurveyController::class, 'index'])->name('admin-page.hasil_survey.hasil_survey')->middleware('auth');
+Route::get('/hasil_survey/data', [HasilSurveyController::class, 'getHasilSurvey'])->middleware('auth'); 
+
 
 Route::get('/content-categories', [ContentCategoriesController::class, 'index'])->name('admin-page.content_categories.index')->middleware('auth');
 Route::get('/content-categories/data', [ContentCategoriesController::class, 'getContentCategories'])->name('content-categories.data')->middleware('auth');
-Route::post('/content_categories/store', [ContentCategoriesController::class, 'store'])->name('content_categories.store');
-Route::put('/content_categories/update/{id}', [ContentCategoriesController::class, 'update'])->name('content_categories.update');
-Route::delete('/content-categories/delete/{id}', [ContentCategoriesController::class, 'destroy'])->name('content_categories.destroy');
-
-Route::get('/pembagian', [PembagianController::class, 'index'])->name('admin-page.pembagian.pembagian')->middleware('auth');
-Route::delete('/pembagian/delete/{id}', [PembagianController::class, 'destroy'])->name('pembagian.destroy');
-Route::post('/pembagian/share', [PembagianController::class, 'share'])->name('pembagian.share'); // Rute untuk membagikan kuesioner
-Route::get('/pembagian/data', [PembagianController::class, 'getPembagian'])->name('pembagian.data')->middleware('auth'); 
-Route::post('/pembagian/kirim', [PembagianController::class, 'kirimEmail']);
-Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('admin-page.pembagian.pemetaan')->middleware('auth');
-
-Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
-Route::get('/user/data', [UserController::class, 'getUsers'])->name('admin.user.get');
-Route::post('/user/store', [UserController::class, 'store'])->name('admin.user.store');
-Route::put('/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
-Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
+Route::post('/content_categories/store', [ContentCategoriesController::class, 'store'])->name('content_categories.store')->middleware('auth');
+Route::put('/content_categories/update/{id}', [ContentCategoriesController::class, 'update'])->name('content_categories.update')->middleware('auth');
+Route::delete('/content-categories/delete/{id}', [ContentCategoriesController::class, 'destroy'])->name('content_categories.destroy')->middleware('auth');
 
 Route::get('/content/agen_perubahan', [ContentAgenPerubahanController::class, 'index'])->name('konten.agen_perubahan.index')->middleware('auth');
 Route::get('/content/agen_perubahan/data', [ContentAgenPerubahanController::class, 'getAgenPerubahan'])->name('konten.agen_perubahan.data')->middleware('auth');

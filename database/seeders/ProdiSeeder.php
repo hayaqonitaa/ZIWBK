@@ -51,10 +51,29 @@ class ProdiSeeder extends Seeder
                 'D-3 Teknik Informatika',
                 'D-4 Teknik Informatika',
             ],
+            'Jurusan Akuntansi' => [
+                'D-3 Akuntansi',
+                'D-3 Keuangan Perbankan',
+                'D-4 Akuntansi',
+                'D-4 Akuntansi Manajemen Pemerintahan',
+                'D-4 Keuangan Syariah',
+                'S-2 Keuangan & Perbankan Syariah',
+            ],
+            'Jurusan Administrasi Niaga' => [
+                'D-3 Administrasi Bisnis',
+                'D-3 Manajemen Pemasaran',
+                'D-3 Usaha Perjalanan Wisata',
+                'D-4 Administrasi Bisnis',
+                'D-4 Manajemen Aset',
+                'D-4 Manajemen Pemasaran',
+                'D-4 Destinasi Pariwisata',
+            ],
+            'Jurusan Bahasa Inggris' => [
+                'D-3 Bahasa Inggris',
+            ],
         ];
 
         foreach ($prodiData as $jurusanNama => $prodiList) {
-            // Cari jurusan berdasarkan nama
             $jurusan = Jurusan::where('nama', $jurusanNama)->first();
 
             if ($jurusan) {

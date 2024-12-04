@@ -26,12 +26,14 @@ class KuesionerController extends Controller
         // Validasi data yang dikirimkan
         $validatedData = $request->validate([
             'judul' => 'required|string|max:255',
+            'tahun' => 'required|string|max:255',
             'link_kuesioner' => 'required|string|max:255',
         ]);
 
         // Simpan data ke tabel jurusan
         $kuesioner = new Kuesioner();
         $kuesioner->judul = $validatedData['judul'];
+        $kuesioner->tahun = $validatedData['tahun'];
         $kuesioner->link_kuesioner = $validatedData['link_kuesioner'];
         $kuesioner->save();
 
@@ -47,6 +49,7 @@ class KuesionerController extends Controller
         $request->validate([
             'id' => 'required|exists:kuesioner,id', // Pastikan ID valid
             'judul' => 'required|string|max:255', // Validasi judul
+            'tahun' => 'required|string|max:255',
             'link_kuesioner' => 'required|string|max:255', // Validasi link_kuesioner
         ]);
     

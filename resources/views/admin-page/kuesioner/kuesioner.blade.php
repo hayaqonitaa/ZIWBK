@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Content navbar - Layouts')
+@section('title', 'Kuesioner')
 
 @section('content')
 
@@ -49,8 +49,9 @@ $configData = Helper::appClasses();
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
-            <th>No.</th>`
+            <th>No.</th>
             <th>Judul</th>
+            <th>Tahun</th>
             <th>Link</th>
             <th>Actions</th>
         </tr>

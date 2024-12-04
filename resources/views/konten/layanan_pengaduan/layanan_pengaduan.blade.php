@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Content navbar - Layouts')
+@section('title', 'Layanan Pengaduan')
 
 @section('content')
 

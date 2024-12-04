@@ -4,19 +4,25 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Content navbar - Layouts')
+@section('title', 'Mahasiswa')
 
 @section('content')
-
-<!-- Vendor Style -->
+<!-- Vendor Styles -->
 @section('vendor-style')
-@vite(['resources/assets/vendor/libs/dropzone/dropzone.scss'])
+@vite([
+  'resources/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.scss',
+  'resources/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.scss',
+  'resources/assets/vendor/libs/flatpickr/flatpickr.scss'
+])
+@endsection
 
 <!-- Vendor Scripts -->
 @section('vendor-script')
-@vite(['resources/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js'])
-        <!-- 'resources/assets/vendor/libs/dropzone/dropzone.js' -->
-        
+@vite([
+  'resources/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js',
+  'resources/assets/vendor/libs/moment/moment.js',
+  'resources/assets/vendor/libs/flatpickr/flatpickr.js'
+])
 @endsection
 
 <!-- Page Scripts -->
@@ -64,7 +70,7 @@ $configData = Helper::appClasses();
     </div>
 
   <div class="card-datatable text-nowrap">
-    <table class="dt-scrollableTable table">
+    <table class="datatables-ajax table">
       <thead>
         <tr>
           <th>No</th>
@@ -72,6 +78,7 @@ $configData = Helper::appClasses();
           <th>Nama</th>
           <th>Prodi</th>
           <th>Email</th>
+          <th>Actions</th>
         </tr>
       </thead>
     </table>

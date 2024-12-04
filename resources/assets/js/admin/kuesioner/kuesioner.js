@@ -27,6 +27,7 @@ $(function () {
           orderable: false // Column cannot be sorted
         },
         { data: 'judul', title: 'Judul' },
+        { data: 'tahun', title: 'Tahun' },
         { data: 'link_kuesioner', title: 'Link' },
         {
           data: null, 
@@ -34,7 +35,7 @@ $(function () {
           orderable: false, // Column cannot be sorted
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}"data-judul="${row.judul}"data-link-Kuesioner="${row.link_kuesioner}">
+              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}"data-judul="${row.judul}"data-tahun="${row.tahun}"data-link-Kuesioner="${row.link_kuesioner}">
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
@@ -44,8 +45,8 @@ $(function () {
           }
         }
       ],
-      scrollX: true,
-      dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      orderCellsTop: true,
+      dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       initComplete: function (settings, json) {
         dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
       }

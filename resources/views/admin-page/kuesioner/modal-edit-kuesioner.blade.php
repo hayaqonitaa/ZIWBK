@@ -14,6 +14,10 @@
             <input type="text" class="form-control" id="editJudul" name="judul" required>
           </div>
           <div class="mb-3">
+          <label for="editTahun" class="form-label">Tahun Kuesioner</label>
+            <input type="text" class="form-control" id="editTahun" name="tahun" required>
+          </div>
+          <div class="mb-3">
             <label for="editLink" class="form-label">Link Kuesioner</label>
             <input type="text" class="form-control" id="editLink" name="link_kuesioner" required>
           </div>
