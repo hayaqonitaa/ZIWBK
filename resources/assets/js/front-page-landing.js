@@ -16,7 +16,7 @@
     ReviewsSliderNext = document.querySelector('.swiper-button-next'),
     priceDurationToggler = document.querySelector('.price-duration-toggler'),
     priceMonthlyList = [].slice.call(document.querySelectorAll('.price-monthly')),
-    priceYearlyList = [].slice.call(document.querySelectorAll('.price-yearly'));z
+    priceYearlyList = [].slice.call(document.querySelectorAll('.price-yearly'));
 
   // Hero
   const mediaQueryXL = '1200';

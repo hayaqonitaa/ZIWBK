@@ -28,6 +28,7 @@ use App\Http\Controllers\user_page\StandarPelayananController;
 use App\Http\Controllers\user_page\PiagamController;
 use App\Http\Controllers\konten\ContentStandarPelayananController;
 use App\Http\Controllers\konten\ContentPiagamController;
+use App\Http\Controllers\konten\ContentBeritaController;
     use App\Http\Controllers\dashboard\Crm;
     use App\Http\Controllers\language\LanguageController;
     use App\Http\Controllers\layouts\CollapsedMenu;
@@ -321,6 +322,12 @@ Route::get('/content/standar_pelayanan/data', [ContentStandarPelayananController
 Route::post('/content/standar_pelayanan/store', [ContentStandarPelayananController::class, 'store'])->middleware('auth');
 Route::post('/content/standar_pelayanan/update/{id}', [ContentStandarPelayananController::class, 'update'])->name('konten.standar_pelayanan.update')->middleware('auth');
 Route::delete('/content/standar_pelayanan/delete/{id}', [ContentStandarPelayananController::class, 'destroy'])->name('konten.standar_pelayanan.delete')->middleware('auth');
+
+Route::get('/content/berita', [ContentBeritaController::class, 'index'])->name('konten.berita.index')->middleware('auth');
+Route::get('/content/berita/data', [ContentBeritaController::class, 'getBerita'])->name('konten.berita.data')->middleware('auth');
+Route::post('/content/berita/store', [ContentBeritaController::class, 'store'])->name('konten.berita.store')->middleware('auth');
+Route::post('/content/berita/update/{id}', [ContentBeritaController::class, 'update'])->name('konten.berita.update')->middleware('auth');
+Route::delete('/content/berita/delete/{id}', [ContentBeritaController::class, 'destroy'])->name('konten.berita.delete')->middleware('auth');
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');

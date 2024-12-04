@@ -41,7 +41,7 @@ $(function () {
             if (data === 'Aktif') {
               return `<span class="badge p-2 bg-label-success mb-2 rounded">${data}</span>`; // Hijau untuk status Sudah Terkirim
             } else if (data === 'Tidak Aktif') {
-              return `<span class="badge p-2 bg-label-warning mb-2 rounded">${data}</span>`; // Kuning untuk status Belum Dikirim
+              return `<span class="badge p-2 bg-label-wa rning mb-2 rounded">${data}</span>`; // Kuning untuk status Belum Dikirim
             } else {
               return data; // Default, jika status lain
             }
@@ -160,3 +160,4 @@ $(function () {
     });
   }
 });
+

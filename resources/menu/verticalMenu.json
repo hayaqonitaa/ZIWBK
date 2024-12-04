@@ -52,6 +52,11 @@
           "url": "/content/piagam",
           "name": "Piagam",
           "slug": ""
+        },
+        {
+          "url": "/content/berita",
+          "name": "Berita",
+          "slug": ""
         }
         
       ]
