@@ -13,8 +13,7 @@ class HasilSurvey extends Model
 
     // Kolom
     protected $fillable = ['id', 'nim', 'nama_kuesioner', 'pertanyaan', 'jawaban', 'semester'];
-    
-    public function mahasiswa(){
-        return $this->belongsTo(Mahasiswa::class,'nim');
-    }
+
+    public $timestamps = true;
+
 }

@@ -29,26 +29,26 @@ $(function () {
           },
           orderable: false // Kolom ini tidak bisa diurutkan
         },
-        { data: 'mahasiswa.nim', title: 'NIM' },
+        { data: 'nim', title: 'NIM' },
         { data: 'nama_kuesioner', title: 'Kuesioner' },
         { data: 'pertanyaan', title: 'Pertanyaan' },
         { data: 'jawaban', title: 'Jawaban' },
         { data: 'semester', title: 'Semester' },
-        { 
-          data: null, 
-          title: 'Actions', 
-          orderable: false, // Column cannot be sorted
-          render: function (data, type, row) {
-            return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}" data-id-Jurusan="${row.jurusan.id}" data-nama-Jurusan="${row.jurusan.nama}">
-                <i class="fas fa-edit"></i> 
-              </button>
-              <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
-                <i class="fas fa-trash"></i> 
-              </button>
-            `;
-          }
-        }
+        // { 
+        //   data: null, 
+        //   title: 'Actions', 
+        //   orderable: false, // Column cannot be sorted
+        //   render: function (data, type, row) {
+        //     return `
+        //       <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-nama="${row.nama}" data-id-Jurusan="${row.jurusan.id}" data-nama-Jurusan="${row.jurusan.nama}">
+        //         <i class="fas fa-edit"></i> 
+        //       </button>
+        //       <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
+        //         <i class="fas fa-trash"></i> 
+        //       </button>
+        //     `;
+        //   }
+        // }
       ],
       orderCellsTop: true,
       dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
