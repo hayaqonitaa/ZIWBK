@@ -49,15 +49,11 @@ $configData = Helper::appClasses();
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
-          <th>No.</th>
-          <th>Nama</th>
-          <th>Cabang</th>
-          <th>Bidang</th>
-          <th>ID SK</th>
-          <th>File</th>
-          <th>Status</th>
-          <th>Created By</th>
-          <th>Actions</th>
+            <th>No.</th>
+            <th>Judul</th>
+            <th>File</th>
+            <th>Status</th>
+            <th>Created By</th>
         </tr>
       </thead>
     </table>

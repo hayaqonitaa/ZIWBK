@@ -4,14 +4,17 @@ namespace App\Http\Controllers\user_page;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\TimKerja;
+use App\Models\Content;
 
 class TimKerjaController extends Controller
 {
     public function index()
     {
         // Retrieve active content with category 'Tim Kerja'
-        $contents = TimKerja::where('status', 'Aktif')->get();
+        $contents = Content::where('status', 'Aktif')
+            ->whereHas('content_categories', function ($query) {
+                $query->where('nama', 'Tim Kerja');
+            })->get();
 
         // Page configuration
         $pageConfigs = ['myLayout' => 'front'];
