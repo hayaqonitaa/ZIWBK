@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\konten;
 
 use App\Http\Controllers\Controller;
-use App\Models\TimKerja;
+use App\Models\Content;
+use App\Models\ContentCategories; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,8 +18,10 @@ class ContentTimKerjaController extends Controller
 
     public function getTimKerja()
     {
-        $data = TimKerja::with('createdBy')->get();
-
+        $data = Content::whereHas('content_categories', function ($query) {
+            $query->where('nama', 'Tim Kerja');
+        })->with(['content_categories', 'users'])->get();
+    
         return response()->json([
             'success' => true,
             'data' => $data,
@@ -29,29 +32,31 @@ class ContentTimKerjaController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'cabang' => 'required|string|max:255',
-            'bidang' => 'required|string|max:255',
-            'id_sk' => 'required|integer',
-            'file' => 'required|mimes:pdf|max:2048',
+            'file' => 'required|mimes:pdf|max:2048', // Change to accept only PDF files
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
-
-        $filePath = $request->file('file')->store('tim_kerja', 'public');
-
-        $timKerja = TimKerja::create([
-            'judul' => $request->judul,
-            'cabang' => $request->cabang,
-            'bidang' => $request->bidang,
-            'id_sk' => $request->id_sk,
-            'file' => $filePath,
-            'status' => $request->status,
-            'created_by' => Auth::user()->id,
-        ]);
-
+    
+        $category = ContentCategories::where('nama', 'Tim Kerja')->first();
+    
+        if (!$category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+    
+        $filePath = $request->file('file')->store('uploads', 'public');
+    
+        $content = new Content();
+        $content->judul = $request->judul;
+        $content->deskripsi = $request->deskripsi;
+        $content->file = $filePath;
+        $content->id_kategori = $category->id;
+        $content->id_admin = Auth::user()->id;
+        $content->status = $request->status;
+        $content->save();
+    
         return response()->json([
             'success' => true,
-            'message' => 'Tim Kerja created successfully.',
-            'data' => $timKerja
+            'message' => 'Content created successfully.',
+            'data' => $content
         ]);
     }
     
@@ -59,60 +64,61 @@ class ContentTimKerjaController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'cabang' => 'required|string|max:255',
-            'bidang' => 'required|string|max:255',
-            'id_sk' => 'required|integer',
-            'file' => 'nullable|mimes:pdf|max:2048',
-            'status' => 'required|in:Aktif,Tidak Aktif',
+            'file' => 'nullable|mimes:pdf|max:2048', // Change to accept only PDF files
         ]);
-
-        $timKerja = TimKerja::find($id);
-
-        if (!$timKerja) {
-            return response()->json(['message' => 'Tim Kerja not found'], 404);
+    
+        $content = Content::find($id);
+    
+        if (!$content) {
+            return response()->json(['message' => 'Content not found'], 404);
         }
-
-        $timKerja->judul = $request->judul;
-        $timKerja->cabang = $request->cabang;
-        $timKerja->bidang = $request->bidang;
-        $timKerja->id_sk = $request->id_sk;
-        $timKerja->status = $request->status;
-
+    
+        $category = ContentCategories::where('nama', 'Tim Kerja')->first();
+        if (!$category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+    
+        $content->judul = $request->judul;
+        $content->deskripsi = $request->deskripsi;
+    
         if ($request->hasFile('file')) {
-            if ($timKerja->file && Storage::disk('public')->exists($timKerja->file)) {
-                Storage::disk('public')->delete($timKerja->file);
+            if ($content->file && Storage::disk('public')->exists($content->file)) {
+                Storage::disk('public')->delete($content->file);
             }
-
-            $filePath = $request->file('file')->store('tim_kerja', 'public');
-            $timKerja->file = $filePath;
+    
+            $filePath = $request->file('file')->store('uploads', 'public');
+            $content->file = $filePath;
         }
-
-        $timKerja->save();
-
+    
+        $content->id_kategori = $category->id;
+        $content->id_admin = Auth::user()->id;
+        $content->status = $request->status;
+        $content->save();
+    
         return response()->json([
             'success' => true,
-            'message' => 'Tim Kerja updated successfully.',
-            'data' => $timKerja
+            'message' => 'Content updated successfully.',
+            'data' => $content
         ]);
     }
     
     public function destroy($id)
     {
-        $timKerja = TimKerja::find($id);
-
-        if (!$timKerja) {
-            return response()->json(['message' => 'Tim Kerja not found'], 404);
+        $content = Content::find($id);
+        
+        if (!$content) {
+            return response()->json(['message' => 'Content not found'], 404);
         }
-
-        if ($timKerja->file && Storage::disk('public')->exists($timKerja->file)) {
-            Storage::disk('public')->delete($timKerja->file);
+    
+        if ($content->file && Storage::disk('public')->exists($content->file)) {
+            Storage::disk('public')->delete($content->file);
         }
-
-        $timKerja->delete();
-
+    
+        $content->delete();
+    
         return response()->json([
             'success' => true,
-            'message' => 'Tim Kerja deleted successfully.'
+            'message' => 'Content deleted successfully.'
         ]);
     }
 }
