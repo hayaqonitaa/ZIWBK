@@ -36,7 +36,7 @@ $(function () {
     type: 'GET',
     success: function (response) {
       // Proses data yang diambil
-      const labels = response.map(item => item.pertanyaan); // Ambil label
+      const labels = response.map((item, index) => `${index + 1}/${response.length}`); // Format label menjadi 1/--
       const dataValues = response.map(item => parseInt(item.jawaban)); // Ambil jawaban (konversi ke integer)
 
       // Buat Bar Chart dengan data dari server
@@ -45,7 +45,7 @@ $(function () {
         const barChartVar = new Chart(barChart, {
           type: 'bar',
           data: {
-            labels: labels, // Gunakan data label dari server
+            labels: labels, // Gunakan label 1/--
             datasets: [
               {
                 data: dataValues, // Gunakan data dari server
@@ -106,6 +106,17 @@ $(function () {
           }
         });
       }
+
+      // Buat tabel daftar pertanyaan di bawah grafik
+      let tableHTML = '<table class="table table-bordered">';
+      tableHTML += '<thead><tr><th>No</th><th>Pertanyaan</th></tr></thead><tbody>';
+      response.forEach((item, index) => {
+        tableHTML += `<tr><td>${index + 1}</td><td>${item.pertanyaan}</td></tr>`;
+      });
+      tableHTML += '</tbody></table>';
+
+      // Masukkan tabel ke dalam elemen dengan id 'pertanyaanTable'
+      $('#pertanyaanTable').html(tableHTML);
     },
     error: function (error) {
       console.error('Gagal mengambil data untuk grafik', error);
