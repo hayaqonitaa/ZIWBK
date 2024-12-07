@@ -7,53 +7,56 @@ $(function () {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-
   var dt_scrollable_table = $('.dt-scrollableTable');
 
   // Initialize Scrollable DataTable
   if (dt_scrollable_table.length) {
     var dt_scrollableTable = dt_scrollable_table.DataTable({
       ajax: {
-        url: '/content/tim_kerja/data', // Updated URL to fetch data from
-        dataSrc: 'data' // Data source from the controller
+        url: '/content/tim_kerja/data', // URL untuk mengambil data
+        dataSrc: 'data'  // Mengambil data dari key "data"
       },
       columns: [
-        { 
-          data: null, 
-          title: 'No', 
-          render: function (data, type, row, meta) {
-            return meta.row + 1; // Display row number
-          },
-          orderable: false // Disable sorting for this column
-        },
-        { data: 'judul', title: 'Judul' },
-        // In the DataTable column definition
         {
-            data: 'file',
-            title: 'File',
-            render: function (data, type, row) {
-            return data ? `<a href="/storage/${data}" target="_blank" class="btn btn-sm btn-primary">View PDF</a>` : 'No file';
-            }
+          data: null,
+          title: 'No',
+          render: function (data, type, row, meta) {
+            return meta.row + 1; // Menampilkan nomor urut
+          },
+          orderable: false // Menonaktifkan sorting untuk kolom ini
         },
-        { data: 'status', title: 'Status', 
-          render: function (data, type, row) {
+        { data: 'judul', title: 'Nama' },  // Gantilah 'nama' menjadi 'judul' jika data yang diterima adalah 'judul'
+        { data: 'cabang', title: 'Cabang' },
+        { data: 'bidang', title: 'Bidang' },
+        { data: 'id_sk', title: 'ID SK' },
+        { 
+          data: 'file', 
+          title: 'File',
+          render: function (data) {
+            return data ? `<a href="/storage/${data}" target="_blank" class="btn btn-sm btn-primary">View PDF</a>` : 'No file';
+          }
+        },
+        { 
+          data: 'status', 
+          title: 'Status',
+          render: function (data) {
             if (data === 'Aktif') {
-              return `<span class="badge p-2 bg-label-success mb-2 rounded">${data}</span>`; // Hijau untuk status Aktif
+              return `<span class="badge p-2 bg-label-success mb-2 rounded">${data}</span>`;
             } else if (data === 'Tidak Aktif') {
-              return `<span class="badge p-2 bg-label-warning mb-2 rounded">${data}</span>`; // Kuning untuk status Tidak Aktif
+              return `<span class="badge p-2 bg-label-warning mb-2 rounded">${data}</span>`;
             } else {
-              return data; // Default, jika status lain
+              return data;
             }
           }
         },
-        { data: 'users.name', title: 'Created By' },
-        { 
-          data: null, 
-          title: 'Actions', 
+        { data: 'created_by.name', title: 'Created By' },  // Menampilkan 'name' dari objek 'created_by'
+        {
+          data: null,
+          title: 'Actions',
           orderable: false,
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-judul="${row.judul}" data-file="${row.file}" data-status="${row.status}" >
+              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-judul="${row.judul}" data-cabang="${row.cabang}" data-bidang="${row.bidang}" data-id_sk="${row.id_sk}" data-file="${row.file}" data-status="${row.status}" data-created_by="${row.created_by.name}">
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
@@ -65,8 +68,10 @@ $(function () {
       ],
       orderCellsTop: true,
       dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-      initComplete: function () {
-        dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
+      initComplete: function (settings, json) {
+          // Add the mti-n1 class to the first row in tbody
+          dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
+
       }
     });
 
@@ -117,3 +122,5 @@ $(function () {
     });
   }
 });
+
+
