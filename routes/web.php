@@ -342,48 +342,6 @@ Route::get('/front-pages/checkout', [Checkout::class, 'index'])->name('front-pag
 Route::get('/front-pages/help-center', [HelpCenter::class, 'index'])->name('front-pages-help-center');
 Route::get('/front-pages/help-center-article', [HelpCenterArticle::class, 'index'])->name('front-pages-help-center-article');
 
-// apps
-Route::get('/app/email', [Email::class, 'index'])->name('app-email');
-Route::get('/app/chat', [Chat::class, 'index'])->name('app-chat');
-Route::get('/app/calendar', [Calendar::class, 'index'])->name('app-calendar');
-Route::get('/app/kanban', [Kanban::class, 'index'])->name('app-kanban');
-Route::get('/app/ecommerce/dashboard', [EcommerceDashboard::class, 'index'])->name('app-ecommerce-dashboard');
-Route::get('/app/ecommerce/product/list', [EcommerceProductList::class, 'index'])->name('app-ecommerce-product-list');
-Route::get('/app/ecommerce/product/add', [EcommerceProductAdd::class, 'index'])->name('app-ecommerce-product-add');
-Route::get('/app/ecommerce/product/category', [EcommerceProductCategory::class, 'index'])->name('app-ecommerce-product-category');
-Route::get('/app/ecommerce/order/list', [EcommerceOrderList::class, 'index'])->name('app-ecommerce-order-list');
-Route::get('app/ecommerce/order/details', [EcommerceOrderDetails::class, 'index'])->name('app-ecommerce-order-details');
-Route::get('/app/ecommerce/customer/all', [EcommerceCustomerAll::class, 'index'])->name('app-ecommerce-customer-all');
-Route::get('app/ecommerce/customer/details/overview', [EcommerceCustomerDetailsOverview::class, 'index'])->name('app-ecommerce-customer-details-overview');
-Route::get('app/ecommerce/customer/details/security', [EcommerceCustomerDetailsSecurity::class, 'index'])->name('app-ecommerce-customer-details-security');
-Route::get('app/ecommerce/customer/details/billing', [EcommerceCustomerDetailsBilling::class, 'index'])->name('app-ecommerce-customer-details-billing');
-Route::get('app/ecommerce/customer/details/notifications', [EcommerceCustomerDetailsNotifications::class, 'index'])->name('app-ecommerce-customer-details-notifications');
-Route::get('/app/ecommerce/manage/reviews', [EcommerceManageReviews::class, 'index'])->name('app-ecommerce-manage-reviews');
-Route::get('/app/ecommerce/referrals', [EcommerceReferrals::class, 'index'])->name('app-ecommerce-referrals');
-Route::get('/app/ecommerce/settings/details', [EcommerceSettingsDetails::class, 'index'])->name('app-ecommerce-settings-details');
-Route::get('/app/ecommerce/settings/payments', [EcommerceSettingsPayments::class, 'index'])->name('app-ecommerce-settings-payments');
-Route::get('/app/ecommerce/settings/checkout', [EcommerceSettingsCheckout::class, 'index'])->name('app-ecommerce-settings-checkout');
-Route::get('/app/ecommerce/settings/shipping', [EcommerceSettingsShipping::class, 'index'])->name('app-ecommerce-settings-shipping');
-Route::get('/app/ecommerce/settings/locations', [EcommerceSettingsLocations::class, 'index'])->name('app-ecommerce-settings-locations');
-Route::get('/app/ecommerce/settings/notifications', [EcommerceSettingsNotifications::class, 'index'])->name('app-ecommerce-settings-notifications');
-Route::get('/app/academy/dashboard', [AcademyDashboard::class, 'index'])->name('app-academy-dashboard');
-Route::get('/app/academy/course', [AcademyCourse::class, 'index'])->name('app-academy-course');
-Route::get('/app/academy/course-details', [AcademyCourseDetails::class, 'index'])->name('app-academy-course-details');
-Route::get('/app/logistics/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');
-Route::get('/app/logistics/fleet', [LogisticsFleet::class, 'index'])->name('app-logistics-fleet');
-Route::get('/app/invoice/list', [InvoiceList::class, 'index'])->name('app-invoice-list');
-Route::get('/app/invoice/preview', [InvoicePreview::class, 'index'])->name('app-invoice-preview');
-Route::get('/app/invoice/print', [InvoicePrint::class, 'index'])->name('app-invoice-print');
-Route::get('/app/invoice/edit', [InvoiceEdit::class, 'index'])->name('app-invoice-edit');
-Route::get('/app/invoice/add', [InvoiceAdd::class, 'index'])->name('app-invoice-add');
-Route::get('/app/user/list', [UserList::class, 'index'])->name('app-user-list');
-Route::get('/app/user/view/account', [UserViewAccount::class, 'index'])->name('app-user-view-account');
-Route::get('/app/user/view/security', [UserViewSecurity::class, 'index'])->name('app-user-view-security');
-Route::get('/app/user/view/billing', [UserViewBilling::class, 'index'])->name('app-user-view-billing');
-Route::get('/app/user/view/notifications', [UserViewNotifications::class, 'index'])->name('app-user-view-notifications');
-Route::get('/app/user/view/connections', [UserViewConnections::class, 'index'])->name('app-user-view-connections');
-Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
-Route::get('/app/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
 
 // pages
 Route::get('/pages/profile-user', [UserProfile::class, 'index'])->name('pages-profile-user');
