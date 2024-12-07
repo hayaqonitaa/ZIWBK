@@ -27,7 +27,7 @@ $(function () {
           orderable: false // Disable sorting for this column
         },
         { data: 'judul', title: 'Judul' },
-        { data: 'deskripsi', title: 'Deskripsi' },
+        // { data: 'deskripsi', title: 'Deskripsi' },
         { 
           data: 'file', 
           title: 'Gambar', 
@@ -35,13 +35,13 @@ $(function () {
             return data ? `<img src="/storage/${data}" alt="${row.judul}" style="width: 100px; height: auto;">` : 'No image';
           }
         },
-        { 
-          data: 'link', 
-          title: 'Link', 
-          render: function (data, type, row) {
-            return data ? `<a href="${data}" target="_blank" class="btn btn-sm btn-info">Visit Link</a>` : 'No link';
-          }
-        },
+        // { 
+        //   data: 'link', 
+        //   title: 'Link', 
+        //   render: function (data, type, row) {
+        //     return data ? `<a href="${data}" target="_blank" class="btn btn-sm btn-info">Visit Link</a>` : 'No link';
+        //   }
+        // },
         { data: 'users.name', title: 'Created By' },
         { 
           data: 'status', 
@@ -79,25 +79,37 @@ $(function () {
       }
     });
 
-    // Edit Button Click
     $(document).on('click', '.edit-btn', function () {
-        var button = $(this);
-        var id = button.data('id');
-        $('#editContentBeritaId').val(id);
-        $('#editJudul').val(button.data('judul'));
-        $('#editDeskripsi').val(button.data('deskripsi'));
-        $('#editLink').val(button.data('link')); // Set link in form
-
-        // Show the current file or image
-        var file = button.data('file');
-        var fileName = file.split('/').pop(); // Extract the file name
-        $('#currentFile').text(fileName); // Display the file name
-
-        // If the file is an image, display it
-        $('#currentFileImage').attr('src', `/storage/${file}`).show();
-
-        $('#editContentBerita').modal('show');
-    });
+      var button = $(this);
+      var id = button.data('id');
+      
+      // Set form fields with existing data
+      $('#editContentBeritaId').val(id);
+      $('#editJudul').val(button.data('judul'));
+      
+      // Update the TinyMCE editor content
+      tinymce.get('editDeskripsi').setContent(button.data('deskripsi'));
+  
+      // Show current file name and preview
+      var file = button.data('file');
+      if (file) {
+          var fileName = file.split('/').pop(); // Extract the file name
+          $('#currentFile').text(fileName); // Display file name
+          $('#currentFileImage').attr('src', `/storage/${file}`).show(); // Show image preview
+      } else {
+          $('#currentFile').text('No file uploaded');
+          $('#currentFileImage').hide(); // Hide image preview if no file exists
+      }
+  
+      // Set and display current status
+      var currentStatus = button.data('status');
+      $('#currentStatus').text(currentStatus); // Display status
+      $('#editStatus').val(currentStatus); // Set status dropdown value
+  
+      // Open the modal
+      $('#editContentBerita').modal('show');
+  });
+  
 
     // Form submission for editing content
     $('#editContentBeritaForm').on('submit', function (e) {

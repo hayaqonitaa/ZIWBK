@@ -39,6 +39,21 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+  <script src="https://cdn.tiny.cloud/1/o23nh0pci1sryk4mc3tayaxy1j1js5ez88pg84t6xp7zfnty/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: 'textarea#deskripsi', // Replace this CSS selector to match the placeholder element for TinyMCE
+      plugins: 'code table lists',
+      toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+    });
+  </script>
+    <script>
+    tinymce.init({
+      selector: 'textarea#editDeskripsi', // Replace this CSS selector to match the placeholder element for TinyMCE
+      plugins: 'code table lists',
+      toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+    });
+  </script>
 </head>
 
 <body>

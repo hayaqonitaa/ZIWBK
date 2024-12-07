@@ -51,9 +51,9 @@ $configData = Helper::appClasses();
         <tr>
             <th>No.</th>
             <th>Judul</th>
-            <th>Deskripsi</th>
+            <!-- <th>Deskripsi</th> -->
             <th>Gambar</th>
-            <th>Link</th>
+            <!-- <th>Link</th> -->
             <th>Status</th>
             <th>Created By</th>
         </tr>
