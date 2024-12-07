@@ -8,20 +8,24 @@ use App\Models\Content;
 
 class IndexController extends Controller
 {
-  public function index()
-  {
-      // Mengambil konten dengan status 'Aktif' dan kategori 'Piagam'
-      $contents = Content::where('status', 'Aktif')
-          ->whereHas('content_categories', function ($query) {
-              $query->where('nama', 'Piagam');
-          })->get();
+    public function index()
+    {
+        // Mengambil konten kategori "Piagam"
+        $piagamContents = Content::where('status', 'Aktif')
+            ->whereHas('content_categories', function ($query) {
+                $query->where('nama', 'Piagam');
+            })->get();
 
-      // Mengatur konfigurasi halaman
-      $pageConfigs = ['myLayout' => 'front'];
+        // Mengambil konten kategori "Berita"
+        $beritaContents = Content::where('status', 'Aktif')
+            ->whereHas('content_categories', function ($query) {
+                $query->where('nama', 'Berita');
+            })->get();
 
-      // Mengembalikan tampilan dengan data konten
-      return view('index', compact('contents'), ['pageConfigs' => $pageConfigs]);
-  }
+        // Konfigurasi halaman
+        $pageConfigs = ['myLayout' => 'front'];
 
-
+        // Mengembalikan tampilan dengan data konten
+        return view('index', compact('piagamContents', 'beritaContents'), ['pageConfigs' => $pageConfigs]);
+    }
 }
