@@ -65,8 +65,14 @@
       "menuHeader": "Report"
     },
     {
-      "url": "",
+      "url": "/hasil_survey",
       "name": "Hasil Survey",
+      "icon": "menu-icon tf-icons ti ti-files",
+      "slug": ""
+    },
+    {
+      "url": "/grafik",
+      "name": "Grafik Hasil Survey",
       "icon": "menu-icon tf-icons ti ti-files",
       "slug": ""
     },
