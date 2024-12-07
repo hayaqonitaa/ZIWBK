@@ -1,17 +1,26 @@
 'use strict';
 
 $(function () {
-  // Handle form submission for adding new jurusan
-  $('#addProdiForm').on('submit', function (e) {
+  // Setup CSRF token for AJAX requests
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  // Handle form submission for adding new Berita
+  $('#addContentBeritaForm').on('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
-    var formData = $(this).serialize(); // Serialize form data
+    var formData = new FormData(this); // Use FormData to handle file uploads
 
     // AJAX request to submit the form data
     $.ajax({
-      url: '/prodi/store', // URL to your store method in the controller
+      url: '/content/berita/store', // URL to your store method in the controller
       type: 'POST',
       data: formData,
+      contentType: false, // Set content type to false for FormData
+      processData: false, // Prevent jQuery from processing the data
       success: function (response) {
         showAlert(response.message);
         setTimeout(function() {
@@ -23,30 +32,6 @@ $(function () {
       }
     });
   });
-
-  $('#addProdi').on('show.bs.modal', function () {
-    $.ajax({
-      url: '/jurusan/data',
-      type: 'GET',
-      success: function (data) {
-        console.log(data); // Cek apakah data muncul di console
-        var jurusanSelect = $('#jurusan');
-        jurusanSelect.empty(); // Kosongkan pilihan yang ada di dropdown
-  
-        jurusanSelect.append('<option value="" disabled selected>Pilih Jurusan</option>'); // Pilihan default
-  
-        // Looping melalui data jurusan dan menambahkannya ke dropdown
-        data.data.forEach(function (jurusan) {
-          jurusanSelect.append(`<option value="${jurusan.id}">${jurusan.nama}</option>`);
-        });
-      },
-      error: function (xhr) {
-        // Handle error jika AJAX gagal
-        alert('Terjadi kesalahan dalam memuat data jurusan.');
-      }
-    });
-  });
-  
 
   // Function to show alert
   function showAlert(message) {
@@ -67,7 +52,7 @@ $(function () {
   // Function to handle errors
   function handleError(xhr) {
     if (xhr.responseJSON && xhr.responseJSON.message) {
-      alert(xhr.responseJSON.message);
+      alert('Error: ' + xhr.responseJSON.message);
     } else {
       alert('An unexpected error occurred.');
     }

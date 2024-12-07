@@ -52,6 +52,11 @@
           "url": "/content/piagam",
           "name": "Piagam",
           "slug": ""
+        },
+        {
+          "url": "/content/berita",
+          "name": "Berita",
+          "slug": ""
         }
         
       ]
@@ -60,7 +65,7 @@
       "menuHeader": "Report"
     },
     {
-      "url": "",
+      "url": "/hasil_survey",
       "name": "Hasil Survey",
       "icon": "menu-icon tf-icons ti ti-files",
       "slug": ""

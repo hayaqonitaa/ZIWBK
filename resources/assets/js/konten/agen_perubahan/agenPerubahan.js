@@ -41,7 +41,7 @@ $(function () {
             if (data === 'Aktif') {
               return `<span class="badge p-2 bg-label-success mb-2 rounded">${data}</span>`; // Hijau untuk status Sudah Terkirim
             } else if (data === 'Tidak Aktif') {
-              return `<span class="badge p-2 bg-label-warning mb-2 rounded">${data}</span>`; // Kuning untuk status Belum Dikirim
+              return `<span class="badge p-2 bg-label-wa rning mb-2 rounded">${data}</span>`; // Kuning untuk status Belum Dikirim
             } else {
               return data; // Default, jika status lain
             }
@@ -63,8 +63,8 @@ $(function () {
           }
         }
       ],
-      scrollX: true,
-      dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      orderCellsTop: true,
+      dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       initComplete: function () {
         dt_scrollable_table.find('tbody tr:first').addClass('border-top-0');
       }
@@ -160,3 +160,4 @@ $(function () {
     });
   }
 });
+

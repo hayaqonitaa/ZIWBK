@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Piagam')
+@section('title', 'Content Navbar - Berita')
 
 @section('content')
 
@@ -15,15 +15,14 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/konten/piagam/Piagam.js'])
-@vite(['resources/assets/js/konten/piagam/addPiagam.js'])
-@vite(['resources/assets/js/konten/piagam/editPiagam.js'])
-@vite(['resources/assets/js/konten/piagam/deletePiagam.js'])
+@vite(['resources/assets/js/konten/berita/berita.js'])
+@vite(['resources/assets/js/konten/berita/addBerita.js'])
+@vite(['resources/assets/js/konten/berita/editBerita.js'])
 @endsection
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Piagam
+  <span class="text-muted fw-light">Dashboard /</span> Berita
 </h4>
 
 <!-- Display success notification if exists -->
@@ -37,10 +36,11 @@ $configData = Helper::appClasses();
   </div>
 @endif
 
+<!-- Scrollable -->
 <div class="card">
   <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Piagam</h5>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentPiagam">
+    <h5 class="mb-0">Berita</h5>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentBerita">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
@@ -49,19 +49,21 @@ $configData = Helper::appClasses();
     <table class="dt-scrollableTable table">
       <thead>
         <tr>
-          <th>No.</th>
-          <th>Judul</th>
-          <th>Deskripsi</th>
-          <th>Gambar</th>
-          <th>Status</th>
-          <th>Actions</th>
+            <th>No.</th>
+            <th>Judul</th>
+            <th>Deskripsi</th>
+            <th>Gambar</th>
+            <th>Link</th>
+            <th>Status</th>
+            <th>Created By</th>
         </tr>
       </thead>
     </table>
   </div>
 </div>
+<!--/ Scrollable -->
 
-@include('konten/piagam/modal-add')
-@include('konten/piagam/modal-edit')
+@include('konten/berita/modal-add')
+@include('konten/berita/modal-edit')
 
 @endsection

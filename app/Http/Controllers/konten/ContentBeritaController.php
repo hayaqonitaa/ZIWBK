@@ -4,147 +4,128 @@ namespace App\Http\Controllers\konten;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content;
-use App\Models\ContentCategories; 
+use App\Models\ContentCategories;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // For getting the authenticated user
-use Illuminate\Support\Facades\Storage; // For handling file uploads
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
-class ContentAgenPerubahanController extends Controller
+class ContentBeritaController extends Controller
 {
     public function index()
     {
-        return view('konten.agen_perubahan.agen_perubahan');
+        return view('konten.berita.berita');
     }
 
-    public function getAgenPerubahan()
+    public function getBerita()
     {
         $data = Content::whereHas('content_categories', function ($query) {
-            $query->where('nama', 'Agen Perubahan');
+            $query->where('nama', 'Berita');
         })->with('content_categories', 'users')->get();
-    
+
         return response()->json([
             'success' => true,
             'data' => $data,
         ]);
     }
 
-
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Max file size 2MB
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'link' => 'nullable|url', // Validasi untuk URL link
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
-    
-        // Get the id of the "Agen Perubahan" category
-        $category = ContentCategories::where('nama', 'Agen Perubahan')->first();
-    
-        // Check if category exists
+
+        $category = ContentCategories::where('nama', 'Berita')->first();
+
         if (!$category) {
             return response()->json(['message' => 'Category not found'], 404);
         }
-    
-        // Handle file upload to storage
+
         $filePath = $request->file('file')->store('uploads', 'public');
-    
-        // Create new content
+
         $content = new Content();
         $content->judul = $request->judul;
         $content->deskripsi = $request->deskripsi;
-        $content->file = $filePath; // Store the file path relative to storage/app
-        $content->id_kategori = $category->id; // Set category ID
-        $content->id_admin = Auth::user()->id; // Automatically get the authenticated user's ID
+        $content->file = $filePath;
+        $content->link = $request->link; // Simpan link jika ada
+        $content->id_kategori = $category->id;
+        $content->id_admin = Auth::user()->id;
         $content->status = $request->status;
-        $content->save(); // Save the content
-    
+        $content->save();
+
         return response()->json([
             'success' => true,
-            'message' => 'Content created successfully.',
+            'message' => 'Berita created successfully.',
             'data' => $content
         ]);
     }
-    
-    
 
     public function update(Request $request, $id)
     {
-        // Validate the incoming request data
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // File is optional in update
+            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'link' => 'nullable|url', // Validasi untuk URL link
+            'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
-    
-        // Find the content by ID
+
         $content = Content::find($id);
-        
-        // Check if content exists
+
         if (!$content) {
-            return response()->json(['message' => 'Content not found'], 404);
+            return response()->json(['message' => 'Berita not found'], 404);
         }
-    
-        // Check if category exists for 'Agen Perubahan'
-        $category = ContentCategories::where('nama', 'Agen Perubahan')->first();
+
+        $category = ContentCategories::where('nama', 'Berita')->first();
         if (!$category) {
             return response()->json(['message' => 'Category not found'], 404);
         }
-    
-        // Update fields with new data
+
         $content->judul = $request->judul;
         $content->deskripsi = $request->deskripsi;
-    
-        // Check if a new file has been uploaded
+        $content->link = $request->link; // Perbarui link jika ada
+
         if ($request->hasFile('file')) {
-            // Delete the old file from storage if it exists
             if ($content->file && Storage::disk('public')->exists($content->file)) {
                 Storage::disk('public')->delete($content->file);
             }
-            
-            // Upload the new file and update the file path
+
             $filePath = $request->file('file')->store('uploads', 'public');
             $content->file = $filePath;
         }
-    
-        $content->id_kategori = $category->id; // Ensure the category ID is set
-        $content->id_admin = Auth::user()->id; // Set admin ID to the authenticated user
+
+        $content->id_kategori = $category->id;
+        $content->id_admin = Auth::user()->id;
         $content->status = $request->status;
-        $content->save(); // Save the changes
-    
+        $content->save();
+
         return response()->json([
             'success' => true,
-            'message' => 'Content updated successfully.',
+            'message' => 'Berita updated successfully.',
             'data' => $content
         ]);
     }
-    
 
     public function destroy($id)
     {
-        // Find the content by ID
         $content = Content::find($id);
-        
-        // Check if content exists
+
         if (!$content) {
-            return response()->json(['message' => 'Content not found'], 404);
+            return response()->json(['message' => 'Berita not found'], 404);
         }
-    
-        // Delete the file from storage if it exists
+
         if ($content->file && Storage::disk('public')->exists($content->file)) {
             Storage::disk('public')->delete($content->file);
         }
-    
-        // Delete the content from the database
+
         $content->delete();
-    
+
         return response()->json([
             'success' => true,
-            'message' => 'Content deleted successfully.'
+            'message' => 'Berita deleted successfully.'
         ]);
     }
-    
-
-
 }

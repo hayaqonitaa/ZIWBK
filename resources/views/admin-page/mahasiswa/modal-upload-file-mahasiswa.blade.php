@@ -3,11 +3,20 @@
   <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
     <div class="modal-content p-3 p-md-5">
 
+
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
           <h3 class="mb-2">Upload Mahasiswa Excel</h3>
         </div>
+              <!-- Button untuk Download Template -->
+        <label for="file" class="form-label">Download Template</label>
+        <div class="text-start mb-3">
+          <a href="mahasiswa/download-template" class="btn btn-success">
+            Download Template Excel
+          </a>
+        </div>
+
         <form id="uploadExcelForm" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="file" class="form-label">Pilih File Excel</label>

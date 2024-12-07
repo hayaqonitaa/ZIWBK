@@ -17,8 +17,8 @@
             <input type="text" id="deskripsi" name="deskripsi" class="form-control" required />
           </div>
           <div class="col-12 col-md-12">
-            <label class="form-label" for="file">File</label>
-            <input type="file" id="file" name="file" class="form-control" required />
+            <label class="form-label" for="file">Logo</label>
+            <input type="file" id="file" name="file" class="form-control" accept="image/*" required />
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="status">Status</label>

@@ -31,9 +31,12 @@ class ProdiController extends Controller
   {
       // Validasi data yang dikirimkan
       $validatedData = $request->validate([
-          'nama' => 'required|string|max:255',
+          'nama' => 'required|unique:prodi,nama',
           'id_jurusan' => 'required|uuid',
-      ]);
+      ], [
+        'nama.unique' => 'Prodi sudah terdaftar.'
+      ]
+    );
 
       // Simpan data ke tabel jurusan
       $prodi = new Prodi();
