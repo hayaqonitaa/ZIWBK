@@ -121,8 +121,8 @@
                                 <img src="{{ asset('storage/' . $content->file) }}" alt="{{ $content->judul }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" />
                                 <div class="card-body bg-white">
                                     <h5 class="card-title">{{ $content->judul }}</h5>
-                                    <p class="card-text text-truncate">{{ Str::limit($content->deskripsi, 100, '...') }}</p>
-                                    <a href="{{ $content->link }}" target="_blank" class="btn btn-primary mt-auto">Baca Selengkapnya</a>
+                                    <p class="card-text text-truncate">{{ \Str::limit(strip_tags(str_replace('&nbsp;', ' ', $content->deskripsi)), 100, '...') }}</p>
+                                    <a href="{{ route('berita.show', $content->id) }}" target="_self" class="btn btn-primary">Lihat Selengkapnya</a>
                                 </div>
                             </div>
                         </div>

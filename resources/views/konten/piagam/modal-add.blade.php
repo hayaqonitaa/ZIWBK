@@ -13,7 +13,7 @@
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="deskripsi">Deskripsi</label>
-            <textarea id="deskripsi" name="deskripsi" class="form-control" required></textarea>
+            <textarea id="deskripsi" name="deskripsi" class="form-control"></textarea>
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="file">Gambar</label>

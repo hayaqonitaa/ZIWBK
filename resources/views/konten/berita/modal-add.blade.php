@@ -1,6 +1,5 @@
-<!-- Add Content Berita Modal -->
 <div class="modal fade" id="addContentBerita" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-simple modal-enable-otp modal-dialog-centered">
     <div class="modal-content p-3 p-md-5">
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -14,15 +13,11 @@
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="deskripsi">Deskripsi</label>
-            <textarea id="deskripsi" name="deskripsi" class="form-control" rows="3" required></textarea>
+            <textarea id="deskripsi" name="deskripsi" class="form-control"></textarea>
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="file">Gambar</label>
             <input type="file" id="file" name="file" class="form-control" accept="image/*" required />
-          </div>
-          <div class="col-12 col-md-12">
-            <label class="form-label" for="link">Link Berita</label>
-            <input type="url" id="link" name="link" class="form-control" required />
           </div>
           <div class="col-12 col-md-12">
             <label class="form-label" for="status">Status</label>
