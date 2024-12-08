@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Content Navbar - Berita')
+@section('title', 'Berita')
 
 @section('content')
 
