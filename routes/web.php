@@ -21,6 +21,7 @@ use App\Http\Controllers\admin_page\MahasiswaImportController;
 use App\Http\Controllers\admin_page\HasilSurveyController;
 
 use App\Http\Controllers\konten\ContentTimKerjaController;
+use App\Http\Controllers\konten\ContentTabelTimKerjaController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
 use App\Http\Controllers\konten\ContentLayananPengaduanController;
 use App\Http\Controllers\dashboard\Analytics;
@@ -260,6 +261,14 @@ Route::get('/content/tim_kerja/data', [ContentTimKerjaController::class, 'getTim
 Route::post('/content/tim_kerja/store', [ContentTimKerjaController::class, 'store'])->middleware('auth');
 Route::post('/content/tim_kerja/update/{id}', [ContentTimKerjaController::class, 'update'])->name('konten.tim_kerja.update')->middleware('auth');
 Route::delete('/content/tim_kerja/delete/{id}', [ContentTimKerjaController::class, 'destroy'])->name('konten.tim_kerja.delete')->middleware('auth');
+Route::get('/content/tim_kerja/data', [ContentTimKerjaController::class, 'getTimKerja'])->middleware('auth'); 
+
+
+Route::get('/content/tabel_tim_kerja', [ContentTabelTimKerjaController::class, 'index'])->name('konten.tabel_tim_kerja.index')->middleware('auth');
+Route::get('/content/tabel_tim_kerja/data', [ContentTabelTimKerjaController::class, 'getTabelTimKerja'])->name('konten.tabel_tim_kerja.data')->middleware('auth');
+Route::post('/content/tabel_tim_kerja/store', [ContentTabelTimKerjaController::class, 'store'])->middleware('auth');
+Route::post('/content/tabel_tim_kerja/update/{id}', [ContentTabelTimKerjaController::class, 'update'])->name('konten.tabel_tim_kerja.update')->middleware('auth');
+Route::delete('/content/tabel_tim_kerja/delete/{id}', [ContentTabelTimKerjaController::class, 'destroy'])->name('konten.tabel_tim_kerja.delete')->middleware('auth');
 
 
 Route::get('/content/standar_pelayanan', [ContentStandarPelayananController::class, 'index'])->name('konten.standar_pelayanan.index')->middleware('auth');
