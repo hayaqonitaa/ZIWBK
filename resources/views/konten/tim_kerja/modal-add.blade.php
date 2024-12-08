@@ -5,7 +5,7 @@
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
-          <h3 class="mb-2">Add Content Tim Kerja</h3>
+          <h3 class="mb-2">Add Content Surat Keputusan</h3>
         </div>
         <form id="addContentTimKerjaForm" class="row g-3">
           <div class="col-12 col-md-12">

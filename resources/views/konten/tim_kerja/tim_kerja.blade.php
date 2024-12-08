@@ -22,7 +22,7 @@ $configData = Helper::appClasses();
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Tim Kerja
+  <span class="text-muted fw-light">Dashboard /</span> Surat Keputusan
 </h4>
 
 <!-- Display success notification if exists -->
@@ -39,7 +39,7 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
   <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Tim Kerja</h5>
+    <h5 class="mb-0">Surat Keputusan</h5>
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentTimKerja">
       <i class="fa-solid fa-plus"></i>
     </button>
