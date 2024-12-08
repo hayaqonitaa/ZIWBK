@@ -11,19 +11,16 @@ class TimKerja extends Model
 
     protected $table = 'tim_kerja'; // Nama tabel di database
 
+    protected $keyType = 'string'; // UUID sebagai primary key
+    public $incrementing = false; // Non-incrementing primary key
+    
     protected $fillable = [
-        'judul',
-        'cabang',
-        'bidang',
-        'id_sk',
-        'file',
-        'status',
-        'created_by',
+        'id', 'nama', 'nip', 'jabatan', 'id_sk',
     ];
 
-    // Relasi dengan model User (untuk created_by)
-    public function createdBy()
+    // Relasi dengan tabel content
+    public function content()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(Content::class, 'id_sk');
     }
 }

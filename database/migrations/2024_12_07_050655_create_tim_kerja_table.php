@@ -9,16 +9,15 @@ class CreateTimKerjaTable extends Migration
     public function up(): void
     {
         Schema::create('tim_kerja', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul');
-            $table->string('cabang');
-            $table->string('bidang');
-            $table->unsignedBigInteger('id_sk'); // Foreign key jika diperlukan
-            $table->string('file');
-            $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
-            $table->unsignedBigInteger('created_by'); // ID admin pembuat data
-            $table->timestamps();
+            $table->uuid('id'); // Primary key
+            $table->string('nama'); // Nama anggota tim kerja
+            $table->string('nip'); // NIP anggota tim kerja
+            $table->string('jabatan'); // Jabatan anggota tim kerja
+            $table->uuid('id_sk'); // Foreign key ke tabel 'content'
+            $table->foreign('id_sk')->references('id')->on('content')->onDelete('cascade'); // Definisi foreign key
+            $table->timestamps(); // Timestamps for created_at and updated_at
         });
+        
     }
 
     public function down(): void
@@ -26,4 +25,4 @@ class CreateTimKerjaTable extends Migration
         Schema::dropIfExists('tim_kerja');
     }
 }
-;
+     ;
