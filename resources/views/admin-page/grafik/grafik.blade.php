@@ -15,14 +15,20 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('content')
-
 <!-- Layout Demo -->
 <div class="row">
   <!-- Bar Charts -->
   <div class="col-xl-12 col-12 mb-4">
     <div class="card">
-      <div class="card-header header-elements">
+      <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title mb-0">Grafik Survey</h5>
+        <div>
+          <select class="form-select w-auto" id="filterTahun" aria-label="Filter Tahun">
+            @foreach ($tahunKuisioner as $tahun)
+              <option value="{{ $tahun }}" {{ $tahun == \Carbon\Carbon::now()->year ? 'selected' : '' }}>{{ $tahun }}</option>
+            @endforeach
+          </select>        
+        </div>
       </div>
       <div class="card-body">
         <canvas id="barChart" class="chartjs" data-height="400"></canvas>
@@ -46,3 +52,5 @@ $configData = Helper::appClasses();
 </div>
 
 @endsection
+
+

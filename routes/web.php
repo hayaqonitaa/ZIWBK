@@ -243,7 +243,7 @@ Route::get('/hasil_survey', [HasilSurveyController::class, 'index'])->name('admi
 Route::get('/hasil_survey/data', [HasilSurveyController::class, 'getHasilSurvey'])->middleware('auth'); 
 
 Route::get('/grafik', [GrafikController::class, 'index'])->middleware('auth');
-Route::get('/grafik/data', [GrafikController::class, 'getSurveyData'])->middleware('auth');
+Route::get('/grafik/data/{tahun}', [GrafikController::class, 'getSurveyData'])->middleware('auth');
 
 Route::get('/content-categories', [ContentCategoriesController::class, 'index'])->name('admin-page.content_categories.index')->middleware('auth');
 Route::get('/content-categories/data', [ContentCategoriesController::class, 'getContentCategories'])->name('content-categories.data')->middleware('auth');
