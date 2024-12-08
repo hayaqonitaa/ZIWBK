@@ -331,7 +331,7 @@ Route::get('/content/berita', [ContentBeritaController::class, 'index'])->name('
 Route::get('/content/berita/data', [ContentBeritaController::class, 'getBerita'])->name('konten.berita.data')->middleware('auth');
 Route::post('/content/berita/store', [ContentBeritaController::class, 'store'])->name('konten.berita.store')->middleware('auth');
 Route::post('/content/berita/update/{id}', [ContentBeritaController::class, 'update'])->name('konten.berita.update')->middleware('auth');
-Route::delete('/content/berita/delete/{id}', [ContentBeritaController::class, 'destroy'])->name('konten.berita.delete')->middleware('auth');
+Route::delete('/content/berita/delete/{id}', [ContentBeritaController::class, 'destroy'])->name('konten.berita.destroy')->middleware('auth');
 
 Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
