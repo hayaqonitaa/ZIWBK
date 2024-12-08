@@ -21,6 +21,7 @@ use App\Http\Controllers\admin_page\MahasiswaImportController;
 use App\Http\Controllers\admin_page\HasilSurveyController;
 
 use App\Http\Controllers\konten\ContentTimKerjaController;
+use App\Http\Controllers\konten\ContentTabelTimKerjaController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
 use App\Http\Controllers\konten\ContentLayananPengaduanController;
 use App\Http\Controllers\dashboard\Analytics;
@@ -186,6 +187,7 @@ use App\Http\Controllers\konten\ContentBeritaController;
     // Main Page Route
     // Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/berita/{id}', [IndexController::class, 'show'])->name('berita.show');
 Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
 Route::get('/standar-pelayanan', [StandarPelayananController::class, 'index'])->name('standar-pelayanan');
 Route::get('/piagam', [PiagamController::class, 'index'])->name('piagam');
@@ -238,8 +240,7 @@ Route::get('/pembagian/data', [PembagianController::class, 'getPembagian'])->nam
 Route::post('/pembagian/kirim', [PembagianController::class, 'kirimEmail'])->name('pembagian.kirim')->middleware('auth');
 Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('admin-page.pembagian.pemetaan')->middleware('auth');
 
-Route::get('/hasil_survey', [HasilSurveyController::class, 'index'])->name('admin-page.hasil_survey.hasil_survey')->middleware('auth');
-Route::get('/hasil_survey/data', [HasilSurveyController::class, 'getHasilSurvey'])->middleware('auth'); 
+ 
 
 
 Route::get('/content-categories', [ContentCategoriesController::class, 'index'])->name('admin-page.content_categories.index')->middleware('auth');

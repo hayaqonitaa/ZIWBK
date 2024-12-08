@@ -20,7 +20,7 @@
           <!-- Deskripsi -->
           <div class="col-12">
             <label class="form-label" for="editDeskripsi">Deskripsi</label>
-            <textarea id="editDeskripsi" name="deskripsi" class="form-control" rows="3" required></textarea>
+            <textarea id="editDeskripsi" name="deskripsi" class="form-control"></textarea>
           </div>
 
           <!-- Gambar -->
@@ -35,11 +35,11 @@
             </div>
           </div>
 
-          <!-- Link Berita -->
+          <!-- Link Berita
           <div class="col-12">
-            <label class="form-label" for="editLink">Link Berita</label>
-            <input type="url" id="editLink" name="link" class="form-control" required />
-          </div>
+            <label class="form-label" for="editLink">Dibuat oleh</label>
+            <input type="text" id="editLink" name="link" class="form-control" required />
+          </div> -->
 
           <!-- Status -->
           <div class="col-12">

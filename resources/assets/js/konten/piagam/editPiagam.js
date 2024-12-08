@@ -5,7 +5,7 @@ $(document).on('click', '.edit-btn', function () {
     var id = button.data('id');
     $('#editContentPiagamId').val(id);
     $('#editJudul').val(button.data('judul'));
-    $('#editDeskripsi').val(button.data('deskripsi'));
+    tinymce.get('editDeskripsi').setContent(button.data('deskripsi'));
 
     // Show the current file or image
     var file = button.data('file');

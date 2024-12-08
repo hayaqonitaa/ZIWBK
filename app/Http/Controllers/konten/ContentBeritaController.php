@@ -34,7 +34,7 @@ class ContentBeritaController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'link' => 'nullable|url', // Validasi untuk URL link
+            // 'link' => 'nullable|url', // Validasi untuk URL link
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
 
@@ -50,7 +50,7 @@ class ContentBeritaController extends Controller
         $content->judul = $request->judul;
         $content->deskripsi = $request->deskripsi;
         $content->file = $filePath;
-        $content->link = $request->link; // Simpan link jika ada
+        // $content->link = $request->link; // Simpan link jika ada
         $content->id_kategori = $category->id;
         $content->id_admin = Auth::user()->id;
         $content->status = $request->status;
@@ -86,7 +86,7 @@ class ContentBeritaController extends Controller
 
         $content->judul = $request->judul;
         $content->deskripsi = $request->deskripsi;
-        $content->link = $request->link; // Perbarui link jika ada
+        // $content->link = $request->link; // Perbarui link jika ada
 
         if ($request->hasFile('file')) {
             if ($content->file && Storage::disk('public')->exists($content->file)) {

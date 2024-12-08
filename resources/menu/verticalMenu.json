@@ -45,6 +45,11 @@
         },
         {
           "url": "/content/tim_kerja",
+          "name": "Surat Keputusan",
+          "slug": ""
+        },
+        {
+          "url": "/content/tabel_tim_kerja",
           "name": "Tim Kerja",
           "slug": ""
         },
