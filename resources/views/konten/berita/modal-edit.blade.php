@@ -1,6 +1,6 @@
 <!-- Edit Content Berita Modal -->
 <div class="modal fade" id="editContentBerita" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-simple modal-enable-otp modal-dialog-centered">
     <div class="modal-content p-3 p-md-5">
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
