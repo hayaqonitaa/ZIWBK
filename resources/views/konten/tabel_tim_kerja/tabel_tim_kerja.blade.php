@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Content Navbar - Berita')
+@section('title', 'Tabel Tim Kerja')
 
 @section('content')
 
@@ -15,14 +15,14 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/konten/berita/berita.js'])
-@vite(['resources/assets/js/konten/berita/addBerita.js'])
-@vite(['resources/assets/js/konten/berita/editBerita.js'])
+@vite(['resources/assets/js/konten/tabel_tim_kerja/TabelTimKerja.js'])
+@vite(['resources/assets/js/konten/tabel_tim_kerja/addTabelTimKerja.js'])
+@vite(['resources/assets/js/konten/tabel_tim_kerja/editTabelTimKerja.js'])
 @endsection
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Dashboard /</span> Berita
+  <span class="text-muted fw-light">Dashboard /</span> Tabel Tim Kerja
 </h4>
 
 <!-- Display success notification if exists -->
@@ -39,8 +39,8 @@ $configData = Helper::appClasses();
 <!-- Scrollable -->
 <div class="card">
   <div class="d-flex justify-content-between align-items-center card-header">
-    <h5 class="mb-0">Berita</h5>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentBerita">
+    <h5 class="mb-0">Tim Kerja</h5>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContentTabelTimKerja">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
@@ -50,12 +50,10 @@ $configData = Helper::appClasses();
       <thead>
         <tr>
             <th>No.</th>
-            <th>Judul</th>
-            <!-- <th>Deskripsi</th> -->
-            <th>Gambar</th>
-            <!-- <th>Link</th> -->
-            <th>Status</th>
-            <th>Created By</th>
+            <th>Nama</th>
+            <th>NIP</th>
+            <th>Jabatan</th>
+            <th>Surat Keputusan (SK)</th>
         </tr>
       </thead>
     </table>
@@ -63,7 +61,6 @@ $configData = Helper::appClasses();
 </div>
 <!--/ Scrollable -->
 
-@include('konten/berita/modal-add')
-@include('konten/berita/modal-edit')
-
+@include('konten/tabel_tim_kerja/modal-add')
+@include('konten/tabel_tim_kerja/modal-edit')
 @endsection
