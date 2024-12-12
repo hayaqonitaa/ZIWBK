@@ -4,7 +4,8 @@ namespace App\Http\Controllers\user_page;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Content;
+use App\Models\TimKerja; // Model TimKerja
+use App\Models\Content; // Model Content (SK)
 
 class TimController extends Controller
 {
@@ -17,14 +18,19 @@ class TimController extends Controller
             })->get();
 
         // Retrieve "Tim Kerja" content
-        $timKerjaContents = Content::where('status', 'Aktif')
-            ->whereHas('content_categories', function ($query) {
-                $query->where('nama', 'Tim Kerja');
-            })->get();
+        $timKerjaContents = TimKerja::with('content') // Memuat data SK terkait
+            ->get();
+
+        // Retrieve Surat Keputusan (SK) content
+        $suratKeputusanContents = Content::where('status', 'Aktif')
+        ->whereHas('content_categories', function ($query) {
+            $query->where('nama', 'Tim Kerja');
+        })->get();
+
 
         $pageConfigs = ['myLayout' => 'front'];
 
-        // Pass both contents to the view
-        return view('user_page.tim', compact('agenPerubahanContents', 'timKerjaContents'), ['pageConfigs' => $pageConfigs]);
+        // Pass all contents to the view
+        return view('user_page.tim', compact('agenPerubahanContents', 'timKerjaContents', 'suratKeputusanContents'), ['pageConfigs' => $pageConfigs]);
     }
 }

@@ -30,9 +30,6 @@ $activeClass = in_array($currentRouteName, $activeRoutes) ? 'active' : '';
             <a class="nav-link fw-medium {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ url('/') }}">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('hasil-survey*') ? 'active' : '' }}" href="{{ url('hasil-survey') }}">Hasil Survey</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link {{ request()->is('tim*') ? 'active' : '' }}" href="{{ url('tim') }}">Tim</a>
           </li>
           <!-- Dropdown untuk Layanan -->

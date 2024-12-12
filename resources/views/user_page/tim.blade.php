@@ -190,17 +190,45 @@
     <div class="container text-center" id="timKerja">
         <h3 class="mb-4">Tim Kerja</h3>
         <hr>
+      <!-- List of Team Members (Tim Kerja) -->
 
         <!-- PDF display for Tim Kerja -->
+        
+        <!-- PDF display for Tim Kerja (SK) -->
+              <!-- PDF display for Tim Kerja -->
         <div class="row justify-content-center">
-            @foreach($timKerjaContents as $content)
-                <div class="col-md-8 mb-4">
-                    <div class="pdf-container">
-                        <embed src="{{ asset('storage/' . $content->file) }}" type="application/pdf" width="100%" height="500px">
-                    </div>
-                    <p class="text-center">{{ $content->judul }}</p>
+        @foreach($suratKeputusanContents as $content)
+        <div class="col-md-8 mb-4">
+            <!-- Cek apakah ada anggota tim yang cocok dengan id_sk -->
+            @php
+                $timWithSK = $timKerjaContents->filter(function($tim) use ($content) {
+                    return $tim->id_sk == $content->id;
+                });
+            @endphp
+
+            @if($timWithSK->isNotEmpty())
+                <div class="row justify-content-center mb-4">
+                    <ul class="list-group">
+                        @foreach($timWithSK as $tim)
+                            <li class="list-group-item">
+                                <strong>{{ $tim->nama }}</strong><br>
+                                <span>{{ $tim->jabatan }}</span><br>
+                                <span>{{ $tim->nip }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-            @endforeach
+            @else
+                <p class="text-center">Tidak ada anggota tim untuk SK ini</p>
+            @endif
+
+            <!-- Tampilkan PDF -->
+            <div class="pdf-container">
+                <embed src="{{ asset('storage/' . $content->file) }}" type="application/pdf" width="100%" height="500px">
+            </div>
+            <p class="text-center">{{ $content->judul }}</p>
+        </div>
+    @endforeach
         </div>
     </div>
 </div>
