@@ -15,29 +15,19 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('content')
-
 <!-- Layout Demo -->
 <div class="row">
   <!-- Bar Charts -->
   <div class="col-xl-12 col-12 mb-4">
     <div class="card">
-      <div class="card-header header-elements">
-        <h5 class="card-title mb-0">Latest Statistics</h5>
-        <div class="card-action-element ms-auto py-0">
-          <div class="dropdown">
-            <button type="button" class="btn dropdown-toggle px-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-calendar"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Today</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Yesterday</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last 7 Days</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last 30 Days</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Current Month</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last Month</a></li>
-            </ul>
-          </div>
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Grafik Survey</h5>
+        <div>
+          <select class="form-select w-auto" id="filterTahun" aria-label="Filter Tahun">
+            @foreach ($tahunKuisioner as $tahun)
+              <option value="{{ $tahun }}" {{ $tahun == \Carbon\Carbon::now()->year ? 'selected' : '' }}>{{ $tahun }}</option>
+            @endforeach
+          </select>        
         </div>
       </div>
       <div class="card-body">
@@ -45,7 +35,22 @@ $configData = Helper::appClasses();
       </div>
     </div>
   </div>
-  <!-- /Bar Charts -->
 </div>
-<!--/ Layout Demo -->
+
+<!-- Tabel Pertanyaan -->
+<div class="row">
+  <div class="col-xl-12 col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Daftar Pertanyaan</h5>
+      </div>
+      <div class="card-body">
+        <div id="pertanyaanTable" class="table-responsive"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
+
+

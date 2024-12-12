@@ -16,4 +16,8 @@ class HasilSurvey extends Model
 
     public $timestamps = true;
 
+    public function hasil()
+    {
+        return $this->belongsTo(Kuisioner::class, ‘nama_kuisioner’);
+    }
 }

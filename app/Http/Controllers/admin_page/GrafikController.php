@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers\admin_page;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Kuesioner;
+use App\Models\Admin\HasilSurvey;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class GrafikController extends Controller
 {
     public function index()
     {
-        return view('admin-page.grafik.grafik');
+        $tahunKuisioner = Kuesioner::distinct()->pluck('tahun');
+
+        return view('admin-page.grafik.grafik', compact('tahunKuisioner'));
     }
 
-    public function getSurveyData()
+    public function getSurveyData($tahun)
     {
-        $data = DB::table('hasil_survey')
-            ->where('semester', 3)
-            ->select('pertanyaan', 'jawaban')
+        $data = HasilSurvey::select('hasil_survey.pertanyaan', 'hasil_survey.jawaban')
+            ->join('kuesioner', 'hasil_survey.kuisioner_id', '=', 'kuesioner.id')
+            ->where('kuesioner.tahun', '=', $tahun)
             ->get();
-
+    
         return response()->json($data);
     }
 }
