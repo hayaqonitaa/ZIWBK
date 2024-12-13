@@ -241,6 +241,7 @@ Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('admin-page.
 
 Route::get('/hasil_survey', [HasilSurveyController::class, 'index'])->name('admin-page.hasil_survey.hasil_survey')->middleware('auth');
 Route::get('/hasil_survey/data', [HasilSurveyController::class, 'getHasilSurvey'])->middleware('auth'); 
+Route::delete('/hasil_survey/delete/{id}', [HasilSurveyController::class, 'destroy'])->name('hasil_survey.destroy')->middleware('auth');
 
 Route::get('/grafik', [GrafikController::class, 'index'])->middleware('auth');
 Route::get('/grafik/data/{tahun}', [GrafikController::class, 'getSurveyData'])->middleware('auth');

@@ -27,4 +27,15 @@ class HasilSurveyController extends Controller
           return response()->json($mahasiswa);
     
       }
+
+      public function destroy($id)
+    {
+        $hasil_survey = HasilSurvey::findOrFail($id);
+        $hasil_survey->delete();
+
+        // Response JSON sukses
+        return response()->json([
+            'message' => 'Hasil Survey berhasil dihapus!'
+        ]);
+    }
 }
