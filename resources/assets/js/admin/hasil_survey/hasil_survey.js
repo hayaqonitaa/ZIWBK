@@ -30,7 +30,7 @@ $(function () {
           orderable: false // Kolom ini tidak bisa diurutkan
         },
         { data: 'nim', title: 'NIM' },
-        { data: 'nama_kuesioner', title: 'Kuesioner' },
+        { data: 'kuesioner.judul', title: 'Kuesioner' },
         { data: 'pertanyaan', title: 'Pertanyaan' },
         { data: 'jawaban', title: 'Jawaban' },
         { data: 'semester', title: 'Semester' },

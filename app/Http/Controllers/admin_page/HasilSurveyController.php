@@ -14,10 +14,12 @@ class HasilSurveyController extends Controller
         return view('admin-page.hasil_survey.hasil_survey');
     }
 
-    public function getHasilSurvey () {
-        $hasil_survey = HasilSurvey::all();
-        return response()->json(['data' => $hasil_survey]); // ini ke admin/mahasiswa.js
-      }
+    public function getHasilSurvey()
+    {
+        $hasil_survey = HasilSurvey::with('kuesioner')->get();
+        return response()->json(['data' => $hasil_survey]);
+    }
+    
     
       public function getMahasiswa() // New method for jurusan data
       {
