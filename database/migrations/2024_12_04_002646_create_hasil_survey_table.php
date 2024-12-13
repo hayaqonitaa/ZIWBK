@@ -17,12 +17,9 @@ return new class extends Migration
             $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
             $table->uuid('kuisioner_id');
             $table->foreign('kuisioner_id')->references('id')->on('kuesioner')->onDelete('cascade'); // Relasi ke tabel kuesioner
-            
-            $table->string('nama_kuesioner');
             $table->text('pertanyaan');
             $table->char('jawaban', 2);
             $table->char('semester', 2);
-            
             $table->timestamps();
         });
     }
