@@ -14,7 +14,7 @@ class GrafikController extends Controller
     {
         $tahunKuisioner = Kuesioner::distinct()->pluck('tahun');
 
-        return view('admin-page.grafik.grafik', compact('tahunKuisioner'));
+        return view('admin-page.index', compact('tahunKuisioner'));
     }
 
     public function getSurveyData($tahun)
