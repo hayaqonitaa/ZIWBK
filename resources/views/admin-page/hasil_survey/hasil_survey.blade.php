@@ -16,6 +16,7 @@ $configData = Helper::appClasses();
 <!-- Page Scripts -->
 @section('page-script')
 @vite(['resources/assets/js/admin/hasil_survey/hasil_survey.js'])
+@vite(['resources/assets/js/admin/hasil_survey/delete_hasil_survey.js'])
 <!-- @vite(['resources/assets/js/admin/kuesioner/addKuesioner.js'])
 @vite(['resources/assets/js/admin/kuesioner/editKuesioner.js']) -->
 @endsection
