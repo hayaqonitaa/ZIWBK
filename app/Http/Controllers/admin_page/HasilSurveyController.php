@@ -5,13 +5,22 @@ namespace App\Http\Controllers\admin_page;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\HasilSurvey;
 use App\Models\Admin\Mahasiswa;
+use App\Models\Admin\Kuesioner;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\HasilSurveyImport;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class HasilSurveyController extends Controller
 {
     public function index()
     {
-        return view('admin-page.hasil_survey.hasil_survey');
+        // Ambil semua hasil survey dan relasi dengan mahasiswa dan kuesioner
+        $hasil_survey = HasilSurvey::with(['kuesioner'])->get();
+
+        // Kirim data hasil survey ke view
+        return view('admin-page.hasil_survey.hasil_survey', compact('hasil_survey'));
     }
 
     public function getHasilSurvey()
@@ -38,4 +47,19 @@ class HasilSurveyController extends Controller
             'message' => 'Hasil Survey berhasil dihapus!'
         ]);
     }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+
+        $import = new HasilSurveyImport();
+        Excel::import($import, $request->file('file'));
+
+        return back()->with('success', 'Data Hasil Survey berhasil diimport.');
+    }
+
+    
+    
 }

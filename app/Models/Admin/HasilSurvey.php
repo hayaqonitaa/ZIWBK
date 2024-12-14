@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class HasilSurvey extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'hasil_survey'; 
 
     // Kolom
@@ -18,6 +18,7 @@ class HasilSurvey extends Model
 
     public function kuesioner()
     {
+        return $this->belongsTo(Kuesioner::class, 'kuisioner_id');
         return $this->belongsTo(Kuesioner::class, 'kuisioner_id');
     }
     
