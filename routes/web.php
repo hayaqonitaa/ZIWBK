@@ -31,6 +31,7 @@ use App\Http\Controllers\user_page\PiagamController;
 use App\Http\Controllers\konten\ContentStandarPelayananController;
 use App\Http\Controllers\konten\ContentPiagamController;
 use App\Http\Controllers\konten\ContentBeritaController;
+use App\Http\Controllers\authentications\LoginCover;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
