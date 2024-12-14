@@ -20,7 +20,9 @@ use App\Http\Controllers\admin_page\UserController;
 use App\Http\Controllers\admin_page\MahasiswaImportController;
 use App\Http\Controllers\admin_page\HasilSurveyController;
 use App\Http\Controllers\admin_page\GrafikController;
-use App\Http\Controllers\admin_page\ContentCategoriesController;
+use App\Http\Controllers\authentications\LoginCover;
+
+
 
 use App\Http\Controllers\konten\ContentTimKerjaController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
@@ -31,15 +33,25 @@ use App\Http\Controllers\user_page\PiagamController;
 use App\Http\Controllers\konten\ContentStandarPelayananController;
 use App\Http\Controllers\konten\ContentPiagamController;
 use App\Http\Controllers\konten\ContentBeritaController;
+use App\Http\Controllers\pages\MiscError;
+
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/hasil-survey', [HasilSurvey::class, 'index'])->name('hasil-survey');
 Route::get('/standar-pelayanan', [StandarPelayananController::class, 'index'])->name('standar-pelayanan');
 Route::get('/piagam', [PiagamController::class, 'index'])->name('piagam');
 Route::get('/layanan-pengaduan', [LayananPengaduanController::class, 'index']);
 Route::get('/tim', [TimController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
+Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
+
+
+Route::get('/hasil-survey', [HasilSurveyController::class, 'index'])->name('hasil_survey.index')->middleware('auth');
+Route::post('/hasil-survey/import', [HasilSurveyController::class, 'import'])->name('hasil_survey.import')->middleware('auth');
+Route::get('/api/hasil-survey', [HasilSurveyController::class, 'getHasilSurvey'])->middleware('auth');
+Route::get('/api/mahasiswa', [HasilSurveyController::class, 'getMahasiswa'])->middleware('auth');
+Route::get('/api/kuesioner', [HasilSurveyController::class, 'getKuesioner'])->middleware('auth');
+Route::post('/hasil-survey/import', [HasilSurveyController::class, 'uploadExcel'])->name('hasil_survey.import')->middleware('auth');
 
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout')->middleware('auth');
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
@@ -87,6 +99,7 @@ Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('admin-page.
 Route::get('/hasil_survey', [HasilSurveyController::class, 'index'])->name('admin-page.hasil_survey.hasil_survey')->middleware('auth');
 Route::get('/hasil_survey/data', [HasilSurveyController::class, 'getHasilSurvey'])->middleware('auth'); 
 Route::delete('/hasil_survey/delete/{id}', [HasilSurveyController::class, 'destroy'])->name('hasil_survey.destroy')->middleware('auth');
+Route::post('/import-hasil-survey', [HasilSurveyController::class, 'import'])->name('import-hasil-survey');
 
 Route::get('/grafik', [GrafikController::class, 'index'])->middleware('auth');
 Route::get('/grafik/data/{tahun}', [GrafikController::class, 'getSurveyData'])->middleware('auth');
@@ -182,3 +195,6 @@ Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard
 Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
 // locale
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+
+
+Route::get('/berita-show/{id}', [IndexController::class, 'show'])->name('berita.show');

@@ -18,7 +18,7 @@ class MahasiswaSeeder extends Seeder
             $mahasiswaData = [
                 [
                     'id' => Str::uuid(),
-                    'nim' => '231511000',
+                    'nim' => '231511008',
                     'nama' => 'Dafni Lanahtadya',
                     'email' => 'dafni@example.com',
                     'id_prodi' => $prodi->id,
@@ -30,6 +30,15 @@ class MahasiswaSeeder extends Seeder
                     'nim' => '231511001',
                     'nama' => 'Aisya Naomi',
                     'email' => 'aisyah@example.com',
+                    'id_prodi' => $prodi->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'id' => Str::uuid(),
+                    'nim' => '231511013',
+                    'nama' => 'Haya Qonita Amani',
+                    'email' => 'haya@example.com',
                     'id_prodi' => $prodi->id,
                     'created_at' => now(),
                     'updated_at' => now(),

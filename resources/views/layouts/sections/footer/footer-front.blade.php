@@ -23,9 +23,6 @@
               <a href="{{ url('agen-perubahan') }}" target="_blank" class="footer-link">Agen Perubahan</a>
             </li>
             <li class="mb-2">
-              <a href="{{ url('hasil-survey') }}" target="_blank" class="footer-link">Ringkasan Hasil Survey</a>
-            </li>
-            <li class="mb-2">
               <a href="{{ url('standar-pelayanan') }}" target="_blank" class="footer-link">Standar Pelayanan</a>
             </li>
             <li class="mb-2">
