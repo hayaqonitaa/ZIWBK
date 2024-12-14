@@ -21,6 +21,8 @@ use App\Http\Controllers\admin_page\MahasiswaImportController;
 use App\Http\Controllers\admin_page\HasilSurveyController;
 use App\Http\Controllers\admin_page\GrafikController;
 
+
+
 use App\Http\Controllers\konten\ContentTimKerjaController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
 use App\Http\Controllers\konten\ContentLayananPengaduanController;
@@ -195,6 +197,12 @@ Route::get('/tim', [TimController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
 
+Route::get('/hasil-survey', [HasilSurveyController::class, 'index'])->name('hasil_survey.index');
+Route::post('/hasil-survey/import', [HasilSurveyController::class, 'import'])->name('hasil_survey.import');
+Route::get('/api/hasil-survey', [HasilSurveyController::class, 'getHasilSurvey']);
+Route::get('/api/mahasiswa', [HasilSurveyController::class, 'getMahasiswa']);
+Route::get('/api/kuesioner', [HasilSurveyController::class, 'getKuesioner']);
+Route::post('/hasil-survey/import', [HasilSurveyController::class, 'uploadExcel'])->name('hasil_survey.import');
 
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout')->middleware('auth');
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');

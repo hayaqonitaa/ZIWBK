@@ -8,16 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class HasilSurvey extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'hasil_survey'; 
 
-    // Kolom
-    protected $fillable = ['id', 'nim', 'nama_kuesioner', 'pertanyaan', 'jawaban', 'semester'];
+    // Kolom yang dapat diisi
+    protected $fillable = ['nim', 'kuisioner_id', 'pertanyaan', 'jawaban', 'semester'];
 
     public $timestamps = true;
 
-    public function hasil()
+    // Relasi dengan Mahasiswa
+    public function mahasiswa()
     {
-        return $this->belongsTo(Kuisioner::class, ‘nama_kuisioner’);
+        return $this->belongsTo(Mahasiswa::class, 'nim', 'nim');
+    }
+
+    // Relasi dengan Kuesioner
+    public function kuesioner()
+    {
+        return $this->belongsTo(Kuesioner::class, 'kuisioner_id');
     }
 }
