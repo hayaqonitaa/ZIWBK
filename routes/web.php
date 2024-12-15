@@ -51,7 +51,6 @@ Route::post('/hasil-survey/import', [HasilSurveyController::class, 'import'])->n
 Route::get('/api/hasil-survey', [HasilSurveyController::class, 'getHasilSurvey'])->middleware('auth');
 Route::get('/api/mahasiswa', [HasilSurveyController::class, 'getMahasiswa'])->middleware('auth');
 Route::get('/api/kuesioner', [HasilSurveyController::class, 'getKuesioner'])->middleware('auth');
-Route::post('/hasil-survey/import', [HasilSurveyController::class, 'uploadExcel'])->name('hasil_survey.import')->middleware('auth');
 
 Route::post('/auth/logout', [LoginCover::class, 'logout'])->name('auth-logout')->middleware('auth');
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');

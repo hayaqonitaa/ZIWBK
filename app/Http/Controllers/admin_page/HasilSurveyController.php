@@ -49,16 +49,22 @@ class HasilSurveyController extends Controller
     }
 
     public function import(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|mimes:xlsx,csv',
-        ]);
+{
+    $request->validate([
+        'file' => 'required|mimes:xlsx,csv',
+    ]);
 
-        $import = new HasilSurveyImport();
-        Excel::import($import, $request->file('file'));
+    $import = new HasilSurveyImport();
+    Excel::import($import, $request->file('file'));
 
-        return back()->with('success', 'Data Hasil Survey berhasil diimport.');
-    }
+    // Kirim pesan keberhasilan dan error jika ada
+    return response()->json([
+        'message' => 'Proses impor selesai.',
+        'errors' => $import->getErrors(),
+        'surveyAdded' => $import->getSurveyAdded(),
+    ]);
+}
+
 
     
     
