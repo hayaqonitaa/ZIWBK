@@ -2,103 +2,71 @@
 
 @section('title', 'Hasil Survey')
 
-<!-- Vendor Styles -->
-@section('vendor-style')
-@vite([
-  'resources/assets/vendor/libs/nouislider/nouislider.scss',
-  'resources/assets/vendor/libs/swiper/swiper.scss'
-])
-@endsection
+@section('content')
 
-<!-- Page Styles -->
-@section('page-style')
-@vite(['resources/assets/vendor/scss/pages/front-page-landing.scss'])
-@endsection
+@php
+$configData = Helper::appClasses();
+@endphp
 
 <!-- Vendor Scripts -->
 @section('vendor-script')
-@vite([
-  'resources/assets/vendor/libs/nouislider/nouislider.js',
-  'resources/assets/vendor/libs/swiper/swiper.js'
-])
+@vite(['resources/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js'])
 @endsection
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/front-page-landing.js'])
-<script>
-  // JavaScript code goes here
-  document.addEventListener('DOMContentLoaded', function() {
-    const yearSelect = document.getElementById('yearSelect'); // Ambil elemen dropdown tahun
-    const pdfEmbed = document.getElementById('pdfEmbed'); // Ambil elemen embed PDF
-    const basePdfPath = "{{ asset('file/hasilsurvey') }}"; // Jalur dasar ke file PDF
-
-    yearSelect.addEventListener('change', function() {
-      const selectedYear = yearSelect.value; // Dapatkan nilai tahun yang dipilih
-      const pdfSrc = `${basePdfPath}_${selectedYear}.pdf`; // Jalur PDF yang dihasilkan
-
-      // Periksa apakah file PDF ada dengan membuat permintaan fetch
-      fetch(pdfSrc)
-        .then(response => {
-          if (response.ok) {
-            pdfEmbed.src = pdfSrc; // Ubah sumber PDF
-          } else {
-            alert(`PDF untuk tahun ${selectedYear} tidak tersedia.`); // Tampilkan peringatan
-            pdfEmbed.src = ''; // Kosongkan sumber PDF
-          }
-        })
-        .catch(() => {
-          alert(`PDF untuk tahun ${selectedYear} tidak tersedia.`); // Tampilkan peringatan jika ada kesalahan
-          pdfEmbed.src = ''; // Kosongkan sumber PDF
-        });
-    });
-  });
-</script>
+@vite(['resources/assets/js/admin/hasil_survey/hasil_survey.js'])
+@vite(['resources/assets/js/admin/hasil_survey/delete_hasil_survey.js'])
+<!-- @vite(['resources/assets/js/admin/kuesioner/addKuesioner.js'])
+@vite(['resources/assets/js/admin/kuesioner/editKuesioner.js']) -->
 @endsection
 
 @section('content')
-<div data-bs-spy="scroll" class="scrollspy-example">
-    <div class="header-container" style="position: relative; margin-top: 100px;">
-        <div class="container-fluid px-0">
-            <div class="mb-4">
-                <!-- Gambar Header dengan Penanda -->
-                <div class="header">
-                    <img src="{{ asset('images/Polban.png') }}" alt="headerpolban" class="img-fluid" />
+<h4 class="py-3 mb-4">
+  <span class="text-muted fw-light">Dashboard /</span> Hasil Survey
+</h4>
 
-                    <div class="text-box">
-                        <!-- Kotak Kuning -->
-                        <div class="yellow-box"></div>
-                        <!-- Tulisan -->
-                        <span class="zi-wbk-text">HASIL SURVEY</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@if(session('success'))
+  <div class="alert alert-dismissible d-flex align-items-center bg-label-info mb-0 show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+    <i class="fas fa-check-circle me-2"></i>
+    <div>{{ session('success') }}</div>
+    <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
+
+<!-- Import form -->
+<div class="mb-4">
+<form id="importForm" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="file">Pilih File</label>
+    <input type="file" name="file" id="file" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Import</button>
+</form>
+
+
 </div>
 
-    <!-- Judul Standar Pelayanan -->
-    <div class="container text-center" id="hasilsurvey">
-      <h3 class="mb-4">Hasil Survey</h3>
-      <hr>
-      <div class="row justify-content-center align-items-start">
-        <div class="col-md-8">
-          <!-- Embed PDF -->
-          <embed id="pdfEmbed" src="{{ asset('file/hasilsurvey_2021.pdf') }}" type="application/pdf" width="100%" height="600px" />
-        </div>
-        <div class="col-md-4">
-          <!-- Dropdown Tahun -->
-          <label for="yearSelect" style="font-weight: bold;">Pilih Tahun:</label>
-          <select id="yearSelect" class="form-select mb-4">
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <!-- Tambahkan opsi tahun sesuai kebutuhan -->
-          </select>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Data Table -->
+<div class="card">
+  <div class="card-datatable text-nowrap">
+    <table class="dt-scrollableTable table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>NIM</th>
+          <th>Kuesioner</th>
+          <th>Pertanyaan</th>
+          <th>Jawaban</th>
+          <th>Semester</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 </div>
+
+@endsection
+
+@section('page-script')
+@vite(['resources/assets/js/admin/hasil_survey/hasil_survey.js'])
 @endsection

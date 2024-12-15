@@ -33,7 +33,7 @@ class ContentBeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
             // 'link' => 'nullable|url', // Validasi untuk URL link
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
@@ -68,7 +68,7 @@ class ContentBeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'link' => 'nullable|url', // Validasi untuk URL link
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);

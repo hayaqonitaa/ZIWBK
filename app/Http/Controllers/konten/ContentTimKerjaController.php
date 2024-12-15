@@ -32,7 +32,7 @@ class ContentTimKerjaController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'file' => 'required|mimes:pdf|max:2048', // Change to accept only PDF files
+            'file' => 'required|mimes:pdf|max:5120', // Change to accept only PDF files
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
     
@@ -64,7 +64,7 @@ class ContentTimKerjaController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'file' => 'nullable|mimes:pdf|max:2048', // Change to accept only PDF files
+            'file' => 'nullable|mimes:pdf|max:5120', // Change to accept only PDF files
         ]);
     
         $content = Content::find($id);

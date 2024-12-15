@@ -36,14 +36,15 @@ $configData = Helper::appClasses();
 
 <!-- Import form -->
 <div class="mb-4">
-  <form action="{{ route('import-hasil-survey') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-      <label for="file">Import Hasil Survey</label>
-      <input type="file" name="file" class="form-control" accept=".xlsx,.csv" required>
-    </div>
-    <button type="submit" class="btn btn-primary mt-2">Import</button>
-  </form>
+<form id="importForm" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="file">Pilih File</label>
+    <input type="file" name="file" id="file" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Import</button>
+</form>
+
+
 </div>
 
 <!-- Data Table -->

@@ -16,10 +16,25 @@ $(document).on('click', '.edit-btn', function () {
     $('#currentPdfFile').text(pdfFileName);
 
     // If the image file exists, display it
-    if (deskripsi) {
-        $('#currentImageFile').attr('src', `/storage/${deskripsi}`).show();
+    // URL PDF
+    var file = button.data('pdf') || '';
+    if (file) {
+        $('#currentPdfFile')
+            .attr('href', `/storage/${file}`) // Pastikan URL lengkap
+            .text('Lihat PDF')
+            .show();
     } else {
-        $('#currentImage').hide();
+        $('#currentPdfFile').hide(); // Sembunyikan jika tidak ada PDF
+    }
+
+    // URL Gambar
+    var deskripsi = button.data('image') || '';
+    if (deskripsi) {
+        $('#currentImageFile')
+            .attr('src', `/storage/${deskripsi}`) // Pastikan URL lengkap
+            .show();
+    } else {
+        $('#currentImageFile').hide();
     }
 
     // Retrieve and show the current status
@@ -55,7 +70,7 @@ $('#editContentStandarPelayananForm').on('submit', function (e) {
 
 // Show alert message
 function showAlert(message) {
-    var alertDiv = $(`
+    var alertDiv = $(` 
         <div class="alert alert-success" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
             <i class="fas fa-check-circle me-2"></i>
             ${message}

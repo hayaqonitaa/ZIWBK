@@ -35,7 +35,7 @@ class ContentAgenPerubahanController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Max file size 2MB
+            'file' => 'required|image|mimes:jpeg,png,jpg|max:5120', // Max file size 2MB
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
     
@@ -75,7 +75,7 @@ class ContentAgenPerubahanController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // File is optional in update
+            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120', // File is optional in update
         ]);
     
         // Find the content by ID

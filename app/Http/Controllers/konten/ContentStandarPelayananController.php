@@ -34,8 +34,8 @@ class ContentStandarPelayananController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'pdf' => 'required|file|mimes:pdf|max:2048',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pdf' => 'required|file|mimes:pdf|max:5120',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
     
@@ -69,8 +69,8 @@ class ContentStandarPelayananController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'pdf' => 'nullable|file|mimes:pdf|max:2048',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pdf' => 'nullable|file|mimes:pdf|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
     
         $content = Content::find($id);

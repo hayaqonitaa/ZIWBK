@@ -14,27 +14,31 @@
             <input type="text" class="form-control" id="editJudul" name="judul" required>
           </div>
 
+          <!-- Current PDF Display -->
           <div class="mb-3">
-            <label for="currentPdf" class="form-label">PDF saat ini:</label><br>
-            <span id="currentPdfLink" style="display: none;"></span>
-            <a id="currentPdf" href="#" target="_blank" style="display: none;">Lihat PDF</a>
+            <label for="currentPdfFile" class="form-label">PDF Saat Ini:</label><br>
+            <a id="currentPdfFile" href="#" target="_blank" style="display: none;">Lihat PDF</a>
           </div>
 
+          <!-- New PDF Upload -->
           <div class="mb-3">
-            <label for="editPdf" class="form-label">Upload PDF baru</label>
+            <label for="editPdf" class="form-label">Upload PDF Baru</label>
             <input type="file" class="form-control" id="editPdf" name="pdf" accept=".pdf">
           </div>
 
+          <!-- Current Image Display -->
           <div class="mb-3">
-            <label class="form-label">Gambar saat ini:</label><br>
+            <label class="form-label">Gambar Saat Ini:</label><br>
             <img id="currentImageFile" src="" alt="Current Image" style="width: 80%; height: auto; display: none;">
           </div>
 
+          <!-- New Image Upload -->
           <div class="mb-3">
-            <label for="editImage" class="form-label">Upload Gambar baru</label>
+            <label for="editImage" class="form-label">Upload Gambar Baru</label>
             <input type="file" class="form-control" id="editImage" name="gambar" accept="image/*">
           </div>
 
+          <!-- Status Field -->
           <div class="mb-3">
             <label for="editStatus" class="form-label">Status</label>
             <select id="editStatus" name="status" class="form-select">
