@@ -16,8 +16,8 @@
 
           <div class="mb-3">
             <label for="currentPdf" class="form-label">PDF saat ini:</label><br>
-            <span id="currentPdfLink" style="display: none;"></span>
-            <a id="currentPdf" href="#" target="_blank" style="display: none;">Lihat PDF</a>
+            <span id="currentPdfFile" style="display: none;"></span>
+            <a id="currentPdfFile" href="#" target="_blank" style="display: none;">Lihat PDF</a>
           </div>
 
           <div class="mb-3">

@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
             ContentCategoriesSeeder::class,
             JurusanSeeder::class,
             ProdiSeeder::class,
+            MahasiswaSeeder::class,
+            KuesionerSeeder::class,
+            HasilSurveySeeder::class,
         ]);
     }
 }
