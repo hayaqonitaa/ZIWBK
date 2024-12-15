@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pengiriman Kuesioner</title>
+    <title>Pengisian Kuesioner ZI-WBK dan WBBM Polban</title>
 </head>
 <body>
     <h1>Dear, {{ $pembagian->mahasiswa->nama }}</h1>
