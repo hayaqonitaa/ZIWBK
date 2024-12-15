@@ -22,8 +22,6 @@ use App\Http\Controllers\admin_page\HasilSurveyController;
 use App\Http\Controllers\admin_page\GrafikController;
 use App\Http\Controllers\authentications\LoginCover;
 
-
-
 use App\Http\Controllers\konten\ContentTimKerjaController;
 use App\Http\Controllers\konten\ContentAgenPerubahanController;
 use App\Http\Controllers\konten\ContentLayananPengaduanController;
@@ -34,6 +32,7 @@ use App\Http\Controllers\konten\ContentStandarPelayananController;
 use App\Http\Controllers\konten\ContentPiagamController;
 use App\Http\Controllers\konten\ContentBeritaController;
 use App\Http\Controllers\pages\MiscError;
+use App\Http\Controllers\konten\ContentTabelTimKerjaController;
 
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
@@ -44,7 +43,6 @@ Route::get('/tim', [TimController::class, 'index']);
 Route::get('/auth/login-cover', [LoginCover::class, 'index'])->name('auth-login-cover');
 Route::post('/auth/login', [LoginCover::class, 'authenticate'])->name('auth-login');
 Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
-
 
 Route::get('/hasil-survey', [HasilSurveyController::class, 'index'])->name('hasil_survey.index')->middleware('auth');
 Route::post('/hasil-survey/import', [HasilSurveyController::class, 'import'])->name('hasil_survey.import')->middleware('auth');
@@ -123,6 +121,11 @@ Route::post('/content/tim_kerja/store', [ContentTimKerjaController::class, 'stor
 Route::post('/content/tim_kerja/update/{id}', [ContentTimKerjaController::class, 'update'])->name('konten.tim_kerja.update')->middleware('auth');
 Route::delete('/content/tim_kerja/delete/{id}', [ContentTimKerjaController::class, 'destroy'])->name('konten.tim_kerja.delete')->middleware('auth');
 
+Route::get('/content/tabel_tim_kerja', [ContentTabelTimKerjaController::class, 'index'])->name('konten.tabel_tim_kerja.index')->middleware('auth');
+Route::get('/content/tabel_tim_kerja/data', [ContentTabelTimKerjaController::class, 'getTabelTimKerja'])->name('konten.tabel_tim_kerja.data')->middleware('auth');
+Route::post('/content/tabel_tim_kerja/store', [ContentTabelTimKerjaController::class, 'store'])->middleware('auth');
+Route::post('/content/tabel_tim_kerja/update/{id}', [ContentTabelTimKerjaController::class, 'update'])->name('konten.tabel_tim_kerja.update')->middleware('auth');
+Route::delete('/content/tabel_tim_kerja/delete/{id}', [ContentTabelTimKerjaController::class, 'destroy'])->name('konten.tabel_tim_kerja.delete')->middleware('auth');
 
 Route::get('/content/standar_pelayanan', [ContentStandarPelayananController::class, 'index'])->name('konten.standar_pelayanan.index')->middleware('auth');
 Route::get('/content/standar_pelayanan/data', [ContentStandarPelayananController::class, 'getStandarPelayanan'])->name('konten.standar_pelayanan.data')->middleware('auth');

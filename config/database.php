@@ -64,22 +64,19 @@ return [
         ],
 
         'pgsql' => [
-    'driver' => 'pgsql',
-    'url' => env('DATABASE_URL'), // Laravel akan membaca URL ini
-    'host' => env('DB_HOST', 'l-ke1.h.filess.io'),
-    'port' => env('DB_PORT', '5432'),
-    'database' => env('DB_DATABASE', 'ziwbk_silencemix'),
-    'username' => env('DB_USERNAME', 'ziwbk_silencemix'),
-    'password' => env('DB_PASSWORD', 'e8d2091aa68ac18e87563038cfac7a8e5184be08'),
-    'charset' => 'utf8',
-    'prefix' => '',
-    'prefix_indexes' => true,
-    'schema' => 'ziwbk_schema', // Ubah schema ke schema baru
-    'sslmode' => 'prefer',
-],
-
-
-
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'ziwbk'),
+            'username' => env('DB_USERNAME', 'postgres'),
+            'password' => env('DB_PASSWORD', 'password_baru'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
@@ -128,7 +125,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '').'_database'),
         ],
 
         'default' => [
