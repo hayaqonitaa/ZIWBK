@@ -7,8 +7,8 @@ $(document).on('click', '.edit-btn', function () {
     $('#editJudul').val(button.data('judul'));
 
     // Show the current image and PDF
-    var deskripsi = button.data('image') || '';
-    var file = button.data('pdf') || '';
+    var deskripsi = button.data('deskripsi') || '';
+    var file = button.data('file') || '';
     var imageFileName = deskripsi ? deskripsi.split('/').pop() : 'No image available';
     var pdfFileName = file ? file.split('/').pop() : 'No PDF available';
 

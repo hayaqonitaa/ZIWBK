@@ -60,7 +60,7 @@ $(function () {
           orderable: false,
           render: function (data, type, row) {
             return `
-              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-judul="${row.judul}" data-gambar="${row.gambar}" data-pdf="${row.pdf}" data-status="${row.status}">
+              <button class="btn btn-sm btn-primary edit-btn me-1" data-id="${row.id}" data-judul="${row.judul}" data-gambar="${row.deskripsi}" data-pdf="${row.file}" data-status="${row.status}">
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">
